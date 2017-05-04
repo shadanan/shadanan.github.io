@@ -54,6 +54,8 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+	var EPSILON = 0.05;
+
 	function arrow(ctx, x1, y1, x2, y2, s) {
 	  var a = Math.atan2(y2 - y1, x2 - x1);
 
@@ -165,11 +167,13 @@
 	  }, {
 	    key: "handleMouseDown",
 	    value: function handleMouseDown(event) {
+	      // Find distance to each target from mouse click
 	      var mousePosition = this.getMousePos(event);
 	      var d1 = numeric.norm2(numeric.sub([mousePosition.x, mousePosition.y], [this.state.a, this.state.c]));
 	      var d2 = numeric.norm2(numeric.sub([mousePosition.x, mousePosition.y], [this.state.b, this.state.d]));
 	      var d3 = numeric.norm2(numeric.sub([mousePosition.x, mousePosition.y], [this.state.x, this.state.y]));
 
+	      // Pick the closest target to the mouse click
 	      if (Math.min(d1, d2, d3) == d1) {
 	        this.state.currentCrossHair = 1;
 	      } else if (Math.min(d1, d2, d3) == d2) {
@@ -190,6 +194,19 @@
 	    value: function handleMouseMove(event) {
 	      if (this.state.currentCrossHair != 0) {
 	        var mousePosition = this.getMousePos(event);
+
+	        if (this.props.snapToGrid) {
+	          var xSnap = Math.round(mousePosition.x * 2) / 2;
+	          var ySnap = Math.round(mousePosition.y * 2) / 2;
+
+	          if (Math.abs(xSnap - mousePosition.x) < EPSILON) {
+	            mousePosition.x = xSnap;
+	          }
+
+	          if (Math.abs(ySnap - mousePosition.y) < EPSILON) {
+	            mousePosition.y = ySnap;
+	          }
+	        }
 
 	        if (this.state.currentCrossHair == 1) {
 	          this.state.a = mousePosition.x;
@@ -285,8 +302,13 @@
 
 	      // Determinant
 	      if (this.props.determinant) {
-	        ctx.strokeStyle = '#fdfe00';
-	        ctx.fillStyle = 'rgba(253, 254, 0, 0.5)';
+	        if (numeric.det(m) < 0) {
+	          ctx.strokeStyle = '#fd00fe';
+	          ctx.fillStyle = 'rgba(253, 0, 254, 0.5)';
+	        } else {
+	          ctx.strokeStyle = '#fdfe00';
+	          ctx.fillStyle = 'rgba(253, 254, 0, 0.5)';
+	        }
 	        ctx.beginPath();
 	        ctx.moveTo(0, 0);
 	        ctx.lineTo.apply(ctx, numeric.dot(m, [1, 0]));
@@ -446,11 +468,19 @@
 
 	    var _this2 = _possibleConstructorReturn(this, Object.getPrototypeOf(App).call(this));
 
-	    _this2.state = { t: 0, inoutVector: false, determinant: false, eigenvectors: false };
+	    _this2.state = {
+	      t: 0,
+	      inoutVector: false,
+	      determinant: false,
+	      eigenvectors: false,
+	      snapToGrid: false
+	    };
+
 	    _this2.handleChange = _this2.handleChange.bind(_this2);
 	    _this2.toggleInoutVector = _this2.toggleInoutVector.bind(_this2);
 	    _this2.toggleDeterminant = _this2.toggleDeterminant.bind(_this2);
 	    _this2.toggleEigenvectors = _this2.toggleEigenvectors.bind(_this2);
+	    _this2.toggleSnapToGrid = _this2.toggleSnapToGrid.bind(_this2);
 	    return _this2;
 	  }
 
@@ -475,6 +505,11 @@
 	      this.setState({ eigenvectors: event.target.checked });
 	    }
 	  }, {
+	    key: "toggleSnapToGrid",
+	    value: function toggleSnapToGrid(event) {
+	      this.setState({ snapToGrid: event.target.checked });
+	    }
+	  }, {
 	    key: "render",
 	    value: function render() {
 	      return React.createElement(
@@ -497,6 +532,7 @@
 	            inoutVector: this.state.inoutVector,
 	            determinant: this.state.determinant,
 	            eigenvectors: this.state.eigenvectors,
+	            snapToGrid: this.state.snapToGrid,
 	            scale: 60 }),
 	          React.createElement(
 	            ReactBootstrap.Form,
@@ -542,6 +578,16 @@
 	                { checked: this.state.eigenvectors,
 	                  onChange: this.toggleEigenvectors },
 	                "Show Eigenvectors"
+	              )
+	            ),
+	            React.createElement(
+	              ReactBootstrap.Col,
+	              { sm: 2 },
+	              React.createElement(
+	                ReactBootstrap.Checkbox,
+	                { checked: this.state.snapToGrid,
+	                  onChange: this.toggleSnapToGrid },
+	                "Snap to Grid"
 	              )
 	            )
 	          )
