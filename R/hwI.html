@@ -1,0 +1,563 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>16. Case Study: Working Through a HW Problem &mdash; R Tutorial</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/siteColours.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="R Tutorial" href="index.html"/>
+        <link rel="next" title="17. Case Study II: A JAMA Paper on Cholesterol" href="cholesterol.html"/>
+        <link rel="prev" title="2. S4 Classes" href="s4Classes.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> R Tutorial
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+
+   
+
+        <div id="sidebar">
+					<!-- localtoc.html --><ul>
+<li><a class="reference internal" href="#">16. Case Study: Working Through a HW Problem</a><ul>
+<li><a class="reference internal" href="#problem-statement">16.1. Problem Statement</a></li>
+<li><a class="reference internal" href="#transforming-the-data">16.2. Transforming the Data</a></li>
+<li><a class="reference internal" href="#the-confidence-interval">16.3. The Confidence Interval</a></li>
+<li><a class="reference internal" href="#test-of-significance">16.4. Test of Significance</a></li>
+<li><a class="reference internal" href="#the-power-of-the-test">16.5. The Power of the test</a></li>
+</ul>
+</li>
+</ul>
+
+					<!-- datacamp.html --><div class="datacampAd">
+	<iframe src="https://tracking-ads.datacamp.com" frameborder="0" width="160" height="600" scrolling="no" allowtransparancy="true" style="margin-bottom: 10px; margin-left: 5px; border: 0;"></iframe>
+</div>
+					<!-- globaltoc.html --><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="input.html">1. Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">2. Basic Data Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basicOps.html">3. Basic Operations and Numerical Descriptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="probability.html">4. Basic Probability Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting.html">5. Basic Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intermediatePlotting.html">6. Intermediate Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vectorIndexing.html">7. Indexing Into Vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linearLeastSquares.html">8. Linear Least Squares Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="confidence.html">9. Calculating Confidence Intervals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pValues.html">10. Calculating <em>p</em> Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="power.html">11. Calculating The Power Of A Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tables.html">12. Two Way Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataManagement.html">13. Data Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="time.html">14. Time Data Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripting.html">15. Introduction to Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="objectOriented.html">Object Oriented Programming</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">16. Case Study: Working Through a HW Problem</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#problem-statement">16.1. Problem Statement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#transforming-the-data">16.2. Transforming the Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-confidence-interval">16.3. The Confidence Interval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#test-of-significance">16.4. Test of Significance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-power-of-the-test">16.5. The Power of the test</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cholesterol.html">17. Case Study II: A JAMA Paper on Cholesterol</a></li>
+</ul>
+
+        </div>
+
+			
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">R Tutorial</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>16. Case Study: Working Through a HW Problem</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="case-study-working-through-a-hw-problem">
+<h1>16. Case Study: Working Through a HW Problem<a class="headerlink" href="#case-study-working-through-a-hw-problem" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#problem-statement" id="id7">Problem Statement</a></li>
+<li><a class="reference internal" href="#transforming-the-data" id="id8">Transforming the Data</a></li>
+<li><a class="reference internal" href="#the-confidence-interval" id="id9">The Confidence Interval</a></li>
+<li><a class="reference internal" href="#test-of-significance" id="id10">Test of Significance</a></li>
+<li><a class="reference internal" href="#the-power-of-the-test" id="id11">The Power of the test</a></li>
+</ul>
+</div>
+<span class="target" id="index-0"></span><p id="index-1">We look at a sample homework problem and the R commands necessary to
+explore the problem. It is assumed that you are familiar will all of
+the commands discussed throughout this tutorial.</p>
+<div class="section" id="problem-statement">
+<h2><a class="toc-backref" href="#id7">16.1. Problem Statement</a><a class="headerlink" href="#problem-statement" title="Permalink to this headline">¶</a></h2>
+<p>This problem comes from the 5th edition of Moore and McCabe&#8217;s
+Introduction to the Practice of Statistics and can be found on pp.
+466-467. The data consists of the emissions of three different
+pollutants from 46 different engines. A copy of the data we use here
+is available. The problem examined here is different from that given
+in the book but is motivated by the discussion in the book.</p>
+<p>In the following examples we will look at the carbon monoxide data
+which is one of the columns of this data set. First we will transform
+the data so that it is close to being normally distributed. We will
+then find the confidence interval for the mean and then perform a
+significance test to evaluate whether or not the data is away from a
+fixed standard. Finally, we will find the power of the test to detect
+a fixed difference from that standard. We will assume that a
+confidence level of 95% is used throughout.</p>
+</div>
+<div class="section" id="transforming-the-data">
+<h2><a class="toc-backref" href="#id8">16.2. Transforming the Data</a><a class="headerlink" href="#transforming-the-data" title="Permalink to this headline">¶</a></h2>
+<p>We first begin a basic examination of the data. A copy of the data
+file can be found at <a class="reference external" href="_static/table_7_3.csv">table_7_3.csv</a>.The
+first step is to read in the file and get a summary of the center and
+spread of the data. In this instance we will focus only on the carbon
+monoxide data.</p>
+<div class="highlight-rconsole" id="index-2"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>engine <span class="o">&lt;-</span> read.csv<span class="p">(</span>file<span class="o">=</span><span class="s">&quot;table_7_3.csv&quot;</span><span class="p">,</span>sep<span class="o">=</span><span class="s">&quot;,&quot;</span><span class="p">,</span>head<span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="gp">&gt; </span><span class="kp">names</span><span class="p">(</span>engine<span class="p">)</span>
+<span class="go">[1] &quot;en&quot;  &quot;hc&quot;  &quot;co&quot;  &quot;nox&quot;</span>
+<span class="gp">&gt; </span><span class="kp">summary</span><span class="p">(</span>engine<span class="p">)</span>
+<span class="go">       en              hc               co              nox</span>
+<span class="go"> Min.   : 1.00   Min.   :0.3400   Min.   : 1.850   Min.   :0.490</span>
+<span class="go"> 1st Qu.:12.75   1st Qu.:0.4375   1st Qu.: 4.388   1st Qu.:1.110</span>
+<span class="go"> Median :24.50   Median :0.5100   Median : 5.905   Median :1.315</span>
+<span class="go"> Mean   :24.00   Mean   :0.5502   Mean   : 7.879   Mean   :1.340</span>
+<span class="go"> 3rd Qu.:35.25   3rd Qu.:0.6025   3rd Qu.:10.015   3rd Qu.:1.495</span>
+<span class="go"> Max.   :46.00   Max.   :1.1000   Max.   :23.530   Max.   :2.940</span>
+</pre></div>
+</div>
+<p>At first glance the carbon monoxide data appears to be skewed. The
+spread between the third quartile and the max is five times the spread
+between the min and the first quartile. A boxplot is show in
+<a class="reference internal" href="#co-raw-boxlot"><span>Figure 1.</span></a> showing that the data appears to be skewed. This
+is further confirmed in the histogram which is shown in
+<a class="reference internal" href="#co-raw-histogram"><span>Figure 2.</span></a> Finally, a normal qq plot is given in
+<a class="reference internal" href="#co-raw-qqplot"><span>Figure 3.</span></a> The data does not appear to be normal.</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>qqnorm<span class="p">(</span>engine<span class="o">$</span>co<span class="p">,</span>main<span class="o">=</span><span class="s">&quot;Carbon Monoxide&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>qqline<span class="p">(</span>engine<span class="o">$</span>co<span class="p">)</span>
+<span class="gp">&gt; </span>boxplot<span class="p">(</span>engine<span class="o">$</span>co<span class="p">,</span>main<span class="o">=</span><span class="s">&quot;Carbon Monoxide&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>hist<span class="p">(</span>engine<span class="o">$</span>co<span class="p">,</span>main<span class="o">=</span><span class="s">&quot;Carbon Monoxide&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>qqnorm<span class="p">(</span>engine<span class="o">$</span>co<span class="p">,</span>main<span class="o">=</span><span class="s">&quot;Carbon Monoxide&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>qqline<span class="p">(</span>engine<span class="o">$</span>co<span class="p">)</span>
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+<div class="figure align-left" id="id1">
+<span id="co-raw-boxlot"></span><img alt="Boxplot of the  CO data." src="_images/boxplotCO.jpg" />
+<p class="caption"><span class="caption-text">Figure 1.</span></p>
+<div class="legend">
+Boxplot of the Carbon Monoxide Data.</div>
+</div>
+<div class="figure align-right" id="id2">
+<span id="co-raw-histogram"></span><img alt="Histogram of the CO data." src="_images/coHist.jpg" />
+<p class="caption"><span class="caption-text">Figure 2.</span></p>
+<div class="legend">
+Histogram of the Carbon Monoxide Data.</div>
+</div>
+<div class="align-center figure" id="id3">
+<span id="co-raw-qqplot"></span><img alt="QQPlot of the CO data" src="_images/qqplotCO.jpg" />
+<p class="caption"><span class="caption-text">Figure 3.</span></p>
+<div class="legend">
+Normal QQ Plot of the Carbon Monoxide Data.</div>
+</div>
+<p>We next see if the data can be transformed to something that is closer
+to being normally distributed. We examine the logarithm of the
+data. First, the boxplot of the log of the data appears to be more
+evenly distributed as shown in <a class="reference internal" href="#co-log-boxlot"><span>Figure 4.</span></a> Also, the
+histogram appears to be centered and closer to normal in
+<a class="reference internal" href="#co-log-histogram"><span>Figure 5.</span></a> Finally, the normal qq plot is shown in in
+<a class="reference internal" href="#co-log-qqplot"><span>Figure 6.</span></a> It shows that the data is more consistent with
+what we would expect from normal data.</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>lengine <span class="o">&lt;-</span> <span class="kp">log</span><span class="p">(</span>engine<span class="o">$</span>co<span class="p">)</span>
+<span class="gp">&gt; </span>boxplot<span class="p">(</span>lengine<span class="p">,</span>main<span class="o">=</span><span class="s">&quot;Carbon Monoxide&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>hist<span class="p">(</span>lengine<span class="p">,</span>main<span class="o">=</span><span class="s">&quot;Carbon Monoxide&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>qqnorm<span class="p">(</span>lengine<span class="p">,</span>main<span class="o">=</span><span class="s">&quot;QQ Plot for the Log of the Carbon Monoxide&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>qqline<span class="p">(</span>lengine<span class="p">)</span>
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+<div class="figure align-left" id="id4">
+<span id="co-log-boxlot"></span><img alt="Boxplot of the log of the CO data." src="_images/boxplotCOLog.jpg" />
+<p class="caption"><span class="caption-text">Figure 4.</span></p>
+<div class="legend">
+Boxplot of the Logarithm of the Carbon Monoxide Data.</div>
+</div>
+<div class="figure align-right" id="id5">
+<span id="co-log-histogram"></span><img alt="Histogram of the logarithm of the Carbon Monoxide Data." src="_images/coHistLog.jpg" />
+<p class="caption"><span class="caption-text">Figure 5.</span></p>
+<div class="legend">
+Histogram of the Logarithm of the Carbon Monoxide Data.</div>
+</div>
+<div class="align-center figure" id="id6">
+<span id="co-log-qqplot"></span><img alt="QQPlot of the log of the CO data" src="_images/qqplotCOLog.jpg" />
+<p class="caption"><span class="caption-text">Figure 6.</span></p>
+<div class="legend">
+Normal QQ Plot of the Logarithm of the Carbon Monoxide Data.</div>
+</div>
+<p>There is strong evidence that the logarithm of the carbon monoxide
+data more closely resembles a normal distribution then does the raw
+carbon monoxide data. For that reason all of the analysis that follows
+will be for the logarithm of the data and will make use of the new
+list &#8220;lengine.&#8221;</p>
+</div>
+<div class="section" id="the-confidence-interval">
+<h2><a class="toc-backref" href="#id9">16.3. The Confidence Interval</a><a class="headerlink" href="#the-confidence-interval" title="Permalink to this headline">¶</a></h2>
+<p id="index-3">We now find the confidence interval for the carbon monoxide data. As
+stated above, we will work with the logarithm of the data because it
+appears to be closer to a normal distribution. This data is stored in
+the list called &#8220;lengine.&#8221; Since we do not know the true standard
+deviation we will use the sample standard deviation and will use a
+t-distribution.</p>
+<p>We first find the sample mean, the sample standard deviation, and the
+number of observations:</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>m <span class="o">&lt;-</span> <span class="kp">mean</span><span class="p">(</span>lengine<span class="p">)</span>
+<span class="gp">&gt; </span>s <span class="o">&lt;-</span> sd<span class="p">(</span>lengine<span class="p">)</span>
+<span class="gp">&gt; </span>n <span class="o">&lt;-</span> <span class="kp">length</span><span class="p">(</span>lengine<span class="p">)</span>
+<span class="gp">&gt; </span>m
+<span class="go">[1] 1.883678</span>
+<span class="gp">&gt; </span>s
+<span class="go">[1] 0.5983851</span>
+<span class="gp">&gt; </span>n
+<span class="go">[1] 48</span>
+</pre></div>
+</div>
+<p>Now we find the standard error:</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>se <span class="o">&lt;-</span> s<span class="o">/</span><span class="kp">sqrt</span><span class="p">(</span>n<span class="p">)</span>
+<span class="gp">&gt; </span>se
+<span class="go">[1] 0.08636945</span>
+</pre></div>
+</div>
+<p>Finally, the margin of error is found based on a 95% confidence level
+which can then be used to define the confidence interval:</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>error <span class="o">&lt;-</span> se<span class="o">*</span>qt<span class="p">(</span><span class="m">0.975</span><span class="p">,</span>df<span class="o">=</span>n<span class="m">-1</span><span class="p">)</span>
+<span class="gp">&gt; </span>error
+<span class="go">[1] 0.1737529</span>
+<span class="gp">&gt; </span>left <span class="o">&lt;-</span> m<span class="o">-</span>error
+<span class="gp">&gt; </span>right <span class="o">&lt;-</span> m <span class="o">+</span> error
+<span class="gp">&gt; </span>left
+<span class="go">[1] 1.709925</span>
+<span class="gp">&gt; </span>right
+<span class="go">[1] 2.057431</span>
+</pre></div>
+</div>
+<p>The 95% confidence interval is between 1.71 and 2.06. Keep in mind
+that this is for the logarithm so the 95% confidence interval for the
+original data can be found by &#8220;undoing&#8221; the logarithm:</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kp">exp</span><span class="p">(</span>left<span class="p">)</span>
+<span class="go">[1] 5.528548</span>
+<span class="gp">&gt; </span><span class="kp">exp</span><span class="p">(</span>right<span class="p">)</span>
+<span class="go">[1] 7.82584</span>
+</pre></div>
+</div>
+<p>So the 95% confidence interval for the carbon monoxide is between 5.53
+and 7.83.</p>
+</div>
+<div class="section" id="test-of-significance">
+<h2><a class="toc-backref" href="#id10">16.4. Test of Significance</a><a class="headerlink" href="#test-of-significance" title="Permalink to this headline">¶</a></h2>
+<p>We now perform a test of significance. Here we suppose that ideally
+the engines should have a mean level of 5.4 and do a two-sided
+hypothesis test. Here we assume that the true mean is labeled <span class="math">\(\mu_x\)</span> and
+state the hypothesis test:</p>
+<div class="math">
+\[\begin{split}H_o: \mu_x &amp; = &amp; 5.4,\end{split}\]\[\begin{split}H_a: \mu_x &amp; \neq &amp; 5.4,\end{split}\]</div>
+<p>To perform the hypothesis test we first assume that the null
+hypothesis is true and find the confidence interval around the assumed
+mean. Fortunately, we can use the values from the previous step:</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>lNull <span class="o">&lt;-</span> <span class="kp">log</span><span class="p">(</span><span class="m">5.4</span><span class="p">)</span> <span class="o">-</span> error
+<span class="gp">&gt; </span>rNull <span class="o">&lt;-</span> <span class="kp">log</span><span class="p">(</span><span class="m">5.4</span><span class="p">)</span> <span class="o">+</span> error
+<span class="gp">&gt; </span>lNull
+<span class="go">[1] 1.512646</span>
+<span class="gp">&gt; </span>rNull
+<span class="go">[1] 1.860152</span>
+<span class="gp">&gt; </span>m
+<span class="go">[1] 1.883678</span>
+</pre></div>
+</div>
+<p>The sample mean lies outside of the assumed confidence interval so we
+can reject the null hypothesis. There is a low probability that we
+would have obtained our sample mean if the true mean really were 5.4.</p>
+<p>Another way to approach the problem would be to calculate the actual
+p-value for the sample mean that was found. Since the sample mean is
+greater than 5.4 it can be found with the following code:</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="m">2</span><span class="o">*</span><span class="p">(</span><span class="m">1</span><span class="o">-</span>pt<span class="p">((</span>m<span class="o">-</span><span class="kp">log</span><span class="p">(</span><span class="m">5.4</span><span class="p">))</span><span class="o">/</span>se<span class="p">,</span>df<span class="o">=</span>n<span class="m">-1</span><span class="p">))</span>
+<span class="go">[1] 0.02692539</span>
+</pre></div>
+</div>
+<p>Since the p-value is 2.7% which is less than 5% we can reject the null
+hypothesis.</p>
+<p>Note that there is yet another way to do this. The function t.test
+will do a lot of this work for us.</p>
+<div class="highlight-rconsole" id="index-4"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>t.test<span class="p">(</span>lengine<span class="p">,</span>mu <span class="o">=</span> <span class="kp">log</span><span class="p">(</span><span class="m">5.4</span><span class="p">),</span>alternative <span class="o">=</span> <span class="s">&quot;two.sided&quot;</span><span class="p">)</span>
+
+<span class="go">        One Sample t-test</span>
+
+<span class="go">data:  lengine</span>
+<span class="go">t = 2.2841, df = 47, p-value = 0.02693</span>
+<span class="go">alternative hypothesis: true mean is not equal to 1.686399</span>
+<span class="go">95 percent confidence interval:</span>
+<span class="go"> 1.709925 2.057431</span>
+<span class="go">sample estimates:</span>
+<span class="go">mean of x</span>
+<span class="go"> 1.883678</span>
+</pre></div>
+</div>
+<p>More information and a more complete list of the options for this
+command can be found using the help command:</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>help<span class="p">(</span>t.test<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-power-of-the-test">
+<h2><a class="toc-backref" href="#id11">16.5. The Power of the test</a><a class="headerlink" href="#the-power-of-the-test" title="Permalink to this headline">¶</a></h2>
+<p id="index-5">We now find the power of the test. To find the power we need to set a
+level for the mean and then find the probability that we would accept
+the null hypothesis if the mean is really at the prescribed
+level. Here we will find the power to detect a difference if the level
+were 7. Three different methods are examined. The first is a method
+that some books advise to use if you do not have a non-central t-test
+available. The second does make use of the non-central
+t-test. Finally, the third method makes use of a customized R command.</p>
+<p>We first find the probability of accepting the null hypothesis if the
+level really were 7. We assume that the true mean is 7 and then find
+the probability that a sample mean would fall within the confidence
+interval if the null hypothesis were true. Keep in mind that we have
+to transform the level of 7 by taking its logarithm. Also keep in mind
+that this is a two-sided test:</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>tLeft <span class="o">&lt;-</span> <span class="p">(</span>lNull<span class="o">-</span><span class="kp">log</span><span class="p">(</span><span class="m">7</span><span class="p">))</span><span class="o">/</span><span class="p">(</span>s<span class="o">/</span><span class="kp">sqrt</span><span class="p">(</span>n<span class="p">))</span>
+<span class="gp">&gt; </span>tRight <span class="o">&lt;-</span> <span class="p">(</span>rNull<span class="o">-</span><span class="kp">log</span><span class="p">(</span><span class="m">7</span><span class="p">))</span><span class="o">/</span><span class="p">(</span>s<span class="o">/</span><span class="kp">sqrt</span><span class="p">(</span>n<span class="p">))</span>
+<span class="gp">&gt; </span>p <span class="o">&lt;-</span> pt<span class="p">(</span>tRight<span class="p">,</span>df<span class="o">=</span>n<span class="m">-1</span><span class="p">)</span> <span class="o">-</span> pt<span class="p">(</span>tLeft<span class="p">,</span>df<span class="o">=</span>n<span class="m">-1</span><span class="p">)</span>
+<span class="gp">&gt; </span>p
+<span class="go">[1] 0.1629119</span>
+<span class="gp">&gt; </span><span class="m">1</span><span class="o">-</span>p
+<span class="go">[1] 0.8370881</span>
+</pre></div>
+</div>
+<p>So the probability of making a type II error is approximately 16.3%,
+and the probability of detecting a difference if the level really is 7
+is approximately 83.7%.</p>
+<p>Another way to find the power is to use a non-centrality
+parameter. This is the method that many books advise over the previous
+method. The idea is that you give it the critical t-values associated
+with your test and also provide a parameter that indicates how the
+mean is shifted.</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>t <span class="o">&lt;-</span> qt<span class="p">(</span><span class="m">0.975</span><span class="p">,</span>df<span class="o">=</span>n<span class="m">-1</span><span class="p">)</span>
+<span class="gp">&gt; </span>shift <span class="o">&lt;-</span> <span class="p">(</span><span class="kp">log</span><span class="p">(</span><span class="m">5.4</span><span class="p">)</span><span class="o">-</span><span class="kp">log</span><span class="p">(</span><span class="m">7</span><span class="p">))</span><span class="o">/</span><span class="p">(</span>s<span class="o">/</span><span class="kp">sqrt</span><span class="p">(</span>n<span class="p">))</span>
+<span class="gp">&gt; </span>pt<span class="p">(</span><span class="kp">t</span><span class="p">,</span>df<span class="o">=</span>n<span class="m">-1</span><span class="p">,</span>ncp<span class="o">=</span>shift<span class="p">)</span><span class="o">-</span>pt<span class="p">(</span><span class="o">-</span><span class="kp">t</span><span class="p">,</span>df<span class="o">=</span>n<span class="m">-1</span><span class="p">,</span>ncp<span class="o">=</span>shift<span class="p">)</span>
+<span class="go">[1] 0.1628579</span>
+<span class="gp">&gt; </span><span class="m">1</span><span class="o">-</span><span class="p">(</span>pt<span class="p">(</span><span class="kp">t</span><span class="p">,</span>df<span class="o">=</span>n<span class="m">-1</span><span class="p">,</span>ncp<span class="o">=</span>shift<span class="p">)</span><span class="o">-</span>pt<span class="p">(</span><span class="o">-</span><span class="kp">t</span><span class="p">,</span>df<span class="o">=</span>n<span class="m">-1</span><span class="p">,</span>ncp<span class="o">=</span>shift<span class="p">))</span>
+<span class="go">[1] 0.8371421</span>
+</pre></div>
+</div>
+<p>Again, we see that the power of the test is approximately 83.7%. Note
+that this result is slightly off from the previous answer. This
+approach is often recommended over the previous approach.</p>
+<p>The final approach we examine allows us to do all the calculations in
+one step. It makes use of the non-centrality parameter as in the
+previous example, but all of the commands are done for us.</p>
+<div class="highlight-rconsole" id="index-6"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>power.t.test<span class="p">(</span>n<span class="o">=</span>n<span class="p">,</span>delta<span class="o">=</span><span class="kp">log</span><span class="p">(</span><span class="m">7</span><span class="p">)</span><span class="o">-</span><span class="kp">log</span><span class="p">(</span><span class="m">5.4</span><span class="p">),</span>sd<span class="o">=</span>s<span class="p">,</span>sig.level<span class="o">=</span><span class="m">0.05</span><span class="p">,</span>
+<span class="go">              type=&quot;one.sample&quot;,alternative=&quot;two.sided&quot;,strict = TRUE)</span>
+
+<span class="go">     One-sample t test power calculation</span>
+
+<span class="go">              n = 48</span>
+<span class="go">          delta = 0.2595112</span>
+<span class="go">             sd = 0.5983851</span>
+<span class="go">      sig.level = 0.05</span>
+<span class="go">          power = 0.8371421</span>
+<span class="go">    alternative = two.sided</span>
+</pre></div>
+</div>
+<p>This is a powerful command that can do much more than just calculate
+the power of a test. For example it can also be used to calculate the
+number of observations necessary to achieve a given power. For more
+information check out the help page, help(power.t.test).</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+
+
+
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="cholesterol.html" class="btn btn-neutral float-right" title="17. Case Study II: A JAMA Paper on Cholesterol" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="s4Classes.html" class="btn btn-neutral" title="2. S4 Classes" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+		
+
+		<br><br>
+
+		<div class="admonition note">
+			<p class="first admonition-title">Sponsorship</p>
+			<p class="last">
+				This site generously supported
+				by <a href="https://www.datacamp.com/"
+							target="_blank">Datacamp</a>. Datacamp offers a
+				free <a href="https://www.datacamp.com/courses/free-introduction-to-r"
+								target="_blank"> interactive introduction to R coding tutorial</a>
+				as an additional resource. Already over 100,000 people took this
+				free tutorial to sharpen their R coding skills.
+			</p>
+		</div>
+		
+
+<footer>
+		<hr/>
+
+		<div role="contentinfo">
+
+			<p>
+			<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">R Tutorial</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="mailto:kjblack@gmail.com" property="cc:attributionName" rel="cc:attributionURL">Kelly Black</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a> (2015).<br />Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="http://www.cyclismo.org/tutorial/R/" rel="dct:source">http://www.cyclismo.org/tutorial/R/</a>.
+</p>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'3.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

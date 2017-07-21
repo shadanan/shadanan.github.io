@@ -1,0 +1,595 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>14. Time Data Types &mdash; R Tutorial</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/siteColours.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="R Tutorial" href="index.html"/>
+        <link rel="next" title="15. Introduction to Programming" href="scripting.html"/>
+        <link rel="prev" title="13. Data Management" href="dataManagement.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> R Tutorial
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+
+   
+
+        <div id="sidebar">
+					<!-- localtoc.html --><ul>
+<li><a class="reference internal" href="#">14. Time Data Types</a><ul>
+<li><a class="reference internal" href="#time-and-date-variables">14.1. Time and Date Variables</a></li>
+<li><a class="reference internal" href="#time-operations">14.2. Time Operations</a></li>
+</ul>
+</li>
+</ul>
+
+					<!-- datacamp.html --><div class="datacampAd">
+	<iframe src="https://tracking-ads.datacamp.com" frameborder="0" width="160" height="600" scrolling="no" allowtransparancy="true" style="margin-bottom: 10px; margin-left: 5px; border: 0;"></iframe>
+</div>
+					<!-- globaltoc.html --><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="input.html">1. Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">2. Basic Data Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basicOps.html">3. Basic Operations and Numerical Descriptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="probability.html">4. Basic Probability Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting.html">5. Basic Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intermediatePlotting.html">6. Intermediate Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vectorIndexing.html">7. Indexing Into Vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linearLeastSquares.html">8. Linear Least Squares Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="confidence.html">9. Calculating Confidence Intervals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pValues.html">10. Calculating <em>p</em> Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="power.html">11. Calculating The Power Of A Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tables.html">12. Two Way Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataManagement.html">13. Data Management</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">14. Time Data Types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#time-and-date-variables">14.1. Time and Date Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#time-operations">14.2. Time Operations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scripting.html">15. Introduction to Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="objectOriented.html">Object Oriented Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hwI.html">16. Case Study: Working Through a HW Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cholesterol.html">17. Case Study II: A JAMA Paper on Cholesterol</a></li>
+</ul>
+
+        </div>
+
+			
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">R Tutorial</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>14. Time Data Types</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="time-data-types">
+<h1>14. Time Data Types<a class="headerlink" href="#time-data-types" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#time-and-date-variables" id="id1">Time and Date Variables</a></li>
+<li><a class="reference internal" href="#time-operations" id="id2">Time Operations</a></li>
+</ul>
+</div>
+<p id="index-0">The time data types are broken out into a separate section from the
+introductory section on data types. (<a class="reference internal" href="types.html#basicdatatypes"><span>Basic Data Types</span></a>) The reason
+for this is that dealing with time data can be subtle and must be done
+carefully because the data type can be cast in a variety of different
+ways. It is not an introductory topic, and if not done well can scare
+off the normal people.</p>
+<p>I will first go over the basic time data types and then explore the
+different kinds of operations that are done with the time data
+types. <strong>Please be cautious with time data and read the complete
+description including the caveats. There are some common mistakes that
+result in calculations that yield results that are very different from
+the intended values.</strong></p>
+<div class="section" id="time-and-date-variables">
+<h2><a class="toc-backref" href="#id1">14.1. Time and Date Variables</a><a class="headerlink" href="#time-and-date-variables" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="index-1"></span><p id="index-2">There are a variety of different types specific to time data fields
+in R. Here we only look at two, the POSIXct and POSIXlt data types:</p>
+<p>POSIXct</p>
+<blockquote>
+<div>The POSIXct data type is the number of seconds since the start
+of January 1, 1970. Negative numbers represent the number of seconds
+before this time, and positive numbers represent the number of
+seconds afterwards.</div></blockquote>
+<p>POSIXlt</p>
+<blockquote>
+<div><p>The POSIXlt data type is a vector, and the entries in the vector
+have the following meanings:</p>
+<ol class="arabic simple">
+<li>seconds</li>
+<li>minutes</li>
+<li>hours</li>
+<li>day of month (1-31)</li>
+<li>month of the year (0-11)</li>
+<li>years since 1900</li>
+<li>day of the week (0-6 where 0 represents Sunday)</li>
+<li>day of the year (0-365)</li>
+<li>Daylight savings indicator (positive if it is daylight savings)</li>
+</ol>
+</div></blockquote>
+<p>Part of the difficulty with time data types is that R prints them out
+in a way that is different from how it stores them internally. This
+can make type conversions tricky, and you have to be careful and test
+your operations to insure that R is doing what you think it is doing.</p>
+<p>To get the current time, the <em>Sys.time()</em> can be used, and you can
+play around a bit with the basic types to get a feel for what R is
+doing. The <em>as.POSIXct</em> and <em>as.POSIXlt</em> commands are used to
+convert the time value into the different formats.</p>
+<span class="target" id="index-3"></span><div class="highlight-rconsole" id="index-4"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>help<span class="p">(</span>DateTimeClasses<span class="p">)</span>
+<span class="gp">&gt; </span>t <span class="o">&lt;-</span> <span class="kp">Sys.time</span><span class="p">()</span>
+<span class="gp">&gt; </span><span class="kp">typeof</span><span class="p">(</span><span class="kp">t</span><span class="p">)</span>
+<span class="go">[1] &quot;double&quot;</span>
+<span class="gp">&gt; </span><span class="kp">t</span>
+<span class="go">[1] &quot;2014-01-23 14:28:21 EST&quot;</span>
+<span class="gp">&gt; </span><span class="kp">print</span><span class="p">(</span><span class="kp">t</span><span class="p">)</span>
+<span class="go">[1] &quot;2014-01-23 14:28:21 EST&quot;</span>
+<span class="gp">&gt; </span><span class="kp">cat</span><span class="p">(</span><span class="kp">t</span><span class="p">,</span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="go">1390505301</span>
+<span class="gp">&gt; </span><span class="kt">c</span> <span class="o">&lt;-</span> <span class="kp">as.POSIXct</span><span class="p">(</span><span class="kp">t</span><span class="p">)</span>
+<span class="gp">&gt; </span><span class="kp">typeof</span><span class="p">(</span><span class="kt">c</span><span class="p">)</span>
+<span class="go">[1] &quot;double&quot;</span>
+<span class="gp">&gt; </span><span class="kp">print</span><span class="p">(</span><span class="kt">c</span><span class="p">)</span>
+<span class="go">[1] &quot;2014-01-23 14:28:21 EST&quot;</span>
+<span class="gp">&gt; </span><span class="kp">cat</span><span class="p">(</span><span class="kt">c</span><span class="p">,</span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="go">1390505301</span>
+<span class="gp">&gt;</span>
+<span class="gp">&gt;</span>
+<span class="gp">&gt; </span>l <span class="o">&lt;-</span> <span class="kp">as.POSIXlt</span><span class="p">(</span><span class="kp">t</span><span class="p">)</span>
+<span class="gp">&gt; </span>l
+<span class="go">[1] &quot;2014-01-23 14:28:21 EST&quot;</span>
+<span class="gp">&gt; </span><span class="kp">typeof</span><span class="p">(</span>l<span class="p">)</span>
+<span class="go">[1] &quot;list&quot;</span>
+<span class="gp">&gt; </span><span class="kp">print</span><span class="p">(</span>l<span class="p">)</span>
+<span class="go">[1] &quot;2014-01-23 14:28:21 EST&quot;</span>
+<span class="gp">&gt; </span><span class="kp">cat</span><span class="p">(</span>l<span class="p">,</span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="go">Error in cat(list(...), file, sep, fill, labels, append) :</span>
+<span class="go">argument 1 (type &#39;list&#39;) cannot be handled by &#39;cat&#39;</span>
+<span class="gp">&gt; </span><span class="kp">names</span><span class="p">(</span>l<span class="p">)</span>
+<span class="go">NULL</span>
+<span class="gp">&gt; </span>l<span class="p">[[</span><span class="m">1</span><span class="p">]]</span>
+<span class="go">[1] 21.01023</span>
+<span class="gp">&gt; </span>l<span class="p">[[</span><span class="m">2</span><span class="p">]]</span>
+<span class="go">[1] 28</span>
+<span class="gp">&gt; </span>l<span class="p">[[</span><span class="m">3</span><span class="p">]]</span>
+<span class="go">[1] 14</span>
+<span class="gp">&gt; </span>l<span class="p">[[</span><span class="m">4</span><span class="p">]]</span>
+<span class="go">[1] 23</span>
+<span class="gp">&gt; </span>l<span class="p">[[</span><span class="m">5</span><span class="p">]]</span>
+<span class="go">[1] 0</span>
+<span class="gp">&gt; </span>l<span class="p">[[</span><span class="m">6</span><span class="p">]]</span>
+<span class="go">[1] 114</span>
+<span class="gp">&gt; </span>l<span class="p">[[</span><span class="m">7</span><span class="p">]]</span>
+<span class="go">[1] 4</span>
+<span class="gp">&gt; </span>l<span class="p">[[</span><span class="m">8</span><span class="p">]]</span>
+<span class="go">[1] 22</span>
+<span class="gp">&gt; </span>l<span class="p">[[</span><span class="m">9</span><span class="p">]]</span>
+<span class="go">[1] 0</span>
+<span class="gp">&gt;</span>
+<span class="gp">&gt; </span>b <span class="o">&lt;-</span> <span class="kp">as.POSIXct</span><span class="p">(</span>l<span class="p">)</span>
+<span class="gp">&gt; </span><span class="kp">cat</span><span class="p">(</span>b<span class="p">,</span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="go">1390505301</span>
+</pre></div>
+</div>
+<p>There are times when you have a time data type and want to convert it
+into a string so it can be saved into a file to be read by another
+application.  The <em>strftime</em> command is used to take a time data type
+and convert it to a string. You must supply an additional format
+string to let R what format you want to use. See the help page on
+<em>strftime</em> to get detailed information about the format string.</p>
+<div class="highlight-rconsole" id="index-5"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>help<span class="p">(</span><span class="kp">strftime</span><span class="p">)</span>
+<span class="gp">&gt;</span>
+<span class="gp">&gt; </span>t <span class="o">&lt;-</span> <span class="kp">Sys.time</span><span class="p">()</span>
+<span class="gp">&gt; </span><span class="kp">cat</span><span class="p">(</span><span class="kp">t</span><span class="p">,</span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="go">1390506463</span>
+<span class="gp">&gt; </span>timeStamp <span class="o">&lt;-</span>  <span class="kp">strftime</span><span class="p">(</span><span class="kp">t</span><span class="p">,</span><span class="s">&quot;%Y-%m-%d %H:%M:%S&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>timeStamp
+<span class="go">[1] &quot;2014-01-23 14:47:43&quot;</span>
+<span class="gp">&gt; </span><span class="kp">typeof</span><span class="p">(</span>timeStamp<span class="p">)</span>
+<span class="go">[1] &quot;character&quot;</span>
+</pre></div>
+</div>
+<p>Commonly a time stamp is saved in a data file, and it must be
+converted into a time data type to allow for calculations. For
+example, you may be interested in how much time has elapsed between
+two observations. The <em>strptime</em> command is used to take a string and
+convert it into a time data type. Like <em>strftime</em> it requires a format
+string in addition to the time stamp.</p>
+<p>The <em>strptime</em> command is used to take a string and convert it into a
+form that R can use for calculations. In the following example a data
+frame is defined that has the dates stored as strings. If you read the
+data in from a csv file this is how R will keep track of the
+data. Note that in this context the strings are assumed to represent
+ordinal data, and R will assume that the data field is a set of
+factors. You have to use the <em>strptime</em> command to convert it into a
+time field.</p>
+<div class="highlight-rconsole" id="index-6"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>myData <span class="o">&lt;-</span> <span class="kt">data.frame</span><span class="p">(</span>time<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;2014-01-23 14:28:21&quot;</span><span class="p">,</span><span class="s">&quot;2014-01-23 14:28:55&quot;</span><span class="p">,</span>
+<span class="go">                              &quot;2014-01-23 14:29:02&quot;,&quot;2014-01-23 14:31:18&quot;),</span>
+<span class="go">                      speed=c(2.0,2.2,3.4,5.5))</span>
+<span class="gp">&gt; </span>myData
+<span class="go">                 time speed</span>
+<span class="go">1 2014-01-23 14:28:21   2.0</span>
+<span class="go">2 2014-01-23 14:28:55   2.2</span>
+<span class="go">3 2014-01-23 14:29:02   3.4</span>
+<span class="go">4 2014-01-23 14:31:18   5.5</span>
+<span class="gp">&gt; </span><span class="kp">summary</span><span class="p">(</span>myData<span class="p">)</span>
+<span class="go">                 time       speed</span>
+<span class="go">2014-01-23 14:28:21:1   Min.   :2.000</span>
+<span class="go">2014-01-23 14:28:55:1   1st Qu.:2.150</span>
+<span class="go">2014-01-23 14:29:02:1   Median :2.800</span>
+<span class="go">2014-01-23 14:31:18:1   Mean   :3.275</span>
+<span class="go">                        3rd Qu.:3.925</span>
+<span class="go">                        Max.   :5.500</span>
+<span class="gp">&gt; </span>myData<span class="o">$</span>time<span class="p">[</span><span class="m">1</span><span class="p">]</span>
+<span class="go">[1] 2014-01-23 14:28:21</span>
+<span class="go">4 Levels: 2014-01-23 14:28:21 2014-01-23 14:28:55 ... 2014-01-23 14:31:18</span>
+<span class="gp">&gt; </span><span class="kp">typeof</span><span class="p">(</span>myData<span class="o">$</span>time<span class="p">[</span><span class="m">1</span><span class="p">])</span>
+<span class="go">[1] &quot;integer&quot;</span>
+<span class="gp">&gt;</span>
+<span class="gp">&gt;</span>
+<span class="gp">&gt; </span>myData<span class="o">$</span>time <span class="o">&lt;-</span> <span class="kp">strptime</span><span class="p">(</span>myData<span class="o">$</span>time<span class="p">,</span><span class="s">&quot;%Y-%m-%d %H:%M:%S&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>myData
+<span class="go">                 time speed</span>
+<span class="go">1 2014-01-23 14:28:21   2.0</span>
+<span class="go">2 2014-01-23 14:28:55   2.2</span>
+<span class="go">3 2014-01-23 14:29:02   3.4</span>
+<span class="go">4 2014-01-23 14:31:18   5.5</span>
+<span class="gp">&gt; </span>myData<span class="o">$</span>time<span class="p">[</span><span class="m">1</span><span class="p">]</span>
+<span class="go">[1] &quot;2014-01-23 14:28:21&quot;</span>
+<span class="gp">&gt; </span><span class="kp">typeof</span><span class="p">(</span>myData<span class="o">$</span>time<span class="p">[</span><span class="m">1</span><span class="p">])</span>
+<span class="go">[1] &quot;list&quot;</span>
+<span class="gp">&gt; </span>myData<span class="o">$</span>time<span class="p">[</span><span class="m">1</span><span class="p">][[</span><span class="m">2</span><span class="p">]]</span>
+<span class="go">[1] 28</span>
+</pre></div>
+</div>
+<p>Now you can perform operations on the fields. For example you can
+determine the time between observations. (Please see the notes below
+on time operations. This example is a bit misleading!)</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>N <span class="o">=</span> <span class="kp">length</span><span class="p">(</span>myData<span class="o">$</span>time<span class="p">)</span>
+<span class="gp">&gt; </span>myData<span class="o">$</span>time<span class="p">[</span><span class="m">2</span><span class="o">:</span>N<span class="p">]</span> <span class="o">-</span> myData<span class="o">$</span>time<span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="p">(</span>N<span class="m">-1</span><span class="p">)]</span>
+<span class="go">Time differences in secs</span>
+<span class="go">[1]  34   7 136</span>
+<span class="go">attr(,&quot;tzone&quot;)</span>
+<span class="go">[1] &quot;&quot;</span>
+</pre></div>
+</div>
+<p id="index-7">In addition to the time data types R also has a date data type. The
+difference is that the date data type keeps track of numbers of days
+rather than seconds. You can cast a string into a date type using the
+<em>as.Date</em> function. The <em>as.Date</em> function takes the same arguments as
+the time data types discussed above.</p>
+<div class="highlight-rconsole" id="index-8"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>theDates <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;1 jan 2012&quot;</span><span class="p">,</span><span class="s">&quot;1 jan 2013&quot;</span><span class="p">,</span><span class="s">&quot;1 jan 2014&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>dateFields <span class="o">&lt;-</span> <span class="kp">as.Date</span><span class="p">(</span>theDates<span class="p">,</span><span class="s">&quot;%d %b %Y&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span><span class="kp">typeof</span><span class="p">(</span>dateFields<span class="p">)</span>
+<span class="go">[1] &quot;double&quot;</span>
+<span class="gp">&gt; </span>dateFields
+<span class="go">[1] &quot;2012-01-01&quot; &quot;2013-01-01&quot; &quot;2014-01-01&quot;</span>
+<span class="gp">&gt; </span>N <span class="o">&lt;-</span> <span class="kp">length</span><span class="p">(</span>dateFields<span class="p">)</span>
+<span class="gp">&gt; </span>diff <span class="o">&lt;-</span> dateFields<span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="p">(</span>N<span class="m">-1</span><span class="p">)]</span> <span class="o">-</span> dateFields<span class="p">[</span><span class="m">2</span><span class="o">:</span>N<span class="p">]</span>
+<span class="gp">&gt; </span><span class="kp">diff</span>
+<span class="go">Time differences in days</span>
+<span class="go">[1] -366 -365</span>
+</pre></div>
+</div>
+<p>You can also define a date in terms of the number days after another
+date using the <em>origin</em> option.</p>
+<div class="highlight-rconsole" id="index-9"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>infamy <span class="o">&lt;-</span> <span class="kp">as.Date</span><span class="p">(</span><span class="m">-179</span><span class="p">,</span>origin<span class="o">=</span><span class="s">&quot;1942-06-04&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>infamy
+<span class="go">[1] &quot;1941-12-07&quot;</span>
+<span class="gp">&gt;</span>
+<span class="gp">&gt; </span>today <span class="o">&lt;-</span> <span class="kp">Sys.Date</span><span class="p">()</span>
+<span class="gp">&gt; </span>today
+<span class="go">[1] &quot;2014-01-23&quot;</span>
+<span class="gp">&gt; </span>today<span class="o">-</span>infamy
+<span class="go">Time difference of 26345 days</span>
+</pre></div>
+</div>
+<p>Finally, a nice function to know about and use is the <em>format</em>
+command. It can be used in a wide variety of situations, and not just
+for dates. It is helpful for dates, though, because you can use it in
+<em>cat</em> and <em>print</em> statements to make sure that your output is in
+exactly the form that you want.</p>
+<div class="highlight-rconsole" id="index-10"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>theTime <span class="o">&lt;-</span> <span class="kp">Sys.time</span><span class="p">()</span>
+<span class="gp">&gt; </span>theTime
+<span class="go">[1] &quot;2014-01-23 16:15:05 EST&quot;</span>
+<span class="gp">&gt; </span>a <span class="o">&lt;-</span> rexp<span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">0.1</span><span class="p">)</span>
+<span class="gp">&gt; </span>a
+<span class="go">[1] 7.432072</span>
+<span class="gp">&gt; </span><span class="kp">cat</span><span class="p">(</span><span class="s">&quot;At about&quot;</span><span class="p">,</span><span class="kp">format</span><span class="p">(</span>theTime<span class="p">,</span><span class="s">&quot;%H:%M&quot;</span><span class="p">),</span><span class="s">&quot;the time between occurances was around&quot;</span><span class="p">,</span><span class="kp">format</span><span class="p">(</span>a<span class="p">,</span>digits<span class="o">=</span><span class="m">3</span><span class="p">),</span><span class="s">&quot;seconds\n&quot;</span><span class="p">)</span>
+<span class="go">At about 16:15 the time between occurances was around 7.43 seconds</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="time-operations">
+<h2><a class="toc-backref" href="#id2">14.2. Time Operations</a><a class="headerlink" href="#time-operations" title="Permalink to this headline">¶</a></h2>
+<p>The most difficult part of dealing with time data can be converting it
+into the right format. Once a time or date is stored in R&#8217;s internal
+format then a number of basic operations are available. The thing to
+keep in mind, though, is that the units you get after an operation can
+vary depending on the magnitude of the time values. Be very careful
+when dealing with time operations and vigorously test your codes.</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>now <span class="o">&lt;-</span> <span class="kp">Sys.time</span><span class="p">()</span>
+<span class="gp">&gt; </span>now
+<span class="go">[1] &quot;2014-01-23 16:31:00 EST&quot;</span>
+<span class="gp">&gt; </span>now<span class="m">-60</span>
+<span class="go">[1] &quot;2014-01-23 16:30:00 EST&quot;</span>
+<span class="gp">&gt;</span>
+<span class="gp">&gt; </span>earlier <span class="o">&lt;-</span> <span class="kp">strptime</span><span class="p">(</span><span class="s">&quot;2000-01-01 00:00:00&quot;</span><span class="p">,</span><span class="s">&quot;%Y-%m-%d %H:%M:%S&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>later <span class="o">&lt;-</span> <span class="kp">strptime</span><span class="p">(</span><span class="s">&quot;2000-01-01 00:00:20&quot;</span><span class="p">,</span><span class="s">&quot;%Y-%m-%d %H:%M:%S&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>later<span class="o">-</span>earlier
+<span class="go">Time difference of 20 secs</span>
+<span class="gp">&gt; </span><span class="kp">as.double</span><span class="p">(</span>later<span class="o">-</span>earlier<span class="p">)</span>
+<span class="go">[1] 20</span>
+<span class="gp">&gt;</span>
+<span class="gp">&gt; </span>earlier <span class="o">&lt;-</span> <span class="kp">strptime</span><span class="p">(</span><span class="s">&quot;2000-01-01 00:00:00&quot;</span><span class="p">,</span><span class="s">&quot;%Y-%m-%d %H:%M:%S&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>later <span class="o">&lt;-</span> <span class="kp">strptime</span><span class="p">(</span><span class="s">&quot;2000-01-01 01:00:00&quot;</span><span class="p">,</span><span class="s">&quot;%Y-%m-%d %H:%M:%S&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>later<span class="o">-</span>earlier
+<span class="go">Time difference of 1 hours</span>
+<span class="gp">&gt; </span><span class="kp">as.double</span><span class="p">(</span>later<span class="o">-</span>earlier<span class="p">)</span>
+<span class="go">[1] 1</span>
+<span class="gp">&gt;</span>
+<span class="gp">&gt; </span>up <span class="o">&lt;-</span> <span class="kp">as.Date</span><span class="p">(</span><span class="s">&quot;1961-08-13&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>down <span class="o">&lt;-</span> <span class="kp">as.Date</span><span class="p">(</span><span class="s">&quot;1989-11-9&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>down<span class="o">-</span>up
+<span class="go">Time difference of 10315 days</span>
+</pre></div>
+</div>
+<p>The two examples involving the variables <em>earlier</em> and <em>later</em> in the
+previous code sample should cause you a little concern. The value of
+the difference depends on the largest units with respect to the
+difference! The issue is that when you subtract dates R uses the
+equivalent of the <em>difftime</em> command. We need to know how this
+operates to reduce the ambiguity when comparing times.</p>
+<div class="highlight-rconsole" id="index-11"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>help<span class="p">(</span><span class="kp">difftime</span><span class="p">)</span>
+<span class="gp">&gt;</span>
+<span class="gp">&gt; </span>earlier <span class="o">&lt;-</span> <span class="kp">strptime</span><span class="p">(</span><span class="s">&quot;2000-01-01 00:00:00&quot;</span><span class="p">,</span><span class="s">&quot;%Y-%m-%d %H:%M:%S&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>later <span class="o">&lt;-</span> <span class="kp">strptime</span><span class="p">(</span><span class="s">&quot;2000-01-01 01:00:00&quot;</span><span class="p">,</span><span class="s">&quot;%Y-%m-%d %H:%M:%S&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span><span class="kp">difftime</span><span class="p">(</span>later<span class="p">,</span>earlier<span class="p">)</span>
+<span class="go">Time difference of 1 hours</span>
+<span class="gp">&gt; </span><span class="kp">difftime</span><span class="p">(</span>later<span class="p">,</span>earlier<span class="p">,</span>units<span class="o">=</span><span class="s">&quot;secs&quot;</span><span class="p">)</span>
+<span class="go">Time difference of 3600 secs</span>
+</pre></div>
+</div>
+<p>One thing to be careful about <em>difftime</em> is that it is a double
+precision number, but it has units attached to it. This can be tricky,
+and you should be careful about the ambiguity in using this command. I
+personally always try to specify the units to avoid this.</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>earlier <span class="o">&lt;-</span> <span class="kp">strptime</span><span class="p">(</span><span class="s">&quot;2000-01-01 00:00:00&quot;</span><span class="p">,</span><span class="s">&quot;%Y-%m-%d %H:%M:%S&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>later <span class="o">&lt;-</span> <span class="kp">strptime</span><span class="p">(</span><span class="s">&quot;2000-01-01 00:00:20&quot;</span><span class="p">,</span><span class="s">&quot;%Y-%m-%d %H:%M:%S&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>d <span class="o">&lt;-</span> <span class="kp">difftime</span><span class="p">(</span>later<span class="p">,</span>earlier<span class="p">)</span>
+<span class="gp">&gt; </span>d
+<span class="go">Time difference of 20 secs</span>
+<span class="gp">&gt; </span><span class="kp">typeof</span><span class="p">(</span>d<span class="p">)</span>
+<span class="go">[1] &quot;double&quot;</span>
+<span class="gp">&gt; </span><span class="kp">as.double</span><span class="p">(</span>d<span class="p">)</span>
+<span class="go">[1] 20</span>
+</pre></div>
+</div>
+<p>Another way to define a time difference is to use the <em>as.difftime</em>
+command. It takes two dates and will compute the difference between
+them. It takes a time, its format, and the units to use. Note that in
+the following example R is able to figure out what the units are when
+making the calculation.</p>
+<div class="highlight-rconsole" id="index-12"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>diff <span class="o">&lt;-</span> <span class="kp">as.difftime</span><span class="p">(</span><span class="s">&quot;00:30:00&quot;</span><span class="p">,</span><span class="s">&quot;%H:%M:%S&quot;</span><span class="p">,</span>units<span class="o">=</span><span class="s">&quot;hour&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span><span class="kp">diff</span>
+<span class="go">Time difference of 0.5 hours</span>
+<span class="gp">&gt; </span><span class="kp">Sys.time</span><span class="p">()</span>
+<span class="go">[1] &quot;2014-01-23 16:45:39 EST&quot;</span>
+<span class="gp">&gt; </span><span class="kp">Sys.time</span><span class="p">()</span><span class="o">+</span><span class="kp">diff</span>
+<span class="go">[1] &quot;2014-01-23 17:15:41 EST&quot;</span>
+</pre></div>
+</div>
+<p>The last thing to mention is that once a time stamp is cast into one
+of R&#8217;s internal formats comparisons can be made in a natural way.</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>diff <span class="o">&lt;-</span> <span class="kp">as.difftime</span><span class="p">(</span><span class="s">&quot;00:30:00&quot;</span><span class="p">,</span><span class="s">&quot;%H:%M:%S&quot;</span><span class="p">,</span>units<span class="o">=</span><span class="s">&quot;hour&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>now <span class="o">&lt;-</span> <span class="kp">Sys.time</span><span class="p">()</span>
+<span class="gp">&gt; </span>later <span class="o">&lt;-</span> now <span class="o">+</span> <span class="kp">diff</span>
+<span class="gp">&gt; </span>now
+<span class="go">[1] &quot;2014-01-23 16:47:48 EST&quot;</span>
+<span class="gp">&gt; </span>later
+<span class="go">[1] &quot;2014-01-23 17:17:48 EST&quot;</span>
+<span class="gp">&gt;</span>
+<span class="gp">&gt; </span><span class="kr">if</span><span class="p">(</span>now <span class="o">&lt;</span> later<span class="p">)</span>
+<span class="go">  {</span>
+<span class="go">     cat(&quot;there you go\n&quot;)</span>
+<span class="go">  }</span>
+<span class="go">there you go</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+
+
+
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="scripting.html" class="btn btn-neutral float-right" title="15. Introduction to Programming" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dataManagement.html" class="btn btn-neutral" title="13. Data Management" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+		
+
+		<br><br>
+
+		<div class="admonition note">
+			<p class="first admonition-title">Sponsorship</p>
+			<p class="last">
+				This site generously supported
+				by <a href="https://www.datacamp.com/"
+							target="_blank">Datacamp</a>. Datacamp offers a
+				free <a href="https://www.datacamp.com/courses/free-introduction-to-r"
+								target="_blank"> interactive introduction to R coding tutorial</a>
+				as an additional resource. Already over 100,000 people took this
+				free tutorial to sharpen their R coding skills.
+			</p>
+		</div>
+		
+
+<footer>
+		<hr/>
+
+		<div role="contentinfo">
+
+			<p>
+			<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">R Tutorial</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="mailto:kjblack@gmail.com" property="cc:attributionName" rel="cc:attributionURL">Kelly Black</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a> (2015).<br />Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="http://www.cyclismo.org/tutorial/R/" rel="dct:source">http://www.cyclismo.org/tutorial/R/</a>.
+</p>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'3.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,736 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>17. Case Study II: A JAMA Paper on Cholesterol &mdash; R Tutorial</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/siteColours.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="R Tutorial" href="index.html"/>
+        <link rel="prev" title="16. Case Study: Working Through a HW Problem" href="hwI.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> R Tutorial
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+
+   
+
+        <div id="sidebar">
+					<!-- localtoc.html --><ul>
+<li><a class="reference internal" href="#">17. Case Study II: A JAMA Paper on Cholesterol</a><ul>
+<li><a class="reference internal" href="#overview-of-the-paper">17.1. Overview of the Paper</a></li>
+<li><a class="reference internal" href="#the-tables">17.2. The Tables</a></li>
+<li><a class="reference internal" href="#confirming-the-p-values-in-table-3">17.3. Confirming the p-values in Table 3</a></li>
+<li><a class="reference internal" href="#confirming-the-p-values-in-table-4">17.4. Confirming the p-values in Table 4</a></li>
+<li><a class="reference internal" href="#finding-the-power-of-the-test-in-table-3">17.5. Finding the Power of the Test in Table 3</a></li>
+<li><a class="reference internal" href="#differences-by-race-in-table-2">17.6. Differences by Race in Table 2</a></li>
+<li><a class="reference internal" href="#summary">17.7. Summary</a></li>
+</ul>
+</li>
+</ul>
+
+					<!-- datacamp.html --><div class="datacampAd">
+	<iframe src="https://tracking-ads.datacamp.com" frameborder="0" width="160" height="600" scrolling="no" allowtransparancy="true" style="margin-bottom: 10px; margin-left: 5px; border: 0;"></iframe>
+</div>
+					<!-- globaltoc.html --><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="input.html">1. Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">2. Basic Data Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basicOps.html">3. Basic Operations and Numerical Descriptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="probability.html">4. Basic Probability Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting.html">5. Basic Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intermediatePlotting.html">6. Intermediate Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vectorIndexing.html">7. Indexing Into Vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linearLeastSquares.html">8. Linear Least Squares Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="confidence.html">9. Calculating Confidence Intervals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pValues.html">10. Calculating <em>p</em> Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="power.html">11. Calculating The Power Of A Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tables.html">12. Two Way Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataManagement.html">13. Data Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="time.html">14. Time Data Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripting.html">15. Introduction to Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="objectOriented.html">Object Oriented Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hwI.html">16. Case Study: Working Through a HW Problem</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">17. Case Study II: A JAMA Paper on Cholesterol</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview-of-the-paper">17.1. Overview of the Paper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-tables">17.2. The Tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#confirming-the-p-values-in-table-3">17.3. Confirming the p-values in Table 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#confirming-the-p-values-in-table-4">17.4. Confirming the p-values in Table 4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#finding-the-power-of-the-test-in-table-3">17.5. Finding the Power of the Test in Table 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#differences-by-race-in-table-2">17.6. Differences by Race in Table 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#summary">17.7. Summary</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+
+			
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">R Tutorial</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>17. Case Study II: A JAMA Paper on Cholesterol</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="case-study-ii-a-jama-paper-on-cholesterol">
+<h1>17. Case Study II: A JAMA Paper on Cholesterol<a class="headerlink" href="#case-study-ii-a-jama-paper-on-cholesterol" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#overview-of-the-paper" id="id8">Overview of the Paper</a></li>
+<li><a class="reference internal" href="#the-tables" id="id9">The Tables</a></li>
+<li><a class="reference internal" href="#confirming-the-p-values-in-table-3" id="id10">Confirming the p-values in Table 3</a></li>
+<li><a class="reference internal" href="#confirming-the-p-values-in-table-4" id="id11">Confirming the p-values in Table 4</a></li>
+<li><a class="reference internal" href="#finding-the-power-of-the-test-in-table-3" id="id12">Finding the Power of the Test in Table 3</a></li>
+<li><a class="reference internal" href="#differences-by-race-in-table-2" id="id13">Differences by Race in Table 2</a></li>
+<li><a class="reference internal" href="#summary" id="id14">Summary</a></li>
+</ul>
+</div>
+<span class="target" id="index-0"></span><span class="target" id="index-1"></span><p id="index-2">We look at a paper that appeared in the Journal of the American
+Medical Association and explore how to use R to confirm the
+results. It is assumed that you are familiar will all of the commands
+discussed throughout this tutorial.</p>
+<div class="section" id="overview-of-the-paper">
+<h2><a class="toc-backref" href="#id8">17.1. Overview of the Paper</a><a class="headerlink" href="#overview-of-the-paper" title="Permalink to this headline">¶</a></h2>
+<p>The paper we examine is by Carroll <em>et al</em>. <a class="reference internal" href="#carroll2005" id="id1">[Carroll2005]</a> The goal is
+to confirm the results and explore some of the other results not
+explicitly addressed in the paper. This paper received a great deal of
+attention in the media. A partial list of some of the articles is
+given below, but many of them are now defunct:</p>
+<div class="line-block">
+<div class="line"><a class="reference external" href="http://www.foxnews.com/story/0,2933,172026,00.html">FOX News</a></div>
+<div class="line"><a class="reference external" href="http://www.medpagetoday.com/Cardiology/Dyslipidemia/tb/1915">www.medpagetoday.com</a></div>
+<div class="line"><a class="reference external" href="http://www.argusleader.com/apps/pbcs.dll/article?AID=/20051012/NEWS/510120318/1001">Argus Leader</a></div>
+<div class="line"><a class="reference external" href="http://www.theglobeandmail.com/servlet/story/RTGAM.20051012.wchol1012/BNStory/specialScienceandHealth/">The Globe and Mail</a></div>
+</div>
+<p>The authors examine the trends of several studies of cholesterol
+levels of Americans. The studies have been conducted in 1960-1962,
+1988-1994, 1976-1980, 1988-1994, and 1999-2002. Studies of the studies
+previous to 1999 have indicated that overall cholesterol levels are
+declining. The authors of this paper focus on the changes between the
+two latest studies, 1988-1994 and 1999-2002. They concluded that
+between certain populations cholesterol levels have decreased over
+this time.</p>
+<p>One of the things that received a great deal of attention is the
+linkage the authors drew between lowered cholesterol levels and
+increased use of new drugs to lower cholesterol. Here is a quote from
+their conclusions:</p>
+<blockquote class="epigraph">
+<div><em>The increase in the proportion of adults using lipid-lowering
+medication, particularly in older age groups, likely contributed to
+the decreases in total and LDL cholesterol levels observed.</em></div></blockquote>
+<p>Here we focus on the confirming the results listed in Tables 3 and 4
+of the paper. We confirm the p-values given in the paper and then
+calculate the power of the test to detect a prescribed difference in
+cholesterol levels.</p>
+</div>
+<div class="section" id="the-tables">
+<h2><a class="toc-backref" href="#id9">17.2. The Tables</a><a class="headerlink" href="#the-tables" title="Permalink to this headline">¶</a></h2>
+<p>Links to the tables in the paper are given below. Links are given to
+verbatim copies of the tables. For each table there are two links. The
+first is to a text file displaying the table. The second is to a csv
+file to be loaded into R. It is assumed that you have downloaded each
+of the csv files and made them available.</p>
+<p>Links to the Tables in the paper:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="44%" />
+<col width="44%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Table
+1</td>
+<td><a class="reference external" href="_static/table1.txt">text 1</a></td>
+<td><a class="reference external" href="_static/table1.csv">csv 1</a></td>
+</tr>
+<tr class="row-even"><td>Table
+2</td>
+<td><a class="reference external" href="_static/table2.txt">text 2</a></td>
+<td><a class="reference external" href="_static/table2.csv">csv 2</a></td>
+</tr>
+<tr class="row-odd"><td>Table
+3</td>
+<td><a class="reference external" href="_static/table3.txt">text 3</a></td>
+<td><a class="reference external" href="_static/table3.csv">csv 3</a></td>
+</tr>
+<tr class="row-even"><td>Table
+4</td>
+<td><a class="reference external" href="_static/table4.txt">text 4</a></td>
+<td><a class="reference external" href="_static/table4.csv">csv 4</a></td>
+</tr>
+<tr class="row-odd"><td>Table
+5</td>
+<td><a class="reference external" href="_static/table5.txt">text 5</a></td>
+<td><a class="reference external" href="_static/table5.csv">csv 5</a></td>
+</tr>
+<tr class="row-even"><td>Table
+6</td>
+<td><a class="reference external" href="_static/table6.txt">text 6</a></td>
+<td><a class="reference external" href="_static/table6.csv">csv 6</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="confirming-the-p-values-in-table-3">
+<h2><a class="toc-backref" href="#id10">17.3. Confirming the p-values in Table 3</a><a class="headerlink" href="#confirming-the-p-values-in-table-3" title="Permalink to this headline">¶</a></h2>
+<p>The first thing we do is confirm the p-values. The paper does not
+explicitly state the hypothesis test, but they use a two-sided test as
+we shall soon see. We will explicitly define the hypothesis test that
+the authors are using but first need to define some terms. We need the
+means for the 1988-1994 and the 1999-2002 studies and will denote them
+M88 and M99 respectively. We also need the standard errors and will
+denote them SE88 and SE99 respectively.</p>
+<p>In this situation we are trying to compare the means of two
+experiments and do not have matched pairs. With this in mind we can
+define our hypothesis test:</p>
+<div class="math">
+\[\begin{split}H_0: M_{88} - M_{99} &amp; = &amp; 0,\end{split}\]\[\begin{split}H_a: M_{88} - M_{99} &amp; \neq &amp; 0,\end{split}\]</div>
+<p>When we assume that the hypothesis test we calculate the p-values
+using the following values:</p>
+<div class="math">
+\[Sample Mean = M_{88} - M_{99},\]\[SE = \sqrt{SE_{88}^2 + SE_{99}^2}.\]</div>
+<p>Note that the standard errors are given in the data, and we do not
+have to use the number of observations to calculate the standard
+error. However, we do need the number of observations in calculating
+the p-value. The authors used a t test. There are complicated formulas
+used to calculate the degrees of freedom for the comparison of two
+means, but here we will simply find the minimum of the set of
+observations and subtract one.</p>
+<p>We first need to read in the data from <a class="reference external" href="_static/table3.csv">table3.csv</a> and will call the new variable <em>t3</em>. Note that
+we use a new option, <em>row.names=&#8221;group&#8221;</em>. This option tells R to use
+the entries in the &#8220;group&#8221; column as the row names. Once the table has
+been read we will need to make use of the means in the 1988-1994 study
+(<em>t3$M.88</em>) and the sample means in the 1999-2002 study
+(<em>t3$M.99</em>). We will also have to make use of the corresponding
+standard errors (<em>t3$SE.88</em> and <em>t3$SE.99</em>) and the number of
+observations (<em>t3$N.88</em> and <em>t3$N.99</em>).</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>t3 <span class="o">&lt;-</span> read.csv<span class="p">(</span>file<span class="o">=</span><span class="s">&quot;table3.csv&quot;</span><span class="p">,</span>header<span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span>sep<span class="o">=</span><span class="s">&quot;,&quot;</span><span class="p">,</span>row.names<span class="o">=</span><span class="s">&quot;group&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span><span class="kp">row.names</span><span class="p">(</span>t3<span class="p">)</span>
+<span class="go"> [1] &quot;all&quot;    &quot;g20&quot;    &quot;men&quot;    &quot;mg20&quot;   &quot;m20-29&quot; &quot;m30-39&quot; &quot;m40-49&quot; &quot;m50-59&quot;</span>
+<span class="go"> [9] &quot;m60-74&quot; &quot;m75&quot;    &quot;women&quot;  &quot;wg20&quot;   &quot;w20-29&quot; &quot;w30-39&quot; &quot;w40-49&quot; &quot;w50-59&quot;</span>
+<span class="go">[17] &quot;w60-74&quot; &quot;w75&quot;</span>
+<span class="gp">&gt; </span><span class="kp">names</span><span class="p">(</span>t3<span class="p">)</span>
+<span class="go"> [1] &quot;N.60&quot;  &quot;M.60&quot;  &quot;SE.60&quot; &quot;N.71&quot;  &quot;M.71&quot;  &quot;SE.71&quot; &quot;N.76&quot;  &quot;M.76&quot;  &quot;SE.76&quot;</span>
+<span class="go">[10] &quot;N.88&quot;  &quot;M.88&quot;  &quot;SE.88&quot; &quot;N.99&quot;  &quot;M.99&quot;  &quot;SE.99&quot; &quot;p&quot;</span>
+<span class="gp">&gt; </span>t3<span class="o">$</span>M.88
+<span class="go"> [1] 204 206 204 204 180 201 211 216 214 205 205 207 183 189 204 228 235 231</span>
+<span class="gp">&gt; </span>t3<span class="o">$</span>M.99
+<span class="go"> [1] 203 203 203 202 183 200 212 215 204 195 202 204 183 194 203 216 223 217</span>
+<span class="gp">&gt; </span>diff <span class="o">&lt;-</span> t3<span class="o">$</span>M.88<span class="o">-</span>t3<span class="o">$</span>M.99
+<span class="gp">&gt; </span><span class="kp">diff</span>
+<span class="go"> [1]  1  3  1  2 -3  1 -1  1 10 10  3  3  0 -5  1 12 12 14</span>
+<span class="gp">&gt; </span>se <span class="o">&lt;-</span> <span class="kp">sqrt</span><span class="p">(</span>t3<span class="o">$</span>SE.88<span class="o">^</span><span class="m">2</span><span class="o">+</span>t3<span class="o">$</span>SE.99<span class="o">^</span><span class="m">2</span><span class="p">)</span>
+<span class="gp">&gt; </span>se
+<span class="go"> [1] 1.140175 1.063015 1.500000 1.500000 2.195450 2.193171 3.361547 3.041381</span>
+<span class="go"> [9] 2.193171 3.328663 1.131371 1.063015 2.140093 1.984943 2.126029 2.483948</span>
+<span class="go">[17] 2.126029 2.860070</span>
+<span class="gp">&gt; </span>deg <span class="o">&lt;-</span> <span class="kp">pmin</span><span class="p">(</span>t3<span class="o">$</span>N.88<span class="p">,</span>t3<span class="o">$</span>N.99<span class="p">)</span><span class="m">-1</span>
+<span class="gp">&gt; </span>deg
+<span class="go"> [1] 7739 8808 3648 4164  673  672  759  570  970  515 4090 4643  960  860  753</span>
+<span class="go">[16]  568  945  552</span>
+</pre></div>
+</div>
+<p>We can now calculate the t statistic. From the null hypothesis, the
+assumed mean of the difference is zero. We can then use the <em>pt</em>
+command to get the p-values.</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>t <span class="o">&lt;-</span> <span class="kp">diff</span><span class="o">/</span>se
+<span class="gp">&gt; </span><span class="kp">t</span>
+<span class="go"> [1]  0.8770580  2.8221626  0.6666667  1.3333333 -1.3664626  0.4559608</span>
+<span class="go"> [7] -0.2974821  0.3287980  4.5596075  3.0042088  2.6516504  2.8221626</span>
+<span class="go">[13]  0.0000000 -2.5189636  0.4703604  4.8310181  5.6443252  4.8949852</span>
+<span class="gp">&gt; </span>pt<span class="p">(</span><span class="kp">t</span><span class="p">,</span>df<span class="o">=</span>deg<span class="p">)</span>
+<span class="go"> [1] 0.809758825 0.997609607 0.747486382 0.908752313 0.086125089 0.675717245</span>
+<span class="go"> [7] 0.383089952 0.628785421 0.999997110 0.998603837 0.995979577 0.997604809</span>
+<span class="go">[13] 0.500000000 0.005975203 0.680883135 0.999999125 0.999999989</span>
+<span class="go">0.999999354</span>
+</pre></div>
+</div>
+<p>There are two problems with the calculation above. First, some of the
+t-values are positive, and for positive values we need the area under
+the curve to the right. There are a couple of ways to fix this, and
+here we will insure that the t scores are negative by taking the
+negative of the absolute value. The second problem is that this is a
+two-sided test, and we have to multiply the probability by two:</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>pt<span class="p">(</span><span class="o">-</span><span class="kp">abs</span><span class="p">(</span><span class="kp">t</span><span class="p">),</span>df<span class="o">=</span>deg<span class="p">)</span>
+<span class="go"> [1] 1.902412e-01 2.390393e-03 2.525136e-01 9.124769e-02 8.612509e-02</span>
+<span class="go"> [6] 3.242828e-01 3.830900e-01 3.712146e-01 2.889894e-06 1.396163e-03</span>
+<span class="go">[11] 4.020423e-03 2.395191e-03 5.000000e-01 5.975203e-03 3.191169e-01</span>
+<span class="go">[16] 8.748656e-07 1.095966e-08 6.462814e-07</span>
+<span class="gp">&gt; </span><span class="m">2</span><span class="o">*</span>pt<span class="p">(</span><span class="o">-</span><span class="kp">abs</span><span class="p">(</span><span class="kp">t</span><span class="p">),</span>df<span class="o">=</span>deg<span class="p">)</span>
+<span class="go"> [1] 3.804823e-01 4.780786e-03 5.050272e-01 1.824954e-01 1.722502e-01</span>
+<span class="go"> [6] 6.485655e-01 7.661799e-01 7.424292e-01 5.779788e-06 2.792326e-03</span>
+<span class="go">[11] 8.040845e-03 4.790382e-03 1.000000e+00 1.195041e-02 6.382337e-01</span>
+<span class="go">[16] 1.749731e-06 2.191933e-08 1.292563e-06</span>
+</pre></div>
+</div>
+<p>These numbers are a close match to the values given in the paper, but
+the output above is hard to read. We introduce a new command to loop
+through and print out the results in a format that is easier to
+read. The for loop allows you to repeat a command a specified number
+of times. Here we want to go from 1, 2, 3, ..., to the end of the list
+of p-values and print out the group and associated p-value:</p>
+<span class="target" id="index-3"></span><div class="highlight-rconsole" id="index-4"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>p <span class="o">&lt;-</span> <span class="m">2</span><span class="o">*</span>pt<span class="p">(</span><span class="o">-</span><span class="kp">abs</span><span class="p">(</span><span class="kp">t</span><span class="p">),</span>df<span class="o">=</span>deg<span class="p">)</span>
+<span class="gp">&gt; </span><span class="kr">for</span> <span class="p">(</span>j <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="kp">length</span><span class="p">(</span>p<span class="p">))</span> <span class="p">{</span>
+<span class="go">     cat(&quot;p-value for &quot;,row.names(t3)[j],&quot; &quot;,p[j],&quot;\n&quot;);</span>
+<span class="go">}</span>
+<span class="go">p-value for  all   0.3804823</span>
+<span class="go">p-value for  g20   0.004780786</span>
+<span class="go">p-value for  men   0.5050272</span>
+<span class="go">p-value for  mg20   0.1824954</span>
+<span class="go">p-value for  m20-29   0.1722502</span>
+<span class="go">p-value for  m30-39   0.6485655</span>
+<span class="go">p-value for  m40-49   0.7661799</span>
+<span class="go">p-value for  m50-59   0.7424292</span>
+<span class="go">p-value for  m60-74   5.779788e-06</span>
+<span class="go">p-value for  m75   0.002792326</span>
+<span class="go">p-value for  women   0.008040845</span>
+<span class="go">p-value for  wg20   0.004790382</span>
+<span class="go">p-value for  w20-29   1</span>
+<span class="go">p-value for  w30-39   0.01195041</span>
+<span class="go">p-value for  w40-49   0.6382337</span>
+<span class="go">p-value for  w50-59   1.749731e-06</span>
+<span class="go">p-value for  w60-74   2.191933e-08</span>
+<span class="go">p-value for  w75   1.292563e-06</span>
+</pre></div>
+</div>
+<p>We can now compare this to <a class="reference external" href="_static/table3.txt">Table 3</a> and see
+that we have good agreement. The differences come from a round off
+errors from using the truncated data in the article as well as using a
+different method to calculate the degrees of freedom. Note that for
+p-values close to zero the percent errors are very large.</p>
+<p>It is interesting to note that among the categories (rows) given in
+the table, only a small number of the differences have a p-value small
+enough to reject the null hypothesis at the 95% level. The differences
+with a p-value less than 5% are the group of all people, men from 60
+to 74, men greater than 74, women from 20-74, all women, and women
+from the age groups of 30-39, 50-59, 60-74, and greater than 74.</p>
+<p>The p-values for nine out of the eighteen categories are low enough to
+allow us to reject the associated null hypothesis. One of those
+categories is for all people in the study, but very few of the male
+categories have significant differences at the 95% level. The majority
+of the differences are in the female categories especially the older
+age brackets.</p>
+</div>
+<div class="section" id="confirming-the-p-values-in-table-4">
+<h2><a class="toc-backref" href="#id11">17.4. Confirming the p-values in Table 4</a><a class="headerlink" href="#confirming-the-p-values-in-table-4" title="Permalink to this headline">¶</a></h2>
+<p>We now confirm the p-values given in <a class="reference external" href="_static/table4.txt">Table 4</a>. The level of detail in the previous section is
+not given, rather the commands are briefly given below:</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>t4 <span class="o">&lt;-</span> read.csv<span class="p">(</span>file<span class="o">=</span><span class="s">&quot;table4.csv&quot;</span><span class="p">,</span>header<span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span>sep<span class="o">=</span><span class="s">&quot;,&quot;</span><span class="p">,</span>row.names<span class="o">=</span><span class="s">&quot;group&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span><span class="kp">names</span><span class="p">(</span>t4<span class="p">)</span>
+<span class="go">[1] &quot;S88N&quot;  &quot;S88M&quot;  &quot;S88SE&quot; &quot;S99N&quot;  &quot;S99M&quot;  &quot;S99SE&quot; &quot;p&quot;</span>
+<span class="gp">&gt; </span>diff <span class="o">&lt;-</span> t4<span class="o">$</span>S88M <span class="o">-</span> t4<span class="o">$</span>S99M
+<span class="gp">&gt; </span>se <span class="o">&lt;-</span> <span class="kp">sqrt</span><span class="p">(</span>t4<span class="o">$</span>S88SE<span class="o">^</span><span class="m">2</span><span class="o">+</span>t4<span class="o">$</span>S99SE<span class="o">^</span><span class="m">2</span><span class="p">)</span>
+<span class="gp">&gt; </span>deg <span class="o">&lt;-</span> <span class="kp">pmin</span><span class="p">(</span>t4<span class="o">$</span>S88N<span class="p">,</span>t4<span class="o">$</span>S99N<span class="p">)</span><span class="m">-1</span>
+<span class="gp">&gt; </span>t <span class="o">&lt;-</span> <span class="kp">diff</span><span class="o">/</span>se
+<span class="gp">&gt; </span>p <span class="o">&lt;-</span> <span class="m">2</span><span class="o">*</span>pt<span class="p">(</span><span class="o">-</span><span class="kp">abs</span><span class="p">(</span><span class="kp">t</span><span class="p">),</span>df<span class="o">=</span>deg<span class="p">)</span>
+<span class="gp">&gt; </span><span class="kr">for</span> <span class="p">(</span>j <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="kp">length</span><span class="p">(</span>p<span class="p">))</span> <span class="p">{</span>
+<span class="go">     cat(&quot;p-values for &quot;,row.names(t4)[j],&quot; &quot;,p[j],&quot;\n&quot;);</span>
+<span class="go">}</span>
+<span class="go">p-values for  MA   0.07724362</span>
+<span class="go">p-values for  MAM   0.6592499</span>
+<span class="go">p-values for  MAW   0.002497728</span>
+<span class="go">p-values for  NHW   0.1184228</span>
+<span class="go">p-values for  NHWM   0.2673851</span>
+<span class="go">p-values for  NHWW   0.02585374</span>
+<span class="go">p-values for  NHB   0.001963195</span>
+<span class="go">p-values for  NHBM   0.003442551</span>
+<span class="go">p-values for  NHBW   0.007932079</span>
+</pre></div>
+</div>
+<p>Again, the p-values are close to those given in <a class="reference external" href="_static/table4.txt">Table 4</a>. The numbers are off due to truncation errors
+from the true data as well as a simplified calculation of the degrees
+of freedom. As in the previous section the p-values that are close to
+zero have the greatest percent errors.</p>
+</div>
+<div class="section" id="finding-the-power-of-the-test-in-table-3">
+<h2><a class="toc-backref" href="#id12">17.5. Finding the Power of the Test in Table 3</a><a class="headerlink" href="#finding-the-power-of-the-test-in-table-3" title="Permalink to this headline">¶</a></h2>
+<p>We now will find the power of the test to detect a difference. Here we
+arbitrarily choose to find the power to detect a difference of 4
+points and then do the same for a difference of 6 points. The first
+step is to assume that the null hypothesis is true and find the 95%
+confidence interval around a difference of zero:</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>t3 <span class="o">&lt;-</span> read.csv<span class="p">(</span>file<span class="o">=</span><span class="s">&quot;table3.csv&quot;</span><span class="p">,</span>header<span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span>sep<span class="o">=</span><span class="s">&quot;,&quot;</span><span class="p">,</span>row.names<span class="o">=</span><span class="s">&quot;group&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>se <span class="o">&lt;-</span> <span class="kp">sqrt</span><span class="p">(</span>t3<span class="o">$</span>SE.88<span class="o">^</span><span class="m">2</span><span class="o">+</span>t3<span class="o">$</span>SE.99<span class="o">^</span><span class="m">2</span><span class="p">)</span>
+<span class="gp">&gt; </span>deg <span class="o">&lt;-</span> <span class="kp">pmin</span><span class="p">(</span>t3<span class="o">$</span>N.88<span class="p">,</span>t3<span class="o">$</span>N.99<span class="p">)</span><span class="m">-1</span>
+<span class="gp">&gt; </span>tcut <span class="o">&lt;-</span> qt<span class="p">(</span><span class="m">0.975</span><span class="p">,</span>df<span class="o">=</span>deg<span class="p">)</span>
+<span class="gp">&gt; </span>tcut
+<span class="go"> [1] 1.960271 1.960233 1.960614 1.960534 1.963495 1.963500 1.963094 1.964135</span>
+<span class="go"> [9] 1.962413 1.964581 1.960544 1.960475 1.962438 1.962726 1.963119 1.964149</span>
+<span class="go">[17] 1.962477 1.964271</span>
+</pre></div>
+</div>
+<p>Now that the cutoff t-scores for the 95% confidence interval have been
+established we want to find the probability of making a type II
+error. We find the probability of making a type II error if the
+difference is a positive 4.</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>typeII <span class="o">&lt;-</span> pt<span class="p">(</span>tcut<span class="p">,</span>df<span class="o">=</span>deg<span class="p">,</span>ncp<span class="o">=</span><span class="m">4</span><span class="o">/</span>se<span class="p">)</span><span class="o">-</span>pt<span class="p">(</span><span class="o">-</span>tcut<span class="p">,</span>df<span class="o">=</span>deg<span class="p">,</span>ncp<span class="o">=</span><span class="m">4</span><span class="o">/</span>se<span class="p">)</span>
+<span class="gp">&gt; </span>typeII
+<span class="go"> [1] 0.06083127 0.03573266 0.24009202 0.24006497 0.55583392 0.55508927</span>
+<span class="go"> [7] 0.77898598 0.74064782 0.55477307 0.77573784 0.05765826 0.03576160</span>
+<span class="go">[13] 0.53688674 0.47884787 0.53218625 0.63753092 0.53199248 0.71316969</span>
+<span class="gp">&gt; </span><span class="m">1</span><span class="o">-</span>typeII
+<span class="go"> [1] 0.9391687 0.9642673 0.7599080 0.7599350 0.4441661 0.4449107 0.2210140</span>
+<span class="go"> [8] 0.2593522 0.4452269 0.2242622 0.9423417 0.9642384 0.4631133 0.5211521</span>
+<span class="go">[15] 0.4678138 0.3624691 0.4680075 0.2868303</span>
+</pre></div>
+</div>
+<p>It looks like there is a mix here. Some of the tests have a very high
+power while others are poor. Six of the categories have very high
+power and four have powers less than 30% . One problem is that this is
+hard to read. We now show how to use the for loop to create a nicer
+output:</p>
+<div class="highlight-rconsole" id="index-5"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>power <span class="o">&lt;-</span> <span class="m">1</span><span class="o">-</span>typeII
+<span class="gp">&gt; </span><span class="kr">for</span> <span class="p">(</span>j <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="kp">length</span><span class="p">(</span>power<span class="p">))</span> <span class="p">{</span>
+<span class="go">     cat(&quot;power for &quot;,row.names(t3)[j],&quot; &quot;,power[j],&quot;\n&quot;);</span>
+<span class="go"> }</span>
+
+<span class="go">power for  all   0.9391687</span>
+<span class="go">power for  g20   0.9642673</span>
+<span class="go">power for  men   0.759908</span>
+<span class="go">power for  mg20   0.759935</span>
+<span class="go">power for  m20-29   0.4441661</span>
+<span class="go">power for  m30-39   0.4449107</span>
+<span class="go">power for  m40-49   0.221014</span>
+<span class="go">power for  m50-59   0.2593522</span>
+<span class="go">power for  m60-74   0.4452269</span>
+<span class="go">power for  m75   0.2242622</span>
+<span class="go">power for  women   0.9423417</span>
+<span class="go">power for  wg20   0.9642384</span>
+<span class="go">power for  w20-29   0.4631133</span>
+<span class="go">power for  w30-39   0.5211521</span>
+<span class="go">power for  w40-49   0.4678138</span>
+<span class="go">power for  w50-59   0.3624691</span>
+<span class="go">power for  w60-74   0.4680075</span>
+<span class="go">power for  w75   0.2868303</span>
+
+</pre></div>
+</div>
+<p>We see that the composite groups, groups made up of larger age groups,
+have much higher powers than the age stratified groups. It also
+appears that the groups composed of women seem to have higher powers
+as well.</p>
+</div>
+<div class="section" id="differences-by-race-in-table-2">
+<h2><a class="toc-backref" href="#id13">17.6. Differences by Race in Table 2</a><a class="headerlink" href="#differences-by-race-in-table-2" title="Permalink to this headline">¶</a></h2>
+<p>We now look at the differences in the rows of LDL cholesterol in
+<a class="reference external" href="_static/table2.txt">Table 2</a>. <a class="reference external" href="_static/table2.txt">Table 2</a> lists
+the cholesterol levels broken down by race. Here the p-values are
+calculated for the means for the totals rather than for every entry in
+the table. We will use the same two-sided hypothesis test as above,
+the null hypothesis is that there is no difference between the means.</p>
+<p>Since we are comparing means from a subset of the entries and across
+rows we cannot simply copy the commands from above. We will first read
+the data from the files and then separate the first, fourth, seventh,
+and tenth rows:</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>t1 <span class="o">&lt;-</span> read.csv<span class="p">(</span>file<span class="o">=</span><span class="s">&#39;table1.csv&#39;</span><span class="p">,</span>head<span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span>sep<span class="o">=</span><span class="s">&#39;,&#39;</span><span class="p">,</span>row.name<span class="o">=</span><span class="s">&quot;Group&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>t1
+<span class="go">       Total  HDL  LDL  STG</span>
+<span class="go">AllG20  8809 8808 3867 3982</span>
+<span class="go">MG20    4165 4164 1815 1893</span>
+<span class="go">WG20    4644 4644 2052 2089</span>
+<span class="go">AMA     2122 2122  950  994</span>
+<span class="go">AMA-M    998  998  439  467</span>
+<span class="go">AMA-F   1124 1124  511  527</span>
+<span class="go">ANHW    4338 4337 1938 1997</span>
+<span class="go">ANHW-M  2091 2090  924  965</span>
+<span class="go">ANHW-F  2247 2247 1014 1032</span>
+<span class="go">ANHB    1602 1602  670  674</span>
+<span class="go">ANHB-M   749  749  309  312</span>
+<span class="go">ANHB-W   853  853  361  362</span>
+<span class="go">M20-29   674  674  304  311</span>
+<span class="go">M30-39   673  673  316  323</span>
+<span class="go">M40-49   760  760  318  342</span>
+<span class="go">M50-59   571  571  245  262</span>
+<span class="go">M60-69   671  670  287  301</span>
+<span class="go">M70      816  816  345  354</span>
+<span class="go">W20-29   961  961  415  419</span>
+<span class="go">W30-39   861  861  374  377</span>
+<span class="go">W40-49   754  755  347  352</span>
+<span class="go">W50-59   569  569  256  263</span>
+<span class="go">W60-69   672  671  315  324</span>
+<span class="go">W70      827  827  345  354</span>
+<span class="gp">&gt; </span>t2 <span class="o">&lt;-</span> read.csv<span class="p">(</span>file<span class="o">=</span><span class="s">&#39;table2.csv&#39;</span><span class="p">,</span>head<span class="o">=</span><span class="bp">T</span><span class="p">,</span>sep<span class="o">=</span><span class="s">&#39;,&#39;</span><span class="p">,</span>row.name<span class="o">=</span><span class="s">&quot;group&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>ldlM  <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span>t2<span class="o">$</span>LDL<span class="p">[</span><span class="m">1</span><span class="p">],</span>t2<span class="o">$</span>LDL<span class="p">[</span><span class="m">4</span><span class="p">],</span>t2<span class="o">$</span>LDL<span class="p">[</span><span class="m">7</span><span class="p">],</span>t2<span class="o">$</span>LDL<span class="p">[</span><span class="m">10</span><span class="p">])</span>
+<span class="gp">&gt; </span>ldlSE <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span>t2<span class="o">$</span>LDLSE<span class="p">[</span><span class="m">1</span><span class="p">],</span>t2<span class="o">$</span>LDLSE<span class="p">[</span><span class="m">4</span><span class="p">],</span>t2<span class="o">$</span>LDLSE<span class="p">[</span><span class="m">7</span><span class="p">],</span>t2<span class="o">$</span>LDLSE<span class="p">[</span><span class="m">10</span><span class="p">])</span>
+<span class="gp">&gt; </span>ldlN  <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span>t1<span class="o">$</span>LDL<span class="p">[</span><span class="m">1</span><span class="p">],</span>t1<span class="o">$</span>LDL<span class="p">[</span><span class="m">4</span><span class="p">],</span>t1<span class="o">$</span>LDL<span class="p">[</span><span class="m">7</span><span class="p">],</span>t1<span class="o">$</span>LDL<span class="p">[</span><span class="m">10</span><span class="p">])</span>
+<span class="gp">&gt; </span>ldlNames  <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="kp">row.names</span><span class="p">(</span>t1<span class="p">)[</span><span class="m">1</span><span class="p">],</span><span class="kp">row.names</span><span class="p">(</span>t1<span class="p">)[</span><span class="m">4</span><span class="p">],</span><span class="kp">row.names</span><span class="p">(</span>t1<span class="p">)[</span><span class="m">7</span><span class="p">],</span><span class="kp">row.names</span><span class="p">(</span>t1<span class="p">)[</span><span class="m">10</span><span class="p">])</span>
+<span class="gp">&gt; </span>ldlM
+<span class="go">[1] 123 121 124 121</span>
+<span class="gp">&gt; </span>ldlSE
+<span class="go">[1] 1.0 1.3 1.2 1.6</span>
+<span class="gp">&gt; </span>ldlN
+<span class="go">[1] 3867  950 1938  670</span>
+<span class="gp">&gt; </span>ldlNames
+<span class="go">[1] &quot;AllG20&quot; &quot;AMA&quot;    &quot;ANHW&quot;   &quot;ANHB&quot;</span>
+</pre></div>
+</div>
+<p>We can now find the approximate p-values. This is not the same as the
+previous examples because the means are not being compared across
+matching values of different lists but down the rows of a single
+list. We will make use of two for loops. The idea is that we will loop
+though each row except the last row. Then for each of these rows we
+make a comparison for every row beneath:</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">for</span> <span class="p">(</span>j <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="p">(</span><span class="kp">length</span><span class="p">(</span>ldlM<span class="p">)</span><span class="m">-1</span><span class="p">))</span> <span class="p">{</span>
+<span class="go">    for (k in (j+1):length(ldlM)) {</span>
+<span class="go">       diff &lt;- ldlM[j]-ldlM[k]</span>
+<span class="go">       se &lt;- sqrt(ldlSE[j]^2+ldlSE[k]^2)</span>
+<span class="go">       t &lt;- diff/se</span>
+<span class="go">       n &lt;- min(ldlN[j],ldlN[k])-1</span>
+<span class="go">       p &lt;- 2*pt(-abs(t),df=n)</span>
+<span class="go">       cat(&quot;(&quot;,j,&quot;,&quot;,k,&quot;) - &quot;,ldlNames[j],&quot; vs &quot;,ldlNames[k],&quot; p: &quot;,p,&quot;\n&quot;)</span>
+<span class="go">       }</span>
+<span class="go">  }</span>
+<span class="go">( 1 , 2 ) -  AllG20  vs  AMA  p:  0.2229872</span>
+<span class="go">( 1 , 3 ) -  AllG20  vs  ANHW  p:  0.5221284</span>
+<span class="go">( 1 , 4 ) -  AllG20  vs  ANHB  p:  0.2895281</span>
+<span class="go">( 2 , 3 ) -  AMA  vs  ANHW  p:  0.09027066</span>
+<span class="go">( 2 , 4 ) -  AMA  vs  ANHB  p:  1</span>
+<span class="go">( 3 , 4 ) -  ANHW  vs  ANHB  p:  0.1340862</span>
+</pre></div>
+</div>
+<p>We cannot reject the null hypothesis at the 95% level for any of the
+differences. We cannot say that there is a significant difference
+between any of the groups in this comparison.</p>
+</div>
+<div class="section" id="summary">
+<h2><a class="toc-backref" href="#id14">17.7. Summary</a><a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>We examined some of the results stated in the paper Trends in Serum
+Lipids and Lipoproteins of Adults, 1960-2002 and confirmed the stated
+p-values for Tables 3 and 4. We also found the p-values for
+differences by some of the race categories in <a class="reference external" href="_static/table2.txt">Table 2</a>.</p>
+<p>When checking the p-values for <a class="reference external" href="_static/table3.txt">Table 3</a> we
+found that nine of the eighteen differences are significant. When
+looking at the boxplot (below) for the means from <a class="reference external" href="_static/table3.txt">Table 3</a> we see that two of those (the means for the two
+oldest categories for women) are outliers.</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>boxplot<span class="p">(</span>t3<span class="o">$</span>M.60<span class="p">,</span>t3<span class="o">$</span>M.71<span class="p">,</span>t3<span class="o">$</span>M.76<span class="p">,</span>t3<span class="o">$</span>M.88<span class="p">,</span>t3<span class="o">$</span>M.99<span class="p">,</span>
+<span class="go">          names=c(&quot;60-62&quot;,&quot;71-73&quot;,&quot;76-80&quot;,&quot;88-94&quot;,&quot;99-02&quot;),</span>
+<span class="go">          xlab=&quot;Studies&quot;,ylab=&quot;Serum Total Cholesterol&quot;,</span>
+<span class="go">          main=&quot;Comparison of Serum Total Cholesterol By Study&quot;)</span>
+</pre></div>
+</div>
+<div class="align-center figure" id="id7">
+<span id="table3-boxlot"></span><img alt="Comparison of table 3." src="_images/comparison.jpg" />
+<p class="caption"><span class="caption-text">Figure 1.</span></p>
+<div class="legend">
+Boxplot of the results in table 3.</div>
+</div>
+<p>The boxplot helps demonstrate what was found in the comparisons of the
+previous studies. There has been long term declines in cholesterol
+levels over the whole term of these studies. The new wrinkle in this
+study is the association of the use of statins to reduce blood serum
+cholesterol levels. The results given in <a class="reference external" href="_static/table6.txt">Table 6</a> show that every category of people has shown a
+significant increase in the use of statins.</p>
+<p>One question for discussion is whether or not the association
+demonstrates strong enough evidence to claim a causative link between
+the two. The news articles that were published in response to the
+article imply causation between the use of statins and lower
+cholesterol levels. However, the study only demonstrates a positive
+association, and the decline in cholesterol levels may be a long term
+phenomena with interactions between a wide range of factors.</p>
+<p class="rubric">Bibliography</p>
+<table class="docutils citation" frame="void" id="carroll2005" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[Carroll2005]</a></td><td><p class="first"><em>Trends in Serum Lipids and Lipoproteins of Adults, 1960-2002</em>,</p>
+<p class="last">Margaret D. Carroll, MSPH, David A. Lacher, MD, Paul D. Sorlie,
+PhD, James I. Cleeman, MD, David J. Gordon, MD, PhD, Michael Wolz,
+MS, Scott M. Grundy, MD, PhD, Clifford L. Johnson, MSPH, <strong>Journal
+of the American Medical Association</strong>, October 12, 2005&#8211;Vol 294,
+No. 14, pp: 1773-1781</p>
+</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+
+
+
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="hwI.html" class="btn btn-neutral" title="16. Case Study: Working Through a HW Problem" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+		
+
+		<br><br>
+
+		<div class="admonition note">
+			<p class="first admonition-title">Sponsorship</p>
+			<p class="last">
+				This site generously supported
+				by <a href="https://www.datacamp.com/"
+							target="_blank">Datacamp</a>. Datacamp offers a
+				free <a href="https://www.datacamp.com/courses/free-introduction-to-r"
+								target="_blank"> interactive introduction to R coding tutorial</a>
+				as an additional resource. Already over 100,000 people took this
+				free tutorial to sharpen their R coding skills.
+			</p>
+		</div>
+		
+
+<footer>
+		<hr/>
+
+		<div role="contentinfo">
+
+			<p>
+			<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">R Tutorial</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="mailto:kjblack@gmail.com" property="cc:attributionName" rel="cc:attributionURL">Kelly Black</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a> (2015).<br />Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="http://www.cyclismo.org/tutorial/R/" rel="dct:source">http://www.cyclismo.org/tutorial/R/</a>.
+</p>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'3.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

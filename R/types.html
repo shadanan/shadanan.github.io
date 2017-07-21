@@ -1,0 +1,721 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>2. Basic Data Types &mdash; R Tutorial</title>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+
+
+    <link rel="stylesheet" href="_static/siteColours.css" type="text/css" />
+
+
+
+    <link rel="top" title="R Tutorial" href="index.html"/>
+        <link rel="next" title="3. Basic Operations and Numerical Descriptions" href="basicOps.html"/>
+        <link rel="prev" title="1. Input" href="input.html"/>
+
+
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+
+
+            <a href="index.html" class="icon icon-home"> R Tutorial
+
+
+
+          </a>
+
+
+
+
+              <div class="version">
+                3
+              </div>
+
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+
+
+
+
+        <div id="sidebar">
+					<!-- localtoc.html --><ul>
+<li><a class="reference internal" href="#">2. Basic Data Types</a><ul>
+<li><a class="reference internal" href="#variable-types">2.1. Variable Types</a><ul>
+<li><a class="reference internal" href="#numbers">2.1.1. Numbers</a></li>
+<li><a class="reference internal" href="#strings">2.1.2. Strings</a></li>
+<li><a class="reference internal" href="#factors">2.1.3. Factors</a></li>
+<li><a class="reference internal" href="#data-frames">2.1.4. Data Frames</a></li>
+<li><a class="reference internal" href="#logical">2.1.5. Logical</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#tables">2.2. Tables</a><ul>
+<li><a class="reference internal" href="#one-way-tables">2.2.1. One Way Tables</a></li>
+<li><a class="reference internal" href="#two-way-tables">2.2.2. Two Way Tables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+					<!-- globaltoc.html --><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="input.html">1. Input</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">2. Basic Data Types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#variable-types">2.1. Variable Types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#numbers">2.1.1. Numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#strings">2.1.2. Strings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#factors">2.1.3. Factors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-frames">2.1.4. Data Frames</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#logical">2.1.5. Logical</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tables">2.2. Tables</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#one-way-tables">2.2.1. One Way Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#two-way-tables">2.2.2. Two Way Tables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="basicOps.html">3. Basic Operations and Numerical Descriptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="probability.html">4. Basic Probability Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting.html">5. Basic Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intermediatePlotting.html">6. Intermediate Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vectorIndexing.html">7. Indexing Into Vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linearLeastSquares.html">8. Linear Least Squares Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="confidence.html">9. Calculating Confidence Intervals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pValues.html">10. Calculating <em>p</em> Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="power.html">11. Calculating The Power Of A Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tables.html">12. Two Way Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataManagement.html">13. Data Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="time.html">14. Time Data Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripting.html">15. Introduction to Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="objectOriented.html">Object Oriented Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hwI.html">16. Case Study: Working Through a HW Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cholesterol.html">17. Case Study II: A JAMA Paper on Cholesterol</a></li>
+</ul>
+
+        </div>
+
+
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">R Tutorial</a>
+      </nav>
+
+
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+
+    <li>2. Basic Data Types</li>
+      <li class="wy-breadcrumbs-aside">
+
+
+
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+
+  <div class="section" id="basic-data-types">
+<span id="basicdatatypes"></span><h1>2. Basic Data Types<a class="headerlink" href="#basic-data-types" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#variable-types" id="id1">Variable Types</a></li>
+<li><a class="reference internal" href="#tables" id="id2">Tables</a></li>
+</ul>
+</div>
+<p>We look at some of the ways that R can store and organize data. This
+is a basic introduction to a small subset of the different data types
+recognized by R and is not comprehensive in any sense. The main goal
+is to demonstrate the different kinds of information R can handle. It
+is assumed that you know how to enter data or read data files which is
+covered in the first chapter.</p>
+<div class="section" id="variable-types">
+<h2><a class="toc-backref" href="#id1">2.1. Variable Types</a><a class="headerlink" href="#variable-types" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="numbers">
+<h3>2.1.1. Numbers<a class="headerlink" href="#numbers" title="Permalink to this headline">¶</a></h3>
+<p id="index-0">The way to work with real numbers has already been covered in the
+first chapter and is briefly discussed here. The most basic way to
+store a number is to make an assignment of a single number:</p>
+<span class="target" id="index-1"></span><div class="highlight-rconsole" id="index-2"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>a <span class="o">&lt;-</span> <span class="m">3</span>
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+<p>The &#8220;&lt;-&#8221; tells R to take the number to the right of the symbol and
+store it in a variable whose name is given on the left. You can also
+use the &#8220;=&#8221; symbol. When you make an assignment R does not print out
+any information. If you want to see what value a variable has just
+type the name of the variable on a line and press the enter key:</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>a
+<span class="go">[1] 3</span>
+</pre></div>
+</div>
+<p>This allows you to do all sorts of basic operations and save the numbers:</p>
+<div class="highlight-rconsole" id="index-3"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>b <span class="o">&lt;-</span> <span class="kp">sqrt</span><span class="p">(</span>a<span class="o">*</span>a<span class="m">+3</span><span class="p">)</span>
+<span class="gp">&gt; </span>b
+<span class="go">[1] 3.464102</span>
+</pre></div>
+</div>
+<p>If you want to get a list of the variables that you have defined in a
+particular session you can list them all using the ls command:</p>
+<div class="highlight-rconsole" id="index-4"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kp">ls</span><span class="p">()</span>
+<span class="go">[1] &quot;a&quot; &quot;b&quot;</span>
+</pre></div>
+</div>
+<p>You are not limited to just saving a single number. You can create a
+list (also called a &#8220;vector&#8221;) using the c command:</p>
+<span class="target" id="index-5"></span><div class="highlight-rconsole" id="index-6"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>a <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">)</span>
+<span class="gp">&gt; </span>a
+<span class="go">[1] 1 2 3 4 5</span>
+<span class="gp">&gt; </span>a<span class="m">+1</span>
+<span class="go">[1] 2 3 4 5 6</span>
+<span class="gp">&gt; </span><span class="kp">mean</span><span class="p">(</span>a<span class="p">)</span>
+<span class="go">[1] 3</span>
+<span class="gp">&gt; </span>var<span class="p">(</span>a<span class="p">)</span>
+<span class="go">[1] 2.5</span>
+</pre></div>
+</div>
+<span class="target" id="index-7"></span><span class="target" id="index-8"></span><p id="index-9">You can get access to particular entries in the vector in the following manner:</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>a <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">)</span>
+<span class="gp">&gt; </span>a<span class="p">[</span><span class="m">1</span><span class="p">]</span>
+<span class="go">[1] 1</span>
+<span class="gp">&gt; </span>a<span class="p">[</span><span class="m">2</span><span class="p">]</span>
+<span class="go">[1] 2</span>
+<span class="gp">&gt; </span>a<span class="p">[</span><span class="m">0</span><span class="p">]</span>
+<span class="go">numeric(0)</span>
+<span class="gp">&gt; </span>a<span class="p">[</span><span class="m">5</span><span class="p">]</span>
+<span class="go">[1] 5</span>
+<span class="gp">&gt; </span>a<span class="p">[</span><span class="m">6</span><span class="p">]</span>
+<span class="go">[1] NA</span>
+</pre></div>
+</div>
+<p>Note that the zero entry is used to indicate how the data is
+stored. The first entry in the vector is the first number, and if you
+try to get a number past the last number you get &#8220;NA.&#8221;</p>
+<p>Examples of the sort of operations you can do on vectors is given in a
+next chapter.</p>
+<p>To initialize a list of numbers the <em>numeric</em> command can be used. For
+example, to create a list of 10 numbers, initialized to zero, use the
+following command:</p>
+<div class="highlight-rconsole" id="index-10"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>a <span class="o">&lt;-</span> <span class="kt">numeric</span><span class="p">(</span><span class="m">10</span><span class="p">)</span>
+<span class="gp">&gt; </span>a
+<span class="go">[1] 0 0 0 0 0 0 0 0 0 0</span>
+</pre></div>
+</div>
+<p>If you wish to determine the data type used for a variable the <em>type</em>
+command:</p>
+<div class="highlight-rconsole" id="index-11"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kp">typeof</span><span class="p">(</span>a<span class="p">)</span>
+<span class="go">[1] &quot;double&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="strings">
+<h3>2.1.2. Strings<a class="headerlink" href="#strings" title="Permalink to this headline">¶</a></h3>
+<p id="index-12">You are not limited to just storing numbers. You can also store
+strings. A string is specified by using quotes. Both single and double
+quotes will work:</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>a <span class="o">&lt;-</span> <span class="s">&quot;hello&quot;</span>
+<span class="gp">&gt; </span>a
+<span class="go">[1] &quot;hello&quot;</span>
+<span class="gp">&gt; </span>b <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">,</span><span class="s">&quot;there&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>b
+<span class="go">[1] &quot;hello&quot; &quot;there&quot;</span>
+<span class="gp">&gt; </span>b<span class="p">[</span><span class="m">1</span><span class="p">]</span>
+<span class="go">[1] &quot;hello&quot;</span>
+</pre></div>
+</div>
+<p>The name of the type given to strings is <em>character</em>,</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kp">typeof</span><span class="p">(</span>a<span class="p">)</span>
+<span class="go">[1] &quot;character&quot;</span>
+<span class="gp">&gt; </span>a <span class="o">=</span> <span class="kt">character</span><span class="p">(</span><span class="m">20</span><span class="p">)</span>
+<span class="gp">&gt; </span>a
+<span class="go">[1] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="factors">
+<h3>2.1.3. Factors<a class="headerlink" href="#factors" title="Permalink to this headline">¶</a></h3>
+<p id="index-13">Another important way R can store data is as a factor. Often times an
+experiment includes trials for different levels of some explanatory
+variable. For example, when looking at the impact of carbon dioxide on
+the growth rate of a tree you might try to observe how different trees
+grow when exposed to different preset concentrations of carbon
+dioxide. The different levels are also called factors.</p>
+<p>Assuming you know how to read in a file, we will look at the data file
+given in the first chapter. Several of the variables in the file are
+factors:</p>
+<span class="target" id="index-14"></span><div class="highlight-rconsole" id="index-15"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kp">summary</span><span class="p">(</span>tree<span class="o">$</span>CHBR<span class="p">)</span>
+<span class="go">A1  A2  A3  A4  A5  A6  A7  B1  B2  B3  B4  B5  B6  B7  C1  C2  C3  C4  C5  C6</span>
+<span class="go">3   1   1   3   1   3   1   1   3   3   3   3   3   3   1   3   1   3   1   1</span>
+<span class="go">C7 CL6 CL7  D1  D2  D3  D4  D5  D6  D7</span>
+<span class="go">1   1   1   1   1   3   1   1   1   1</span>
+</pre></div>
+</div>
+<p>Because the set of options given in the data file corresponding to the
+&#8220;CHBR&#8221; column are not all numbers R automatically assumes that it is a
+factor. When you use summary on a factor it does not print out the
+five point summary, rather it prints out the possible values and the
+frequency that they occur.</p>
+<p>In this data set several of the columns are factors, but the
+researchers used numbers to indicate the different levels. For
+example, the first column, labeled &#8220;C,&#8221; is a factor. Each trees was
+grown in an environment with one of four different possible levels of
+carbon dioxide. The researchers quite sensibly labeled these four
+environments as 1, 2, 3, and 4. Unfortunately, R cannot determine that
+these are factors and must assume that they are regular numbers.</p>
+<p>This is a common problem and there is a way to tell R to treat the &#8220;C&#8221;
+column as a set of factors. You specify that a variable is a factor
+using the factor command. In the following example we convert tree$C
+into a factor:</p>
+<span class="target" id="index-16"></span><div class="highlight-rconsole" id="index-17"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>tree<span class="o">$</span>C
+<span class="go">[1]  1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3</span>
+<span class="go">[39] 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4</span>
+<span class="gp">&gt; </span><span class="kp">summary</span><span class="p">(</span>tree<span class="o">$</span>C<span class="p">)</span>
+<span class="go">   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.</span>
+<span class="go">  1.000   2.000   2.000   2.519   3.000   4.000</span>
+<span class="gp">&gt; </span>tree<span class="o">$</span>C <span class="o">&lt;-</span> <span class="kp">factor</span><span class="p">(</span>tree<span class="o">$</span>C<span class="p">)</span>
+<span class="gp">&gt; </span>tree<span class="o">$</span>C
+<span class="go">[1]  1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3</span>
+<span class="go">[39] 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4</span>
+<span class="go">Levels: 1 2 3 4</span>
+<span class="gp">&gt; </span><span class="kp">summary</span><span class="p">(</span>tree<span class="o">$</span>C<span class="p">)</span>
+<span class="go">1  2  3  4</span>
+<span class="go">8 23 10 13</span>
+<span class="gp">&gt; </span><span class="kp">levels</span><span class="p">(</span>tree<span class="o">$</span>C<span class="p">)</span>
+<span class="go">[1] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot;</span>
+</pre></div>
+</div>
+<p>Once a vector is converted into a set of factors then R treats it
+differently. A set of factors have a discrete set of possible values,
+and it does not make sense to try to find averages or other numerical
+descriptions. One thing that is important is the number of times that
+each factor appears, called their &#8220;frequencies,&#8221; which is printed
+using the summary command.</p>
+</div>
+<div class="section" id="data-frames">
+<h3>2.1.4. Data Frames<a class="headerlink" href="#data-frames" title="Permalink to this headline">¶</a></h3>
+<p id="index-18">Another way that information is stored is in data frames. This is a
+way to take many vectors of different types and store them in the same
+variable. The vectors can be of all different types. For example, a
+data frame may contain many lists, and each list might be a list of
+factors, strings, or numbers.</p>
+<p>There are different ways to create and manipulate data frames. Most
+are beyond the scope of this introduction. They are only mentioned
+here to offer a more complete description. Please see the first
+chapter for more information on data frames.</p>
+<p>One example of how to create a data frame is given below:</p>
+<div class="highlight-rconsole" id="index-19"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>a <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">)</span>
+<span class="gp">&gt; </span>b <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">6</span><span class="p">,</span><span class="m">8</span><span class="p">)</span>
+<span class="gp">&gt; </span>levels <span class="o">&lt;-</span> <span class="kp">factor</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">,</span><span class="s">&quot;B&quot;</span><span class="p">,</span><span class="s">&quot;A&quot;</span><span class="p">,</span><span class="s">&quot;B&quot;</span><span class="p">))</span>
+<span class="gp">&gt; </span>bubba <span class="o">&lt;-</span> <span class="kt">data.frame</span><span class="p">(</span>first<span class="o">=</span>a<span class="p">,</span>
+<span class="go">                      second=b,</span>
+<span class="go">                      f=levels)</span>
+<span class="gp">&gt; </span>bubba
+<span class="go">first second f</span>
+<span class="go">1     1      2 A</span>
+<span class="go">2     2      4 B</span>
+<span class="go">3     3      6 A</span>
+<span class="go">4     4      8 B</span>
+<span class="gp">&gt; </span><span class="kp">summary</span><span class="p">(</span>bubba<span class="p">)</span>
+<span class="go">    first          second    f</span>
+<span class="go">Min.   :1.00   Min.   :2.0   A:2</span>
+<span class="go">1st Qu.:1.75   1st Qu.:3.5   B:2</span>
+<span class="go">Median :2.50   Median :5.0</span>
+<span class="go">Mean   :2.50   Mean   :5.0</span>
+<span class="go">3rd Qu.:3.25   3rd Qu.:6.5</span>
+<span class="go">Max.   :4.00   Max.   :8.0</span>
+<span class="gp">&gt; </span>bubba<span class="o">$</span>first
+<span class="go">[1] 1 2 3 4</span>
+<span class="gp">&gt; </span>bubba<span class="o">$</span>second
+<span class="go">[1] 2 4 6 8</span>
+<span class="gp">&gt; </span>bubba<span class="o">$</span>f
+<span class="go">[1] A B A B</span>
+<span class="go">Levels: A B</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="logical">
+<span id="logicaloperators"></span><h3>2.1.5. Logical<a class="headerlink" href="#logical" title="Permalink to this headline">¶</a></h3>
+<p>Another important data type is the logical type. There are two
+predefined variables, <em>TRUE</em> and <em>FALSE</em>:</p>
+<span class="target" id="index-20"></span><span class="target" id="index-21"></span><div class="highlight-rconsole" id="index-22"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>a <span class="o">=</span> <span class="kc">TRUE</span>
+<span class="gp">&gt; </span><span class="kp">typeof</span><span class="p">(</span>a<span class="p">)</span>
+<span class="go">[1] &quot;logical&quot;</span>
+<span class="gp">&gt; </span>b <span class="o">=</span> <span class="kc">FALSE</span>
+<span class="gp">&gt; </span><span class="kp">typeof</span><span class="p">(</span>b<span class="p">)</span>
+<span class="go">[1] &quot;logical&quot;</span>
+</pre></div>
+</div>
+<p>The standard logical operators can be used:</p>
+<table border="1" class="docutils" id="index-23">
+<colgroup>
+<col width="47%" />
+<col width="53%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&lt;</td>
+<td>less
+than</td>
+</tr>
+<tr class="row-even"><td>&gt;</td>
+<td>great
+than</td>
+</tr>
+<tr class="row-odd"><td>&lt;=</td>
+<td>less
+than or
+equal</td>
+</tr>
+<tr class="row-even"><td>&gt;=</td>
+<td>greater
+than or
+equal</td>
+</tr>
+<tr class="row-odd"><td>==</td>
+<td>equal
+to</td>
+</tr>
+<tr class="row-even"><td>!=</td>
+<td>not
+equal
+to</td>
+</tr>
+<tr class="row-odd"><td>|</td>
+<td>entry
+wise or</td>
+</tr>
+<tr class="row-even"><td>||</td>
+<td>or</td>
+</tr>
+<tr class="row-odd"><td>!</td>
+<td>not</td>
+</tr>
+<tr class="row-even"><td>&amp;</td>
+<td>entry
+wise and</td>
+</tr>
+<tr class="row-odd"><td>&amp;&amp;</td>
+<td>and</td>
+</tr>
+<tr class="row-even"><td>xor(a,b)</td>
+<td>exclusive
+or</td>
+</tr>
+</tbody>
+</table>
+<p>Note that there is a difference between operators that act on entries
+within a vector and the whole vector:</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>a <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="kc">TRUE</span><span class="p">,</span><span class="kc">FALSE</span><span class="p">)</span>
+<span class="gp">&gt; </span>b <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="kc">FALSE</span><span class="p">,</span><span class="kc">FALSE</span><span class="p">)</span>
+<span class="gp">&gt; </span>a<span class="o">|</span>b
+<span class="go">[1]  TRUE FALSE</span>
+<span class="gp">&gt; </span>a<span class="o">||</span>b
+<span class="go">[1] TRUE</span>
+<span class="gp">&gt; </span><span class="kp">xor</span><span class="p">(</span>a<span class="p">,</span>b<span class="p">)</span>
+<span class="go">[1]  TRUE FALSE</span>
+</pre></div>
+</div>
+<p>There are a large number of functions that test to determine the type
+of a variable. For example the <em>is.numeric</em> function can determine if
+a variable is numeric:</p>
+<span class="target" id="index-24"></span><div class="highlight-rconsole" id="index-25"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>a <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>
+<span class="gp">&gt; </span><span class="kp">is.numeric</span><span class="p">(</span>a<span class="p">)</span>
+<span class="go">[1] TRUE</span>
+<span class="gp">&gt; </span><span class="kp">is.factor</span><span class="p">(</span>a<span class="p">)</span>
+<span class="go">[1] FALSE</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="tables">
+<h2><a class="toc-backref" href="#id2">2.2. Tables</a><a class="headerlink" href="#tables" title="Permalink to this headline">¶</a></h2>
+<p id="index-26">Another common way to store information is in a table. Here we look at
+how to define both one way and two way tables. We only look at how to
+create and define tables; the functions used in the analysis of
+proportions are examined in another chapter.</p>
+<div class="section" id="one-way-tables">
+<h3>2.2.1. One Way Tables<a class="headerlink" href="#one-way-tables" title="Permalink to this headline">¶</a></h3>
+<p id="index-27">The first example is for a one way table. One way tables are not the
+most interesting example, but it is a good place to start. One way to
+create a table is using the table command. The arguments it takes is a
+vector of factors, and it calculates the frequency that each factor
+occurs. Here is an example of how to create a one way table:</p>
+<div class="highlight-rconsole" id="index-28"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>a <span class="o">&lt;-</span> <span class="kp">factor</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">,</span><span class="s">&quot;A&quot;</span><span class="p">,</span><span class="s">&quot;B&quot;</span><span class="p">,</span><span class="s">&quot;A&quot;</span><span class="p">,</span><span class="s">&quot;B&quot;</span><span class="p">,</span><span class="s">&quot;B&quot;</span><span class="p">,</span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="s">&quot;A&quot;</span><span class="p">,</span><span class="s">&quot;C&quot;</span><span class="p">))</span>
+<span class="gp">&gt; </span>results <span class="o">&lt;-</span> <span class="kp">table</span><span class="p">(</span>a<span class="p">)</span>
+<span class="gp">&gt; </span>results
+<span class="go">a</span>
+<span class="go">A B C</span>
+<span class="go">4 3 2</span>
+<span class="gp">&gt; </span><span class="kp">attributes</span><span class="p">(</span>results<span class="p">)</span>
+<span class="go">$dim</span>
+<span class="go">[1] 3</span>
+
+<span class="go">$dimnames</span>
+<span class="go">$dimnames$a</span>
+<span class="go">[1] &quot;A&quot; &quot;B&quot; &quot;C&quot;</span>
+
+
+<span class="go">$class</span>
+<span class="go">[1] &quot;table&quot;</span>
+
+<span class="gp">&gt; </span><span class="kp">summary</span><span class="p">(</span>results<span class="p">)</span>
+<span class="go">Number of cases in table: 9</span>
+<span class="go">Number of factors: 1</span>
+</pre></div>
+</div>
+<p>If you know the number of occurrences for each factor then it is
+possible to create the table directly, but the process is,
+unfortunately, a bit more convoluted. There is an easier way to define
+one-way tables (a table with one row), but it does not extend easily
+to two-way tables (tables with more than one row). You must first
+create a matrix of numbers. A matrix is like a vector in that it is a
+list of numbers, but it is different in that you can have both rows
+and columns of numbers. For example, in our example above the number
+of occurrences of &#8220;A&#8221; is 4, the number of occurrences of &#8220;B&#8221; is 3, and
+the number of occurrences of &#8220;C&#8221; is 2. We will create one row of
+numbers. The first column contains a 4, the second column contains a
+3, and the third column contains a 2:</p>
+<div class="highlight-rconsole" id="index-29"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>occur <span class="o">&lt;-</span> <span class="kt">matrix</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">2</span><span class="p">),</span>ncol<span class="o">=</span><span class="m">3</span><span class="p">,</span>byrow<span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="gp">&gt; </span>occur
+<span class="go">     [,1] [,2] [,3]</span>
+<span class="go">[1,]    4    3    2</span>
+</pre></div>
+</div>
+<p>At this point the variable &#8220;occur&#8221; is a matrix with one row and three
+columns of numbers. To dress it up and use it as a table we would like
+to give it labels for each columns just like in the previous
+example. Once that is done we convert the matrix to a table using the
+as.table command:</p>
+<span class="target" id="index-30"></span><span class="target" id="index-31"></span><span class="target" id="index-32"></span><div class="highlight-rconsole" id="index-33"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kp">colnames</span><span class="p">(</span>occur<span class="p">)</span> <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">,</span><span class="s">&quot;B&quot;</span><span class="p">,</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>occur
+<span class="go">     A B C</span>
+<span class="go">[1,] 4 3 2</span>
+<span class="gp">&gt; </span>occur <span class="o">&lt;-</span> <span class="kp">as.table</span><span class="p">(</span>occur<span class="p">)</span>
+<span class="gp">&gt; </span>occur
+<span class="go">  A B C</span>
+<span class="go">A 4 3 2</span>
+<span class="gp">&gt; </span><span class="kp">attributes</span><span class="p">(</span>occur<span class="p">)</span>
+<span class="go">$dim</span>
+<span class="go">[1] 1 3</span>
+
+<span class="go">$dimnames</span>
+<span class="go">$dimnames[[1]]</span>
+<span class="go">[1] &quot;A&quot;</span>
+
+<span class="go">$dimnames[[2]]</span>
+<span class="go">[1] &quot;A&quot; &quot;B&quot; &quot;C&quot;</span>
+
+
+<span class="go">$class</span>
+<span class="go">[1] &quot;table&quot;</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="two-way-tables">
+<h3>2.2.2. Two Way Tables<a class="headerlink" href="#two-way-tables" title="Permalink to this headline">¶</a></h3>
+<p id="index-34">If you want to add rows to your table just add another vector to the
+argument of the table command. In the example below we have two
+questions. In the first question the responses are labeled &#8220;Never,&#8221;
+&#8220;Sometimes,&#8221; or &#8220;Always.&#8221; In the second question the responses are
+labeled &#8220;Yes,&#8221; &#8220;No,&#8221; or &#8220;Maybe.&#8221; The set of vectors &#8220;a,&#8221; and &#8220;b,&#8221;
+contain the response for each measurement. The third item in &#8220;a&#8221; is
+how the third person responded to the first question, and the third
+item in &#8220;b&#8221; is how the third person responded to the second question.</p>
+<div class="highlight-rconsole" id="index-35"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>a <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;Sometimes&quot;</span><span class="p">,</span><span class="s">&quot;Sometimes&quot;</span><span class="p">,</span><span class="s">&quot;Never&quot;</span><span class="p">,</span><span class="s">&quot;Always&quot;</span><span class="p">,</span><span class="s">&quot;Always&quot;</span><span class="p">,</span><span class="s">&quot;Sometimes&quot;</span><span class="p">,</span><span class="s">&quot;Sometimes&quot;</span><span class="p">,</span><span class="s">&quot;Never&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>b <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;Maybe&quot;</span><span class="p">,</span><span class="s">&quot;Maybe&quot;</span><span class="p">,</span><span class="s">&quot;Yes&quot;</span><span class="p">,</span><span class="s">&quot;Maybe&quot;</span><span class="p">,</span><span class="s">&quot;Maybe&quot;</span><span class="p">,</span><span class="s">&quot;No&quot;</span><span class="p">,</span><span class="s">&quot;Yes&quot;</span><span class="p">,</span><span class="s">&quot;No&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>results <span class="o">&lt;-</span> <span class="kp">table</span><span class="p">(</span>a<span class="p">,</span>b<span class="p">)</span>
+<span class="gp">&gt; </span>results
+<span class="go">           b</span>
+<span class="go">a           Maybe No Yes</span>
+<span class="go">  Always        2  0   0</span>
+<span class="go">  Never         0  1   1</span>
+<span class="go">  Sometimes     2  1   1</span>
+</pre></div>
+</div>
+<p>The table command allows us to do a very quick calculation, and we can
+immediately see that two people who said &#8220;Maybe&#8221; to the first question
+also said &#8220;Sometimes&#8221; to the second question.</p>
+<p>Just as in the case with one-way tables it is possible to manually
+enter two way tables. The procedure is exactly the same as above
+except that we now have more than one row. We give a brief example
+below to demonstrate how to enter a two-way table that includes
+breakdown of a group of people by both their gender and whether or not
+they smoke. You enter all of the data as one long list but tell R to
+break it up into some number of columns:</p>
+<span class="target" id="index-36"></span><div class="highlight-rconsole" id="index-37"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>sexsmoke<span class="o">&lt;-</span><span class="kt">matrix</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="m">70</span><span class="p">,</span><span class="m">120</span><span class="p">,</span><span class="m">65</span><span class="p">,</span><span class="m">140</span><span class="p">),</span>ncol<span class="o">=</span><span class="m">2</span><span class="p">,</span>byrow<span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="gp">&gt; </span><span class="kp">rownames</span><span class="p">(</span>sexsmoke<span class="p">)</span><span class="o">&lt;-</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;male&quot;</span><span class="p">,</span><span class="s">&quot;female&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span><span class="kp">colnames</span><span class="p">(</span>sexsmoke<span class="p">)</span><span class="o">&lt;-</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;smoke&quot;</span><span class="p">,</span><span class="s">&quot;nosmoke&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>sexsmoke <span class="o">&lt;-</span> <span class="kp">as.table</span><span class="p">(</span>sexsmoke<span class="p">)</span>
+<span class="gp">&gt; </span>sexsmoke
+<span class="go">       smoke nosmoke</span>
+<span class="go">male      70     120</span>
+<span class="go">female    65     140</span>
+</pre></div>
+</div>
+<p>The matrix command creates a two by two matrix. The <em>byrow=TRUE</em>
+option indicates that the numbers are filled in across the rows first,
+and the <em>ncols=2</em> indicates that there are two columns.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+
+
+
+
+
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+
+        <a href="basicOps.html" class="btn btn-neutral float-right" title="3. Basic Operations and Numerical Descriptions" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+
+
+        <a href="input.html" class="btn btn-neutral" title="1. Input" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+
+    </div>
+
+
+		<br><br>
+
+		<div class="admonition note">
+			<p class="first admonition-title">Sponsorship</p>
+			<p class="last">
+				This site generously supported
+				by <a href="https://www.datacamp.com/"
+							target="_blank">Datacamp</a>. Datacamp offers a
+				free <a href="https://www.datacamp.com/courses/free-introduction-to-r"
+								target="_blank"> interactive introduction to R coding tutorial</a>
+				as an additional resource. Already over 100,000 people took this
+				free tutorial to sharpen their R coding skills.
+			</p>
+		</div>
+
+
+<footer>
+		<hr/>
+
+		<div role="contentinfo">
+
+			<p>
+			<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">R Tutorial</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="mailto:kjblack@gmail.com" property="cc:attributionName" rel="cc:attributionURL">Kelly Black</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a> (2015).<br />Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="http://www.cyclismo.org/tutorial/R/" rel="dct:source">http://www.cyclismo.org/tutorial/R/</a>.
+</p>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+
+
+
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'3.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+
+
+</body>
+</html>

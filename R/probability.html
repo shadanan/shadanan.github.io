@@ -1,0 +1,625 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>4. Basic Probability Distributions &mdash; R Tutorial</title>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+
+
+    <link rel="stylesheet" href="_static/siteColours.css" type="text/css" />
+
+
+
+    <link rel="top" title="R Tutorial" href="index.html"/>
+        <link rel="next" title="5. Basic Plots" href="plotting.html"/>
+        <link rel="prev" title="3. Basic Operations and Numerical Descriptions" href="basicOps.html"/>
+
+
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+
+
+            <a href="index.html" class="icon icon-home"> R Tutorial
+
+
+
+          </a>
+
+
+
+
+              <div class="version">
+                3
+              </div>
+
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+
+
+
+
+        <div id="sidebar">
+					<!-- localtoc.html --><ul>
+<li><a class="reference internal" href="#">4. Basic Probability Distributions</a><ul>
+<li><a class="reference internal" href="#the-normal-distribution">4.1. The Normal Distribution</a></li>
+<li><a class="reference internal" href="#the-t-distribution">4.2. The t Distribution</a></li>
+<li><a class="reference internal" href="#the-binomial-distribution">4.3. The Binomial Distribution</a></li>
+<li><a class="reference internal" href="#the-chi-squared-distribution">4.4. The Chi-Squared Distribution</a></li>
+</ul>
+</li>
+</ul>
+
+					<!-- globaltoc.html --><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="input.html">1. Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">2. Basic Data Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basicOps.html">3. Basic Operations and Numerical Descriptions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">4. Basic Probability Distributions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-normal-distribution">4.1. The Normal Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-t-distribution">4.2. The t Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-binomial-distribution">4.3. The Binomial Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-chi-squared-distribution">4.4. The Chi-Squared Distribution</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="plotting.html">5. Basic Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intermediatePlotting.html">6. Intermediate Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vectorIndexing.html">7. Indexing Into Vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linearLeastSquares.html">8. Linear Least Squares Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="confidence.html">9. Calculating Confidence Intervals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pValues.html">10. Calculating <em>p</em> Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="power.html">11. Calculating The Power Of A Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tables.html">12. Two Way Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataManagement.html">13. Data Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="time.html">14. Time Data Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripting.html">15. Introduction to Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="objectOriented.html">Object Oriented Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hwI.html">16. Case Study: Working Through a HW Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cholesterol.html">17. Case Study II: A JAMA Paper on Cholesterol</a></li>
+</ul>
+
+        </div>
+
+
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">R Tutorial</a>
+      </nav>
+
+
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+
+    <li>4. Basic Probability Distributions</li>
+      <li class="wy-breadcrumbs-aside">
+
+
+
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+
+  <div class="section" id="basic-probability-distributions">
+<h1>4. Basic Probability Distributions<a class="headerlink" href="#basic-probability-distributions" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#the-normal-distribution" id="id1">The Normal Distribution</a></li>
+<li><a class="reference internal" href="#the-t-distribution" id="id2">The t Distribution</a></li>
+<li><a class="reference internal" href="#the-binomial-distribution" id="id3">The Binomial Distribution</a></li>
+<li><a class="reference internal" href="#the-chi-squared-distribution" id="id4">The Chi-Squared Distribution</a></li>
+</ul>
+</div>
+<p id="index-0">We look at some of the basic operations associated with probability
+distributions. There are a large number of probability distributions
+available, but we only look at a few. If you would like to know what
+distributions are available you can do a search using the command
+help.search(&#8220;distribution&#8221;).</p>
+<p>Here we give details about the commands associated with the normal
+distribution and briefly mention the commands for other
+distributions. The functions for different distributions are very
+similar where the differences are noted below.</p>
+<p>For this chapter it is assumed that you know how to enter data which
+is covered in the previous chapters.</p>
+<p>To get a full list of the distributions available in R you can use the
+following command:</p>
+<div class="highlight-rconsole" id="index-1"><div class="highlight"><pre><span></span><span class="go">help(Distributions)</span>
+</pre></div>
+</div>
+<p>For every distribution there are four commands. The commands for each
+distribution are prepended with a letter to indicate the functionality:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&#8220;d&#8221;</td>
+<td>returns the height of the probability density function</td>
+</tr>
+<tr class="row-even"><td>&#8220;p&#8221;</td>
+<td>returns the cumulative density function</td>
+</tr>
+<tr class="row-odd"><td>&#8220;q&#8221;</td>
+<td>returns the inverse cumulative density function (quantiles)</td>
+</tr>
+<tr class="row-even"><td>&#8220;r&#8221;</td>
+<td>returns randomly generated numbers</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="the-normal-distribution">
+<h2><a class="toc-backref" href="#id1">4.1. The Normal Distribution</a><a class="headerlink" href="#the-normal-distribution" title="Permalink to this headline">¶</a></h2>
+<p id="index-2">There are four functions that can be used to generate the values
+associated with the normal distribution. You can get a full list of
+them and their options using the help command:</p>
+<div class="highlight-rconsole" id="index-3"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>help<span class="p">(</span>Normal<span class="p">)</span>
+</pre></div>
+</div>
+<p>The first function we look at it is <em>dnorm</em>. Given a set of values it
+returns the height of the probability distribution at each point. If
+you only give the points it assumes you want to use a mean of zero and
+standard deviation of one. There are options to use different values
+for the mean and standard deviation, though:</p>
+<span class="target" id="index-4"></span><div class="highlight-rconsole" id="index-5"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>dnorm<span class="p">(</span><span class="m">0</span><span class="p">)</span>
+<span class="go">[1] 0.3989423</span>
+<span class="gp">&gt; </span>dnorm<span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="o">*</span><span class="kp">sqrt</span><span class="p">(</span><span class="m">2</span><span class="o">*</span><span class="kc">pi</span><span class="p">)</span>
+<span class="go">[1] 1</span>
+<span class="gp">&gt; </span>dnorm<span class="p">(</span><span class="m">0</span><span class="p">,</span>mean<span class="o">=</span><span class="m">4</span><span class="p">)</span>
+<span class="go">[1] 0.0001338302</span>
+<span class="gp">&gt; </span>dnorm<span class="p">(</span><span class="m">0</span><span class="p">,</span>mean<span class="o">=</span><span class="m">4</span><span class="p">,</span>sd<span class="o">=</span><span class="m">10</span><span class="p">)</span>
+<span class="go">[1] 0.03682701</span>
+<span class="gp">&gt;v</span> <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">)</span>
+<span class="gp">&gt; </span>dnorm<span class="p">(</span>v<span class="p">)</span>
+<span class="go">[1] 0.39894228 0.24197072 0.05399097</span>
+<span class="gp">&gt; </span>x <span class="o">&lt;-</span> <span class="kp">seq</span><span class="p">(</span><span class="m">-20</span><span class="p">,</span><span class="m">20</span><span class="p">,</span>by<span class="o">=</span><span class="m">.1</span><span class="p">)</span>
+<span class="gp">&gt; </span>y <span class="o">&lt;-</span> dnorm<span class="p">(</span>x<span class="p">)</span>
+<span class="gp">&gt; </span>plot<span class="p">(</span>x<span class="p">,</span>y<span class="p">)</span>
+<span class="gp">&gt; </span>y <span class="o">&lt;-</span> dnorm<span class="p">(</span>x<span class="p">,</span>mean<span class="o">=</span><span class="m">2.5</span><span class="p">,</span>sd<span class="o">=</span><span class="m">0.1</span><span class="p">)</span>
+<span class="gp">&gt; </span>plot<span class="p">(</span>x<span class="p">,</span>y<span class="p">)</span>
+</pre></div>
+</div>
+<p>The second function we examine is pnorm. Given a number or a list it
+computes the probability that a normally distributed random number
+will be less than that number. This function also goes by the rather
+ominous title of the &#8220;Cumulative Distribution Function.&#8221; It accepts
+the same options as dnorm:</p>
+<div class="highlight-rconsole" id="index-6"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>pnorm<span class="p">(</span><span class="m">0</span><span class="p">)</span>
+<span class="go">[1] 0.5</span>
+<span class="gp">&gt; </span>pnorm<span class="p">(</span><span class="m">1</span><span class="p">)</span>
+<span class="go">[1] 0.8413447</span>
+<span class="gp">&gt; </span>pnorm<span class="p">(</span><span class="m">0</span><span class="p">,</span>mean<span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<span class="go">[1] 0.02275013</span>
+<span class="gp">&gt; </span>pnorm<span class="p">(</span><span class="m">0</span><span class="p">,</span>mean<span class="o">=</span><span class="m">2</span><span class="p">,</span>sd<span class="o">=</span><span class="m">3</span><span class="p">)</span>
+<span class="go">[1] 0.2524925</span>
+<span class="gp">&gt; </span>v <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">)</span>
+<span class="gp">&gt; </span>pnorm<span class="p">(</span>v<span class="p">)</span>
+<span class="go">[1] 0.5000000 0.8413447 0.9772499</span>
+<span class="gp">&gt; </span>x <span class="o">&lt;-</span> <span class="kp">seq</span><span class="p">(</span><span class="m">-20</span><span class="p">,</span><span class="m">20</span><span class="p">,</span>by<span class="o">=</span><span class="m">.1</span><span class="p">)</span>
+<span class="gp">&gt; </span>y <span class="o">&lt;-</span> pnorm<span class="p">(</span>x<span class="p">)</span>
+<span class="gp">&gt; </span>plot<span class="p">(</span>x<span class="p">,</span>y<span class="p">)</span>
+<span class="gp">&gt; </span>y <span class="o">&lt;-</span> pnorm<span class="p">(</span>x<span class="p">,</span>mean<span class="o">=</span><span class="m">3</span><span class="p">,</span>sd<span class="o">=</span><span class="m">4</span><span class="p">)</span>
+<span class="gp">&gt; </span>plot<span class="p">(</span>x<span class="p">,</span>y<span class="p">)</span>
+</pre></div>
+</div>
+<p>If you wish to find the probability that a number is larger than the
+given number you can use the <em>lower.tail</em> option:</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>pnorm<span class="p">(</span><span class="m">0</span><span class="p">,</span>lower.tail<span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span>
+<span class="go">[1] 0.5</span>
+<span class="gp">&gt; </span>pnorm<span class="p">(</span><span class="m">1</span><span class="p">,</span>lower.tail<span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span>
+<span class="go">[1] 0.1586553</span>
+<span class="gp">&gt; </span>pnorm<span class="p">(</span><span class="m">0</span><span class="p">,</span>mean<span class="o">=</span><span class="m">2</span><span class="p">,</span>lower.tail<span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span>
+<span class="go">[1] 0.9772499</span>
+</pre></div>
+</div>
+<p>The next function we look at is <em>qnorm</em> which is the inverse of
+pnorm. The idea behind <em>qnorm</em> is that you give it a probability, and
+it returns the number whose cumulative distribution matches the
+probability. For example, if you have a normally distributed random
+variable with mean zero and standard deviation one, then if you give
+the function a probability it returns the associated Z-score:</p>
+<div class="highlight-rconsole" id="index-7"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>qnorm<span class="p">(</span><span class="m">0.5</span><span class="p">)</span>
+<span class="go">[1] 0</span>
+<span class="gp">&gt; </span>qnorm<span class="p">(</span><span class="m">0.5</span><span class="p">,</span>mean<span class="o">=</span><span class="m">1</span><span class="p">)</span>
+<span class="go">[1] 1</span>
+<span class="gp">&gt; </span>qnorm<span class="p">(</span><span class="m">0.5</span><span class="p">,</span>mean<span class="o">=</span><span class="m">1</span><span class="p">,</span>sd<span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<span class="go">[1] 1</span>
+<span class="gp">&gt; </span>qnorm<span class="p">(</span><span class="m">0.5</span><span class="p">,</span>mean<span class="o">=</span><span class="m">2</span><span class="p">,</span>sd<span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<span class="go">[1] 2</span>
+<span class="gp">&gt; </span>qnorm<span class="p">(</span><span class="m">0.5</span><span class="p">,</span>mean<span class="o">=</span><span class="m">2</span><span class="p">,</span>sd<span class="o">=</span><span class="m">4</span><span class="p">)</span>
+<span class="go">[1] 2</span>
+<span class="gp">&gt; </span>qnorm<span class="p">(</span><span class="m">0.25</span><span class="p">,</span>mean<span class="o">=</span><span class="m">2</span><span class="p">,</span>sd<span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<span class="go">[1] 0.6510205</span>
+<span class="gp">&gt; </span>qnorm<span class="p">(</span><span class="m">0.333</span><span class="p">)</span>
+<span class="go">[1] -0.4316442</span>
+<span class="gp">&gt; </span>qnorm<span class="p">(</span><span class="m">0.333</span><span class="p">,</span>sd<span class="o">=</span><span class="m">3</span><span class="p">)</span>
+<span class="go">[1] -1.294933</span>
+<span class="gp">&gt; </span>qnorm<span class="p">(</span><span class="m">0.75</span><span class="p">,</span>mean<span class="o">=</span><span class="m">5</span><span class="p">,</span>sd<span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<span class="go">[1] 6.34898</span>
+<span class="gp">&gt; </span>v <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span><span class="m">0.3</span><span class="p">,</span><span class="m">0.75</span><span class="p">)</span>
+<span class="gp">&gt; </span>qnorm<span class="p">(</span>v<span class="p">)</span>
+<span class="go">[1] -1.2815516 -0.5244005  0.6744898</span>
+<span class="gp">&gt; </span>x <span class="o">&lt;-</span> <span class="kp">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span>by<span class="o">=</span><span class="m">.05</span><span class="p">)</span>
+<span class="gp">&gt; </span>y <span class="o">&lt;-</span> qnorm<span class="p">(</span>x<span class="p">)</span>
+<span class="gp">&gt; </span>plot<span class="p">(</span>x<span class="p">,</span>y<span class="p">)</span>
+<span class="gp">&gt; </span>y <span class="o">&lt;-</span> qnorm<span class="p">(</span>x<span class="p">,</span>mean<span class="o">=</span><span class="m">3</span><span class="p">,</span>sd<span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<span class="gp">&gt; </span>plot<span class="p">(</span>x<span class="p">,</span>y<span class="p">)</span>
+<span class="gp">&gt; </span>y <span class="o">&lt;-</span> qnorm<span class="p">(</span>x<span class="p">,</span>mean<span class="o">=</span><span class="m">3</span><span class="p">,</span>sd<span class="o">=</span><span class="m">0.1</span><span class="p">)</span>
+<span class="gp">&gt; </span>plot<span class="p">(</span>x<span class="p">,</span>y<span class="p">)</span>
+</pre></div>
+</div>
+<p>The last function we examine is the <em>rnorm</em> function which can generate
+random numbers whose distribution is normal. The argument that you
+give it is the number of random numbers that you want, and it has
+optional arguments to specify the mean and standard deviation:</p>
+<span class="target" id="index-8"></span><span class="target" id="index-9"></span><span class="target" id="index-10"></span><div class="highlight-rconsole" id="index-11"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>rnorm<span class="p">(</span><span class="m">4</span><span class="p">)</span>
+<span class="go">[1]  1.2387271 -0.2323259 -1.2003081 -1.6718483</span>
+<span class="gp">&gt; </span>rnorm<span class="p">(</span><span class="m">4</span><span class="p">,</span>mean<span class="o">=</span><span class="m">3</span><span class="p">)</span>
+<span class="go">[1] 2.633080 3.617486 2.038861 2.601933</span>
+<span class="gp">&gt; </span>rnorm<span class="p">(</span><span class="m">4</span><span class="p">,</span>mean<span class="o">=</span><span class="m">3</span><span class="p">,</span>sd<span class="o">=</span><span class="m">3</span><span class="p">)</span>
+<span class="go">[1] 4.580556 2.974903 4.756097 6.395894</span>
+<span class="gp">&gt; </span>rnorm<span class="p">(</span><span class="m">4</span><span class="p">,</span>mean<span class="o">=</span><span class="m">3</span><span class="p">,</span>sd<span class="o">=</span><span class="m">3</span><span class="p">)</span>
+<span class="go">[1]  3.000852  3.714180 10.032021  3.295667</span>
+<span class="gp">&gt; </span>y <span class="o">&lt;-</span> rnorm<span class="p">(</span><span class="m">200</span><span class="p">)</span>
+<span class="gp">&gt; </span>hist<span class="p">(</span>y<span class="p">)</span>
+<span class="gp">&gt; </span>y <span class="o">&lt;-</span> rnorm<span class="p">(</span><span class="m">200</span><span class="p">,</span>mean<span class="o">=</span><span class="m">-2</span><span class="p">)</span>
+<span class="gp">&gt; </span>hist<span class="p">(</span>y<span class="p">)</span>
+<span class="gp">&gt; </span>y <span class="o">&lt;-</span> rnorm<span class="p">(</span><span class="m">200</span><span class="p">,</span>mean<span class="o">=</span><span class="m">-2</span><span class="p">,</span>sd<span class="o">=</span><span class="m">4</span><span class="p">)</span>
+<span class="gp">&gt; </span>hist<span class="p">(</span>y<span class="p">)</span>
+<span class="gp">&gt; </span>qqnorm<span class="p">(</span>y<span class="p">)</span>
+<span class="gp">&gt; </span>qqline<span class="p">(</span>y<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-t-distribution">
+<h2><a class="toc-backref" href="#id2">4.2. The t Distribution</a><a class="headerlink" href="#the-t-distribution" title="Permalink to this headline">¶</a></h2>
+<p id="index-12">There are four functions that can be used to generate the values
+associated with the t distribution. You can get a full list of them
+and their options using the help command:</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>help<span class="p">(</span>TDist<span class="p">)</span>
+</pre></div>
+</div>
+<p>These commands work just like the commands for the normal
+distribution. One difference is that the commands assume that the
+values are normalized to mean zero and standard deviation one, so you
+have to use a little algebra to use these functions in practice. The
+other difference is that you have to specify the number of degrees of
+freedom. The commands follow the same kind of naming convention, and
+the names of the commands are <em>dt</em>, <em>pt</em>, <em>qt</em>, and <em>rt</em>.</p>
+<p>A few examples are given below to show how to use the different
+commands. First we have the distribution function, <em>dt</em>:</p>
+<span class="target" id="index-13"></span><div class="highlight-rconsole" id="index-14"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>x <span class="o">&lt;-</span> <span class="kp">seq</span><span class="p">(</span><span class="m">-20</span><span class="p">,</span><span class="m">20</span><span class="p">,</span>by<span class="o">=</span><span class="m">.5</span><span class="p">)</span>
+<span class="gp">&gt; </span>y <span class="o">&lt;-</span> dt<span class="p">(</span>x<span class="p">,</span>df<span class="o">=</span><span class="m">10</span><span class="p">)</span>
+<span class="gp">&gt; </span>plot<span class="p">(</span>x<span class="p">,</span>y<span class="p">)</span>
+<span class="gp">&gt; </span>y <span class="o">&lt;-</span> dt<span class="p">(</span>x<span class="p">,</span>df<span class="o">=</span><span class="m">50</span><span class="p">)</span>
+<span class="gp">&gt; </span>plot<span class="p">(</span>x<span class="p">,</span>y<span class="p">)</span>
+</pre></div>
+</div>
+<p>Next we have the cumulative probability distribution function:</p>
+<div class="highlight-rconsole" id="index-15"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>pt<span class="p">(</span><span class="m">-3</span><span class="p">,</span>df<span class="o">=</span><span class="m">10</span><span class="p">)</span>
+<span class="go">[1] 0.006671828</span>
+<span class="gp">&gt; </span>pt<span class="p">(</span><span class="m">3</span><span class="p">,</span>df<span class="o">=</span><span class="m">10</span><span class="p">)</span>
+<span class="go">[1] 0.9933282</span>
+<span class="gp">&gt; </span><span class="m">1</span><span class="o">-</span>pt<span class="p">(</span><span class="m">3</span><span class="p">,</span>df<span class="o">=</span><span class="m">10</span><span class="p">)</span>
+<span class="go">[1] 0.006671828</span>
+<span class="gp">&gt; </span>pt<span class="p">(</span><span class="m">3</span><span class="p">,</span>df<span class="o">=</span><span class="m">20</span><span class="p">)</span>
+<span class="go">[1] 0.996462</span>
+<span class="gp">&gt; </span>x <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">-3</span><span class="p">,</span><span class="m">-4</span><span class="p">,</span><span class="m">-2</span><span class="p">,</span><span class="m">-1</span><span class="p">)</span>
+<span class="gp">&gt; </span>pt<span class="p">((</span><span class="kp">mean</span><span class="p">(</span>x<span class="p">)</span><span class="m">-2</span><span class="p">)</span><span class="o">/</span>sd<span class="p">(</span>x<span class="p">),</span>df<span class="o">=</span><span class="m">20</span><span class="p">)</span>
+<span class="go">[1] 0.001165548</span>
+<span class="gp">&gt; </span>pt<span class="p">((</span><span class="kp">mean</span><span class="p">(</span>x<span class="p">)</span><span class="m">-2</span><span class="p">)</span><span class="o">/</span>sd<span class="p">(</span>x<span class="p">),</span>df<span class="o">=</span><span class="m">40</span><span class="p">)</span>
+<span class="go">[1] 0.000603064</span>
+</pre></div>
+</div>
+<p>Next we have the inverse cumulative probability distribution function:</p>
+<div class="highlight-rconsole" id="index-16"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>qt<span class="p">(</span><span class="m">0.05</span><span class="p">,</span>df<span class="o">=</span><span class="m">10</span><span class="p">)</span>
+<span class="go">[1] -1.812461</span>
+<span class="gp">&gt; </span>qt<span class="p">(</span><span class="m">0.95</span><span class="p">,</span>df<span class="o">=</span><span class="m">10</span><span class="p">)</span>
+<span class="go">[1] 1.812461</span>
+<span class="gp">&gt; </span>qt<span class="p">(</span><span class="m">0.05</span><span class="p">,</span>df<span class="o">=</span><span class="m">20</span><span class="p">)</span>
+<span class="go">[1] -1.724718</span>
+<span class="gp">&gt; </span>qt<span class="p">(</span><span class="m">0.95</span><span class="p">,</span>df<span class="o">=</span><span class="m">20</span><span class="p">)</span>
+<span class="go">[1] 1.724718</span>
+<span class="gp">&gt; </span>v <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="m">0.005</span><span class="p">,</span><span class="m">.025</span><span class="p">,</span><span class="m">.05</span><span class="p">)</span>
+<span class="gp">&gt; </span>qt<span class="p">(</span>v<span class="p">,</span>df<span class="o">=</span><span class="m">253</span><span class="p">)</span>
+<span class="go">[1] -2.595401 -1.969385 -1.650899</span>
+<span class="gp">&gt; </span>qt<span class="p">(</span>v<span class="p">,</span>df<span class="o">=</span><span class="m">25</span><span class="p">)</span>
+<span class="go">[1] -2.787436 -2.059539 -1.708141</span>
+</pre></div>
+</div>
+<p>Finally random numbers can be generated according to the t
+distribution:</p>
+<div class="highlight-rconsole" id="index-17"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>rt<span class="p">(</span><span class="m">3</span><span class="p">,</span>df<span class="o">=</span><span class="m">10</span><span class="p">)</span>
+<span class="go">[1] 0.9440930 2.1734365 0.6785262</span>
+<span class="gp">&gt; </span>rt<span class="p">(</span><span class="m">3</span><span class="p">,</span>df<span class="o">=</span><span class="m">20</span><span class="p">)</span>
+<span class="go">[1]  0.1043300 -1.4682198  0.0715013</span>
+<span class="gp">&gt; </span>rt<span class="p">(</span><span class="m">3</span><span class="p">,</span>df<span class="o">=</span><span class="m">20</span><span class="p">)</span>
+<span class="go">[1]  0.8023832 -0.4759780 -1.0546125</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-binomial-distribution">
+<h2><a class="toc-backref" href="#id3">4.3. The Binomial Distribution</a><a class="headerlink" href="#the-binomial-distribution" title="Permalink to this headline">¶</a></h2>
+<p id="index-18">There are four functions that can be used to generate the values
+associated with the binomial distribution. You can get a full list of
+them and their options using the help command:</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>help<span class="p">(</span>Binomial<span class="p">)</span>
+</pre></div>
+</div>
+<p>These commands work just like the commands for the normal
+distribution. The binomial distribution requires two extra parameters,
+the number of trials and the probability of success for a single
+trial. The commands follow the same kind of naming convention, and the
+names of the commands are dbinom, pbinom, qbinom, and rbinom.</p>
+<p>A few examples are given below to show how to use the different
+commands. First we have the distribution function, <em>dbinom</em>:</p>
+<div class="highlight-rconsole" id="index-19"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>x <span class="o">&lt;-</span> <span class="kp">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">50</span><span class="p">,</span>by<span class="o">=</span><span class="m">1</span><span class="p">)</span>
+<span class="gp">&gt; </span>y <span class="o">&lt;-</span> dbinom<span class="p">(</span>x<span class="p">,</span><span class="m">50</span><span class="p">,</span><span class="m">0.2</span><span class="p">)</span>
+<span class="gp">&gt; </span>plot<span class="p">(</span>x<span class="p">,</span>y<span class="p">)</span>
+<span class="gp">&gt; </span>y <span class="o">&lt;-</span> dbinom<span class="p">(</span>x<span class="p">,</span><span class="m">50</span><span class="p">,</span><span class="m">0.6</span><span class="p">)</span>
+<span class="gp">&gt; </span>plot<span class="p">(</span>x<span class="p">,</span>y<span class="p">)</span>
+<span class="gp">&gt; </span>x <span class="o">&lt;-</span> <span class="kp">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">100</span><span class="p">,</span>by<span class="o">=</span><span class="m">1</span><span class="p">)</span>
+<span class="gp">&gt; </span>y <span class="o">&lt;-</span> dbinom<span class="p">(</span>x<span class="p">,</span><span class="m">100</span><span class="p">,</span><span class="m">0.6</span><span class="p">)</span>
+<span class="gp">&gt; </span>plot<span class="p">(</span>x<span class="p">,</span>y<span class="p">)</span>
+</pre></div>
+</div>
+<p>Next we have the cumulative probability distribution function:</p>
+<div class="highlight-rconsole" id="index-20"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>pbinom<span class="p">(</span><span class="m">24</span><span class="p">,</span><span class="m">50</span><span class="p">,</span><span class="m">0.5</span><span class="p">)</span>
+<span class="go">[1] 0.4438624</span>
+<span class="gp">&gt; </span>pbinom<span class="p">(</span><span class="m">25</span><span class="p">,</span><span class="m">50</span><span class="p">,</span><span class="m">0.5</span><span class="p">)</span>
+<span class="go">[1] 0.5561376</span>
+<span class="gp">&gt; </span>pbinom<span class="p">(</span><span class="m">25</span><span class="p">,</span><span class="m">51</span><span class="p">,</span><span class="m">0.5</span><span class="p">)</span>
+<span class="go">[1] 0.5</span>
+<span class="gp">&gt; </span>pbinom<span class="p">(</span><span class="m">26</span><span class="p">,</span><span class="m">51</span><span class="p">,</span><span class="m">0.5</span><span class="p">)</span>
+<span class="go">[1] 0.610116</span>
+<span class="gp">&gt; </span>pbinom<span class="p">(</span><span class="m">25</span><span class="p">,</span><span class="m">50</span><span class="p">,</span><span class="m">0.5</span><span class="p">)</span>
+<span class="go">[1] 0.5561376</span>
+<span class="gp">&gt; </span>pbinom<span class="p">(</span><span class="m">25</span><span class="p">,</span><span class="m">50</span><span class="p">,</span><span class="m">0.25</span><span class="p">)</span>
+<span class="go">[1] 0.999962</span>
+<span class="gp">&gt; </span>pbinom<span class="p">(</span><span class="m">25</span><span class="p">,</span><span class="m">500</span><span class="p">,</span><span class="m">0.25</span><span class="p">)</span>
+<span class="go">[1] 4.955658e-33</span>
+</pre></div>
+</div>
+<p id="index-21">Next we have the inverse cumulative probability distribution function:</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>qbinom<span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="m">51</span><span class="p">,</span><span class="m">1</span><span class="o">/</span><span class="m">2</span><span class="p">)</span>
+<span class="go">[1] 25</span>
+<span class="gp">&gt; </span>qbinom<span class="p">(</span><span class="m">0.25</span><span class="p">,</span><span class="m">51</span><span class="p">,</span><span class="m">1</span><span class="o">/</span><span class="m">2</span><span class="p">)</span>
+<span class="go">[1] 23</span>
+<span class="gp">&gt; </span>pbinom<span class="p">(</span><span class="m">23</span><span class="p">,</span><span class="m">51</span><span class="p">,</span><span class="m">1</span><span class="o">/</span><span class="m">2</span><span class="p">)</span>
+<span class="go">[1] 0.2879247</span>
+<span class="gp">&gt; </span>pbinom<span class="p">(</span><span class="m">22</span><span class="p">,</span><span class="m">51</span><span class="p">,</span><span class="m">1</span><span class="o">/</span><span class="m">2</span><span class="p">)</span>
+<span class="go">[1] 0.200531</span>
+</pre></div>
+</div>
+<p>Finally random numbers can be generated according to the binomial
+distribution:</p>
+<div class="highlight-rconsole" id="index-22"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>rbinom<span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="m">100</span><span class="p">,</span><span class="m">.2</span><span class="p">)</span>
+<span class="go">[1] 30 23 21 19 18</span>
+<span class="gp">&gt; </span>rbinom<span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="m">100</span><span class="p">,</span><span class="m">.7</span><span class="p">)</span>
+<span class="go">[1] 66 66 58 68 63</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-chi-squared-distribution">
+<h2><a class="toc-backref" href="#id4">4.4. The Chi-Squared Distribution</a><a class="headerlink" href="#the-chi-squared-distribution" title="Permalink to this headline">¶</a></h2>
+<p id="index-23">There are four functions that can be used to generate the values
+associated with the Chi-Squared distribution. You can get a full list
+of them and their options using the help command:</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>help<span class="p">(</span>Chisquare<span class="p">)</span>
+</pre></div>
+</div>
+<p>These commands work just like the commands for the normal
+distribution. The first difference is that it is assumed that you have
+normalized the value so no mean can be specified. The other difference
+is that you have to specify the number of degrees of freedom. The
+commands follow the same kind of naming convention, and the names of
+the commands are <em>dchisq</em>, <em>pchisq</em>, <em>qchisq</em>, and <em>rchisq</em>.</p>
+<p>A few examples are given below to show how to use the different
+commands. First we have the distribution function, <em>dchisq</em>:</p>
+<div class="highlight-rconsole" id="index-24"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>x <span class="o">&lt;-</span> <span class="kp">seq</span><span class="p">(</span><span class="m">-20</span><span class="p">,</span><span class="m">20</span><span class="p">,</span>by<span class="o">=</span><span class="m">.5</span><span class="p">)</span>
+<span class="gp">&gt; </span>y <span class="o">&lt;-</span> dchisq<span class="p">(</span>x<span class="p">,</span>df<span class="o">=</span><span class="m">10</span><span class="p">)</span>
+<span class="gp">&gt; </span>plot<span class="p">(</span>x<span class="p">,</span>y<span class="p">)</span>
+<span class="gp">&gt; </span>y <span class="o">&lt;-</span> dchisq<span class="p">(</span>x<span class="p">,</span>df<span class="o">=</span><span class="m">12</span><span class="p">)</span>
+<span class="gp">&gt; </span>plot<span class="p">(</span>x<span class="p">,</span>y<span class="p">)</span>
+</pre></div>
+</div>
+<p>Next we have the cumulative probability distribution function:</p>
+<div class="highlight-rconsole" id="index-25"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>pchisq<span class="p">(</span><span class="m">2</span><span class="p">,</span>df<span class="o">=</span><span class="m">10</span><span class="p">)</span>
+<span class="go">[1] 0.003659847</span>
+<span class="gp">&gt; </span>pchisq<span class="p">(</span><span class="m">3</span><span class="p">,</span>df<span class="o">=</span><span class="m">10</span><span class="p">)</span>
+<span class="go">[1] 0.01857594</span>
+<span class="gp">&gt; </span><span class="m">1</span><span class="o">-</span>pchisq<span class="p">(</span><span class="m">3</span><span class="p">,</span>df<span class="o">=</span><span class="m">10</span><span class="p">)</span>
+<span class="go">[1] 0.981424</span>
+<span class="gp">&gt; </span>pchisq<span class="p">(</span><span class="m">3</span><span class="p">,</span>df<span class="o">=</span><span class="m">20</span><span class="p">)</span>
+<span class="go">[1] 4.097501e-06</span>
+<span class="gp">&gt; </span>x <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">6</span><span class="p">)</span>
+<span class="gp">&gt; </span>pchisq<span class="p">(</span>x<span class="p">,</span>df<span class="o">=</span><span class="m">20</span><span class="p">)</span>
+<span class="go">[1] 1.114255e-07 4.649808e-05 2.773521e-04 1.102488e-03</span>
+</pre></div>
+</div>
+<p>Next we have the inverse cumulative probability distribution function:</p>
+<div class="highlight-rconsole" id="index-26"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>qchisq<span class="p">(</span><span class="m">0.05</span><span class="p">,</span>df<span class="o">=</span><span class="m">10</span><span class="p">)</span>
+<span class="go">[1] 3.940299</span>
+<span class="gp">&gt; </span>qchisq<span class="p">(</span><span class="m">0.95</span><span class="p">,</span>df<span class="o">=</span><span class="m">10</span><span class="p">)</span>
+<span class="go">[1] 18.30704</span>
+<span class="gp">&gt; </span>qchisq<span class="p">(</span><span class="m">0.05</span><span class="p">,</span>df<span class="o">=</span><span class="m">20</span><span class="p">)</span>
+<span class="go">[1] 10.85081</span>
+<span class="gp">&gt; </span>qchisq<span class="p">(</span><span class="m">0.95</span><span class="p">,</span>df<span class="o">=</span><span class="m">20</span><span class="p">)</span>
+<span class="go">[1] 31.41043</span>
+<span class="gp">&gt; </span>v <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="m">0.005</span><span class="p">,</span><span class="m">.025</span><span class="p">,</span><span class="m">.05</span><span class="p">)</span>
+<span class="gp">&gt; </span>qchisq<span class="p">(</span>v<span class="p">,</span>df<span class="o">=</span><span class="m">253</span><span class="p">)</span>
+<span class="go">[1] 198.8161 210.8355 217.1713</span>
+<span class="gp">&gt; </span>qchisq<span class="p">(</span>v<span class="p">,</span>df<span class="o">=</span><span class="m">25</span><span class="p">)</span>
+<span class="go">[1] 10.51965 13.11972 14.61141</span>
+</pre></div>
+</div>
+<p>Finally random numbers can be generated according to the Chi-Squared
+distribution:</p>
+<div class="highlight-rconsole" id="index-27"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>rchisq<span class="p">(</span><span class="m">3</span><span class="p">,</span>df<span class="o">=</span><span class="m">10</span><span class="p">)</span>
+<span class="go">[1] 16.80075 20.28412 12.39099</span>
+<span class="gp">&gt; </span>rchisq<span class="p">(</span><span class="m">3</span><span class="p">,</span>df<span class="o">=</span><span class="m">20</span><span class="p">)</span>
+<span class="go">[1] 17.838878  8.591936 17.486372</span>
+<span class="gp">&gt; </span>rchisq<span class="p">(</span><span class="m">3</span><span class="p">,</span>df<span class="o">=</span><span class="m">20</span><span class="p">)</span>
+<span class="go">[1] 11.19279 23.86907 24.81251</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+
+
+
+
+
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+
+        <a href="plotting.html" class="btn btn-neutral float-right" title="5. Basic Plots" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+
+
+        <a href="basicOps.html" class="btn btn-neutral" title="3. Basic Operations and Numerical Descriptions" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+
+    </div>
+
+
+		<br><br>
+
+		<div class="admonition note">
+			<p class="first admonition-title">Sponsorship</p>
+			<p class="last">
+				This site generously supported
+				by <a href="https://www.datacamp.com/"
+							target="_blank">Datacamp</a>. Datacamp offers a
+				free <a href="https://www.datacamp.com/courses/free-introduction-to-r"
+								target="_blank"> interactive introduction to R coding tutorial</a>
+				as an additional resource. Already over 100,000 people took this
+				free tutorial to sharpen their R coding skills.
+			</p>
+		</div>
+
+
+<footer>
+		<hr/>
+
+		<div role="contentinfo">
+
+			<p>
+			<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">R Tutorial</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="mailto:kjblack@gmail.com" property="cc:attributionName" rel="cc:attributionURL">Kelly Black</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a> (2015).<br />Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="http://www.cyclismo.org/tutorial/R/" rel="dct:source">http://www.cyclismo.org/tutorial/R/</a>.
+</p>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+
+
+
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'3.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+
+
+</body>
+</html>

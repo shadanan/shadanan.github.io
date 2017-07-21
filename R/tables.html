@@ -1,0 +1,482 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>12. Two Way Tables &mdash; R Tutorial</title>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+
+
+    <link rel="stylesheet" href="_static/siteColours.css" type="text/css" />
+
+
+
+    <link rel="top" title="R Tutorial" href="index.html"/>
+        <link rel="next" title="13. Data Management" href="dataManagement.html"/>
+        <link rel="prev" title="11. Calculating The Power Of A Test" href="power.html"/>
+
+
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+
+
+            <a href="index.html" class="icon icon-home"> R Tutorial
+
+
+
+          </a>
+
+
+
+
+              <div class="version">
+                3
+              </div>
+
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+
+
+
+
+        <div id="sidebar">
+					<!-- localtoc.html --><ul>
+<li><a class="reference internal" href="#">12. Two Way Tables</a><ul>
+<li><a class="reference internal" href="#creating-a-table-from-data">12.1. Creating a Table from Data</a></li>
+<li><a class="reference internal" href="#creating-a-table-directly">12.2. Creating a Table Directly</a></li>
+<li><a class="reference internal" href="#tools-for-working-with-tables">12.3. Tools For Working With Tables</a></li>
+<li><a class="reference internal" href="#graphical-views-of-tables">12.4. Graphical Views of Tables</a></li>
+</ul>
+</li>
+</ul>
+
+					<!-- globaltoc.html --><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="input.html">1. Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">2. Basic Data Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basicOps.html">3. Basic Operations and Numerical Descriptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="probability.html">4. Basic Probability Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting.html">5. Basic Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intermediatePlotting.html">6. Intermediate Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vectorIndexing.html">7. Indexing Into Vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linearLeastSquares.html">8. Linear Least Squares Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="confidence.html">9. Calculating Confidence Intervals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pValues.html">10. Calculating <em>p</em> Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="power.html">11. Calculating The Power Of A Test</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">12. Two Way Tables</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#creating-a-table-from-data">12.1. Creating a Table from Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-a-table-directly">12.2. Creating a Table Directly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tools-for-working-with-tables">12.3. Tools For Working With Tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#graphical-views-of-tables">12.4. Graphical Views of Tables</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dataManagement.html">13. Data Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="time.html">14. Time Data Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripting.html">15. Introduction to Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="objectOriented.html">Object Oriented Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hwI.html">16. Case Study: Working Through a HW Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cholesterol.html">17. Case Study II: A JAMA Paper on Cholesterol</a></li>
+</ul>
+
+        </div>
+
+
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">R Tutorial</a>
+      </nav>
+
+
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+
+    <li>12. Two Way Tables</li>
+      <li class="wy-breadcrumbs-aside">
+
+
+
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+
+  <div class="section" id="two-way-tables">
+<span id="twowaytables"></span><h1>12. Two Way Tables<a class="headerlink" href="#two-way-tables" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#creating-a-table-from-data" id="id1">Creating a Table from Data</a></li>
+<li><a class="reference internal" href="#creating-a-table-directly" id="id2">Creating a Table Directly</a></li>
+<li><a class="reference internal" href="#tools-for-working-with-tables" id="id3">Tools For Working With Tables</a></li>
+<li><a class="reference internal" href="#graphical-views-of-tables" id="id4">Graphical Views of Tables</a></li>
+</ul>
+</div>
+<span class="target" id="index-0"></span><p id="index-1">Here we look at some examples of how to work with two way tables. We
+assume that you can enter data and understand the different data
+types.</p>
+<div class="section" id="creating-a-table-from-data">
+<h2><a class="toc-backref" href="#id1">12.1. Creating a Table from Data</a><a class="headerlink" href="#creating-a-table-from-data" title="Permalink to this headline">¶</a></h2>
+<p>We first look at how to create a table from raw data. Here we use a
+fictitious data set, <a class="reference external" href="_static/smoker.csv">smoker.csv</a>. This data set
+was created only to be used as an example, and the numbers were
+created to match an example from a text book, p. 629 of the 4th
+edition of Moore and McCabe&#8217;s Introduction to the Practice of
+Statistics. You should look at the data set in a spreadsheet to see
+how it is entered. The information is ordered in a way to make it
+easier to figure out what information is in the data.</p>
+<p>The idea is that 356 people have been polled on their smoking status
+(Smoke) and their socioeconomic status (SES). For each person it was
+determined whether or not they are current smokers, former smokers, or
+have never smoked. Also, for each person their socioeconomic status
+was determined (low, middle, or high). The data file contains only two
+columns, and when read R interprets them both as factors:</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>smokerData <span class="o">&lt;-</span> read.csv<span class="p">(</span>file<span class="o">=</span><span class="s">&#39;smoker.csv&#39;</span><span class="p">,</span>sep<span class="o">=</span><span class="s">&#39;,&#39;</span><span class="p">,</span>header<span class="o">=</span><span class="bp">T</span><span class="p">)</span>
+<span class="gp">&gt; </span><span class="kp">summary</span><span class="p">(</span>smokerData<span class="p">)</span>
+<span class="go">     Smoke         SES</span>
+<span class="go"> current:116   High  :211</span>
+<span class="go"> former :141   Low   : 93</span>
+<span class="go"> never  : 99   Middle: 52</span>
+</pre></div>
+</div>
+<p>You can create a two way table of occurrences using the table command
+and the two columns in the data frame:</p>
+<span class="target" id="index-2"></span><div class="highlight-rconsole" id="index-3"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>smoke <span class="o">&lt;-</span> <span class="kp">table</span><span class="p">(</span>smokerData<span class="o">$</span>Smoke<span class="p">,</span>smokerData<span class="o">$</span>SES<span class="p">)</span>
+<span class="gp">&gt; </span>smoke
+
+<span class="go">          High Low Middle</span>
+<span class="go">  current   51  43     22</span>
+<span class="go">  former    92  28     21</span>
+<span class="go">  never     68  22      9</span>
+</pre></div>
+</div>
+<p>In this example, there are 51 people who are current smokers and are
+in the high SES. Note that it is assumed that the two lists given in
+the table command are both factors. (More information on this is
+available in the chapter on data types.)</p>
+</div>
+<div class="section" id="creating-a-table-directly">
+<h2><a class="toc-backref" href="#id2">12.2. Creating a Table Directly</a><a class="headerlink" href="#creating-a-table-directly" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes you are given data in the form of a table and would like to
+create a table. Here we examine how to create the table
+directly. Unfortunately, this is not as direct a method as might be
+desired. Here we create an array of numbers, specify the row and
+column names, and then convert it to a table.</p>
+<p>In the example below we will create a table identical to the one given
+above. In that example we have 3 columns, and the numbers are
+specified by going across each row from top to bottom. We need to
+specify the data and the number of rows:</p>
+<span class="target" id="index-4"></span><span class="target" id="index-5"></span><span class="target" id="index-6"></span><div class="highlight-rconsole" id="index-7"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>smoke <span class="o">&lt;-</span> <span class="kt">matrix</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="m">51</span><span class="p">,</span><span class="m">43</span><span class="p">,</span><span class="m">22</span><span class="p">,</span><span class="m">92</span><span class="p">,</span><span class="m">28</span><span class="p">,</span><span class="m">21</span><span class="p">,</span><span class="m">68</span><span class="p">,</span><span class="m">22</span><span class="p">,</span><span class="m">9</span><span class="p">),</span>ncol<span class="o">=</span><span class="m">3</span><span class="p">,</span>byrow<span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="gp">&gt; </span><span class="kp">colnames</span><span class="p">(</span>smoke<span class="p">)</span> <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;High&quot;</span><span class="p">,</span><span class="s">&quot;Low&quot;</span><span class="p">,</span><span class="s">&quot;Middle&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span><span class="kp">rownames</span><span class="p">(</span>smoke<span class="p">)</span> <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;current&quot;</span><span class="p">,</span><span class="s">&quot;former&quot;</span><span class="p">,</span><span class="s">&quot;never&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>smoke <span class="o">&lt;-</span> <span class="kp">as.table</span><span class="p">(</span>smoke<span class="p">)</span>
+<span class="gp">&gt; </span>smoke
+<span class="go">        High Low Middle</span>
+<span class="go">current   51  43     22</span>
+<span class="go">former    92  28     21</span>
+<span class="go">never     68  22      9</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tools-for-working-with-tables">
+<h2><a class="toc-backref" href="#id3">12.3. Tools For Working With Tables</a><a class="headerlink" href="#tools-for-working-with-tables" title="Permalink to this headline">¶</a></h2>
+<p>Here we look at some of the commands available to help look at the
+information in a table in different ways. We assume that the data
+using one of the methods above, and the table is called &#8220;smoke.&#8221;
+First, there are a couple of ways to get graphical views of the data:</p>
+<div class="highlight-rconsole" id="index-8"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>barplot<span class="p">(</span>smoke<span class="p">,</span>legend<span class="o">=</span><span class="bp">T</span><span class="p">,</span>beside<span class="o">=</span><span class="bp">T</span><span class="p">,</span>main<span class="o">=</span><span class="s">&#39;Smoking Status by SES&#39;</span><span class="p">)</span>
+<span class="gp">&gt; </span>plot<span class="p">(</span>smoke<span class="p">,</span>main<span class="o">=</span><span class="s">&quot;Smoking Status By Socioeconomic Status&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>There are a number of ways to get the marginal distributions using the
+margin.table command. If you just give the command the table it
+calculates the total number of observations. You can also calculate
+the marginal distributions across the rows or columns based on the one
+optional argument:</p>
+<div class="highlight-rconsole" id="index-9"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kp">margin.table</span><span class="p">(</span>smoke<span class="p">)</span>
+<span class="go">[1] 356</span>
+<span class="gp">&gt; </span><span class="kp">margin.table</span><span class="p">(</span>smoke<span class="p">,</span><span class="m">1</span><span class="p">)</span>
+
+<span class="go">current  former   never</span>
+<span class="go">    116     141      99</span>
+<span class="gp">&gt; </span><span class="kp">margin.table</span><span class="p">(</span>smoke<span class="p">,</span><span class="m">2</span><span class="p">)</span>
+
+<span class="go">  High    Low Middle</span>
+<span class="go">   211     93     52</span>
+</pre></div>
+</div>
+<p>Combining these commands you can get the proportions:</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>smoke<span class="o">/</span><span class="kp">margin.table</span><span class="p">(</span>smoke<span class="p">)</span>
+
+<span class="go">                High        Low     Middle</span>
+<span class="go">  current 0.14325843 0.12078652 0.06179775</span>
+<span class="go">  former  0.25842697 0.07865169 0.05898876</span>
+<span class="go">  never   0.19101124 0.06179775 0.02528090</span>
+<span class="gp">&gt; </span><span class="kp">margin.table</span><span class="p">(</span>smoke<span class="p">,</span><span class="m">1</span><span class="p">)</span><span class="o">/</span><span class="kp">margin.table</span><span class="p">(</span>smoke<span class="p">)</span>
+
+<span class="go">  current    former     never</span>
+<span class="go">0.3258427 0.3960674 0.2780899</span>
+<span class="gp">&gt; </span><span class="kp">margin.table</span><span class="p">(</span>smoke<span class="p">,</span><span class="m">2</span><span class="p">)</span><span class="o">/</span><span class="kp">margin.table</span><span class="p">(</span>smoke<span class="p">)</span>
+
+<span class="go">     High       Low    Middle</span>
+<span class="go">0.5926966 0.2612360 0.1460674</span>
+</pre></div>
+</div>
+<p>That is a little obtuse, so fortunately, there is a better way to get
+the proportions using the prop.table command. You can specify the
+proportions with respect to the different marginal distributions using
+the optional argument:</p>
+<div class="highlight-rconsole" id="index-10"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kp">prop.table</span><span class="p">(</span>smoke<span class="p">)</span>
+
+<span class="go">                High        Low     Middle</span>
+<span class="go">  current 0.14325843 0.12078652 0.06179775</span>
+<span class="go">  former  0.25842697 0.07865169 0.05898876</span>
+<span class="go">  never   0.19101124 0.06179775 0.02528090</span>
+<span class="gp">&gt; </span><span class="kp">prop.table</span><span class="p">(</span>smoke<span class="p">,</span><span class="m">1</span><span class="p">)</span>
+
+<span class="go">               High       Low    Middle</span>
+<span class="go">  current 0.4396552 0.3706897 0.1896552</span>
+<span class="go">  former  0.6524823 0.1985816 0.1489362</span>
+<span class="go">  never   0.6868687 0.2222222 0.0909091</span>
+<span class="gp">&gt; </span><span class="kp">prop.table</span><span class="p">(</span>smoke<span class="p">,</span><span class="m">2</span><span class="p">)</span>
+
+<span class="go">               High       Low    Middle</span>
+<span class="go">  current 0.2417062 0.4623656 0.4230769</span>
+<span class="go">  former  0.4360190 0.3010753 0.4038462</span>
+<span class="go">  never   0.3222749 0.2365591 0.1730769</span>
+</pre></div>
+</div>
+<p>If you want to do a chi-squared test to determine if the proportions
+are different, there is an easy way to do this. If we want to test at
+the 95% confidence level we need only look at a summary of the table:</p>
+<span class="target" id="index-11"></span><div class="highlight-rconsole" id="index-12"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kp">summary</span><span class="p">(</span>smoke<span class="p">)</span>
+<span class="go">Number of cases in table: 356</span>
+<span class="go">Number of factors: 2</span>
+<span class="go">Test for independence of all factors:</span>
+<span class="go">        Chisq = 18.51, df = 4, p-value = 0.0009808</span>
+</pre></div>
+</div>
+<p>Since the p-value is less that 5% we can reject the null hypothesis at
+the 95% confidence level and can say that the proportions vary.</p>
+<p>Of course, there is a hard way to do this. This is not for the faint
+of heart and involves some linear algebra which we will not
+describe. If you wish to calculate the table of expected values then
+you need to multiply the vectors of the margins and divide by the
+total number of observations:</p>
+<span class="target" id="index-13"></span><span class="target" id="index-14"></span><div class="highlight-rconsole" id="index-15"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>expected <span class="o">&lt;-</span> <span class="kp">as.array</span><span class="p">(</span><span class="kp">margin.table</span><span class="p">(</span>smoke<span class="p">,</span><span class="m">1</span><span class="p">))</span> <span class="o">%*%</span> <span class="kp">t</span><span class="p">(</span><span class="kp">as.array</span><span class="p">(</span><span class="kp">margin.table</span><span class="p">(</span>smoke<span class="p">,</span><span class="m">2</span><span class="p">)))</span> <span class="o">/</span> <span class="kp">margin.table</span><span class="p">(</span>smoke<span class="p">)</span>
+<span class="gp">&gt; </span>expected
+
+<span class="go">              High      Low   Middle</span>
+<span class="go">  current 68.75281 30.30337 16.94382</span>
+<span class="go">  former  83.57022 36.83427 20.59551</span>
+<span class="go">  never   58.67697 25.86236 14.46067</span>
+</pre></div>
+</div>
+<p>(The &#8220;t&#8221; function takes the transpose of the array.)</p>
+<p>The result in this array and can be directly compared to the existing
+table. We need the square of the difference between the two tables
+divided by the expected values. The sum of all these values is the
+Chi-squared statistic:</p>
+<div class="highlight-rconsole" id="index-16"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>chi <span class="o">&lt;-</span> <span class="kp">sum</span><span class="p">((</span>expected <span class="o">-</span> <span class="kp">as.array</span><span class="p">(</span>smoke<span class="p">))</span><span class="o">^</span><span class="m">2</span><span class="o">/</span>expected<span class="p">)</span>
+<span class="gp">&gt; </span>chi
+<span class="go">[1] 18.50974</span>
+</pre></div>
+</div>
+<p>We can then get the p-value for this statistic:</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="m">1</span><span class="o">-</span>pchisq<span class="p">(</span>chi<span class="p">,</span>df<span class="o">=</span><span class="m">4</span><span class="p">)</span>
+<span class="go">[1] 0.0009808236</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="graphical-views-of-tables">
+<h2><a class="toc-backref" href="#id4">12.4. Graphical Views of Tables</a><a class="headerlink" href="#graphical-views-of-tables" title="Permalink to this headline">¶</a></h2>
+<p>The <em>plot</em> command will automatically produce a mosaic plot if its
+primary argument is a table. Alternatively, you can call the
+<em>mosaicplot</em> command directly.</p>
+<span class="target" id="index-17"></span><span class="target" id="index-18"></span><div class="highlight-rconsole" id="index-19"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>smokerData <span class="o">&lt;-</span> read.csv<span class="p">(</span>file<span class="o">=</span><span class="s">&#39;smoker.csv&#39;</span><span class="p">,</span>sep<span class="o">=</span><span class="s">&#39;,&#39;</span><span class="p">,</span>header<span class="o">=</span><span class="bp">T</span><span class="p">)</span>
+<span class="gp">&gt; </span>smoke <span class="o">&lt;-</span> <span class="kp">table</span><span class="p">(</span>smokerData<span class="o">$</span>Smoke<span class="p">,</span>smokerData<span class="o">$</span>SES<span class="p">)</span>
+<span class="gp">&gt; </span>mosaicplot<span class="p">(</span>smoke<span class="p">)</span>
+<span class="gp">&gt; </span>help<span class="p">(</span>mosaicplot<span class="p">)</span>
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+<p>The <em>mosaicplot</em> command takes many of the same arguments for
+annotating a plot:</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>mosaicplot<span class="p">(</span>smoke<span class="p">,</span>main<span class="o">=</span><span class="s">&quot;Smokers&quot;</span><span class="p">,</span>xlab<span class="o">=</span><span class="s">&quot;Status&quot;</span><span class="p">,</span>ylab<span class="o">=</span><span class="s">&quot;Economic Class&quot;</span><span class="p">)</span>
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+<p>If you wish to switch which side (horizontal versus vertical) to
+determine the primary proportion then you can use the <em>sort</em>
+option. This can be used to switch whether the width or height is used
+for the first proportional length:</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>mosaicplot<span class="p">(</span>smoke<span class="p">,</span>main<span class="o">=</span><span class="s">&quot;Smokers&quot;</span><span class="p">,</span>xlab<span class="o">=</span><span class="s">&quot;Status&quot;</span><span class="p">,</span>ylab<span class="o">=</span><span class="s">&quot;Economic Class&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>mosaicplot<span class="p">(</span>smoke<span class="p">,</span>sort<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+<p>Finally if you wish to switch which side is used for the vertical and
+horzintal axis you can use the <em>dir</em> option:</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>mosaicplot<span class="p">(</span>smoke<span class="p">,</span>main<span class="o">=</span><span class="s">&quot;Smokers&quot;</span><span class="p">,</span>xlab<span class="o">=</span><span class="s">&quot;Status&quot;</span><span class="p">,</span>ylab<span class="o">=</span><span class="s">&quot;Economic Class&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>mosaicplot<span class="p">(</span>smoke<span class="p">,</span>dir<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;v&quot;</span><span class="p">,</span><span class="s">&quot;h&quot;</span><span class="p">))</span>
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+
+
+
+
+
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+
+        <a href="dataManagement.html" class="btn btn-neutral float-right" title="13. Data Management" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+
+
+        <a href="power.html" class="btn btn-neutral" title="11. Calculating The Power Of A Test" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+
+    </div>
+
+
+		<br><br>
+
+		<div class="admonition note">
+			<p class="first admonition-title">Sponsorship</p>
+			<p class="last">
+				This site generously supported
+				by <a href="https://www.datacamp.com/"
+							target="_blank">Datacamp</a>. Datacamp offers a
+				free <a href="https://www.datacamp.com/courses/free-introduction-to-r"
+								target="_blank"> interactive introduction to R coding tutorial</a>
+				as an additional resource. Already over 100,000 people took this
+				free tutorial to sharpen their R coding skills.
+			</p>
+		</div>
+
+
+<footer>
+		<hr/>
+
+		<div role="contentinfo">
+
+			<p>
+			<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">R Tutorial</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="mailto:kjblack@gmail.com" property="cc:attributionName" rel="cc:attributionURL">Kelly Black</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a> (2015).<br />Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="http://www.cyclismo.org/tutorial/R/" rel="dct:source">http://www.cyclismo.org/tutorial/R/</a>.
+</p>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+
+
+
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'3.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+
+
+</body>
+</html>

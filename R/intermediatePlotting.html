@@ -1,0 +1,1013 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>6. Intermediate Plotting &mdash; R Tutorial</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/siteColours.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="R Tutorial" href="index.html"/>
+        <link rel="next" title="7. Indexing Into Vectors" href="vectorIndexing.html"/>
+        <link rel="prev" title="5. Basic Plots" href="plotting.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> R Tutorial
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+
+   
+
+        <div id="sidebar">
+					<!-- localtoc.html --><ul>
+<li><a class="reference internal" href="#">6. Intermediate Plotting</a><ul>
+<li><a class="reference internal" href="#continuous-data">6.1. Continuous Data</a><ul>
+<li><a class="reference internal" href="#multiple-data-sets-on-one-plot">6.1.1. Multiple Data Sets on One Plot</a></li>
+<li><a class="reference internal" href="#error-bars">6.1.2. Error Bars</a></li>
+<li><a class="reference internal" href="#adding-noise-jitter">6.1.3. Adding Noise (jitter)</a></li>
+<li><a class="reference internal" href="#multiple-graphs-on-one-image">6.1.4. Multiple Graphs on One Image</a></li>
+<li><a class="reference internal" href="#density-plots">6.1.5. Density Plots</a></li>
+<li><a class="reference internal" href="#pairwise-relationships">6.1.6. Pairwise Relationships</a></li>
+<li><a class="reference internal" href="#shaded-regions">6.1.7. Shaded Regions</a></li>
+<li><a class="reference internal" href="#plotting-a-surface">6.1.8. Plotting a Surface</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#discrete-data">6.2. Discrete Data</a><ul>
+<li><a class="reference internal" href="#barplot">6.2.1. Barplot</a></li>
+<li><a class="reference internal" href="#mosaic-plot">6.2.2. Mosaic Plot</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#miscellaneous-options">6.3. Miscellaneous Options</a><ul>
+<li><a class="reference internal" href="#multiple-representations-on-one-plot">6.3.1. Multiple Representations On One Plot</a></li>
+<li><a class="reference internal" href="#multiple-windows">6.3.2. Multiple Windows</a></li>
+<li><a class="reference internal" href="#print-to-a-file">6.3.3. Print To A File</a></li>
+<li><a class="reference internal" href="#annotation-and-formatting">6.3.4. Annotation and Formatting</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+					<!-- datacamp.html --><div class="datacampAd">
+	<iframe src="https://tracking-ads.datacamp.com" frameborder="0" width="160" height="600" scrolling="no" allowtransparancy="true" style="margin-bottom: 10px; margin-left: 5px; border: 0;"></iframe>
+</div>
+					<!-- globaltoc.html --><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="input.html">1. Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">2. Basic Data Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basicOps.html">3. Basic Operations and Numerical Descriptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="probability.html">4. Basic Probability Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting.html">5. Basic Plots</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">6. Intermediate Plotting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#continuous-data">6.1. Continuous Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#multiple-data-sets-on-one-plot">6.1.1. Multiple Data Sets on One Plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#error-bars">6.1.2. Error Bars</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-noise-jitter">6.1.3. Adding Noise (jitter)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multiple-graphs-on-one-image">6.1.4. Multiple Graphs on One Image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#density-plots">6.1.5. Density Plots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pairwise-relationships">6.1.6. Pairwise Relationships</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#shaded-regions">6.1.7. Shaded Regions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plotting-a-surface">6.1.8. Plotting a Surface</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#discrete-data">6.2. Discrete Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#barplot">6.2.1. Barplot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mosaic-plot">6.2.2. Mosaic Plot</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#miscellaneous-options">6.3. Miscellaneous Options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#multiple-representations-on-one-plot">6.3.1. Multiple Representations On One Plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multiple-windows">6.3.2. Multiple Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#print-to-a-file">6.3.3. Print To A File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#annotation-and-formatting">6.3.4. Annotation and Formatting</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="vectorIndexing.html">7. Indexing Into Vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linearLeastSquares.html">8. Linear Least Squares Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="confidence.html">9. Calculating Confidence Intervals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pValues.html">10. Calculating <em>p</em> Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="power.html">11. Calculating The Power Of A Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tables.html">12. Two Way Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataManagement.html">13. Data Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="time.html">14. Time Data Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripting.html">15. Introduction to Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="objectOriented.html">Object Oriented Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hwI.html">16. Case Study: Working Through a HW Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cholesterol.html">17. Case Study II: A JAMA Paper on Cholesterol</a></li>
+</ul>
+
+        </div>
+
+			
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">R Tutorial</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>6. Intermediate Plotting</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="intermediate-plotting">
+<h1>6. Intermediate Plotting<a class="headerlink" href="#intermediate-plotting" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#continuous-data" id="id12">Continuous Data</a></li>
+<li><a class="reference internal" href="#discrete-data" id="id13">Discrete Data</a></li>
+<li><a class="reference internal" href="#miscellaneous-options" id="id14">Miscellaneous Options</a></li>
+</ul>
+</div>
+<p id="index-0">We look at some more options for plotting, and we assume that you are
+familiar with the basic plotting commands (<a class="reference internal" href="plotting.html#basicplots"><span>Basic Plots</span></a>). A
+variety of different subjects ranging from plotting options to the
+formatting of plots is given.</p>
+<p>In many of the examples below we use some of R&#8217;s commands to generate
+random numbers according to various distributions. The section is
+divided into three sections. The focus of the first section is on
+graphing continuous data. The focus of the second section is on
+graphing discrete data. The third section offers some miscellaneous
+options that are useful in a variety of contexts.</p>
+<div class="section" id="continuous-data">
+<h2><a class="toc-backref" href="#id12">6.1. Continuous Data</a><a class="headerlink" href="#continuous-data" title="Permalink to this headline">¶</a></h2>
+<div class="contents local topic" id="id1">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#multiple-data-sets-on-one-plot" id="id15">Multiple Data Sets on One Plot</a></li>
+<li><a class="reference internal" href="#error-bars" id="id16">Error Bars</a></li>
+<li><a class="reference internal" href="#adding-noise-jitter" id="id17">Adding Noise (jitter)</a></li>
+<li><a class="reference internal" href="#multiple-graphs-on-one-image" id="id18">Multiple Graphs on One Image</a></li>
+<li><a class="reference internal" href="#density-plots" id="id19">Density Plots</a></li>
+<li><a class="reference internal" href="#pairwise-relationships" id="id20">Pairwise Relationships</a></li>
+<li><a class="reference internal" href="#shaded-regions" id="id21">Shaded Regions</a></li>
+<li><a class="reference internal" href="#plotting-a-surface" id="id22">Plotting a Surface</a></li>
+</ul>
+</div>
+<p>In the examples below a data set is defined using R&#8217;s normally
+distributed random number generator.</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>x <span class="o">&lt;-</span> rnorm<span class="p">(</span><span class="m">10</span><span class="p">,</span>sd<span class="o">=</span><span class="m">5</span><span class="p">,</span>mean<span class="o">=</span><span class="m">20</span><span class="p">)</span>
+<span class="gp">&gt; </span>y <span class="o">&lt;-</span> <span class="m">2.5</span><span class="o">*</span>x <span class="o">-</span> <span class="m">1.0</span> <span class="o">+</span> rnorm<span class="p">(</span><span class="m">10</span><span class="p">,</span>sd<span class="o">=</span><span class="m">9</span><span class="p">,</span>mean<span class="o">=</span><span class="m">0</span><span class="p">)</span>
+<span class="gp">&gt; </span>cor<span class="p">(</span>x<span class="p">,</span>y<span class="p">)</span>
+<span class="go">[1] 0.7400576</span>
+</pre></div>
+</div>
+<div class="section" id="multiple-data-sets-on-one-plot">
+<h3><a class="toc-backref" href="#id15">6.1.1. Multiple Data Sets on One Plot</a><a class="headerlink" href="#multiple-data-sets-on-one-plot" title="Permalink to this headline">¶</a></h3>
+<p>One common task is to plot multiple data sets on the same plot. In
+many situations the way to do this is to create the initial plot and
+then add additional information to the plot. For example, to plot
+bivariate data the <em>plot</em> command is used to initialize and create the
+plot. The <em>points</em> command can then be used to add additional data
+sets to the plot.</p>
+<p>First define a set of normally distributed random numbers and then
+plot them. (This same data set is used throughout the examples below.)</p>
+<div class="highlight-rconsole" id="index-1"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>x <span class="o">&lt;-</span> rnorm<span class="p">(</span><span class="m">10</span><span class="p">,</span>sd<span class="o">=</span><span class="m">5</span><span class="p">,</span>mean<span class="o">=</span><span class="m">20</span><span class="p">)</span>
+<span class="gp">&gt; </span>y <span class="o">&lt;-</span> <span class="m">2.5</span><span class="o">*</span>x <span class="o">-</span> <span class="m">1.0</span> <span class="o">+</span> rnorm<span class="p">(</span><span class="m">10</span><span class="p">,</span>sd<span class="o">=</span><span class="m">9</span><span class="p">,</span>mean<span class="o">=</span><span class="m">0</span><span class="p">)</span>
+<span class="gp">&gt; </span>cor<span class="p">(</span>x<span class="p">,</span>y<span class="p">)</span>
+<span class="go">[1] 0.7400576</span>
+<span class="gp">&gt; </span>plot<span class="p">(</span>x<span class="p">,</span>y<span class="p">,</span>xlab<span class="o">=</span><span class="s">&quot;Independent&quot;</span><span class="p">,</span>ylab<span class="o">=</span><span class="s">&quot;Dependent&quot;</span><span class="p">,</span>main<span class="o">=</span><span class="s">&quot;Random Stuff&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>x1 <span class="o">&lt;-</span> runif<span class="p">(</span><span class="m">8</span><span class="p">,</span><span class="m">15</span><span class="p">,</span><span class="m">25</span><span class="p">)</span>
+<span class="gp">&gt; </span>y1 <span class="o">&lt;-</span> <span class="m">2.5</span><span class="o">*</span>x1 <span class="o">-</span> <span class="m">1.0</span> <span class="o">+</span> runif<span class="p">(</span><span class="m">8</span><span class="p">,</span><span class="m">-6</span><span class="p">,</span><span class="m">6</span><span class="p">)</span>
+<span class="gp">&gt; </span>points<span class="p">(</span>x1<span class="p">,</span>y1<span class="p">,</span>col<span class="o">=</span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that in the previous example, the colour for the second set of
+data points is set using the <em>col</em> option. You can try different
+numbers to see what colours are available. For most installations
+there are at least eight options from 1 to 8.  Also note that in the
+example above the points are plotted as circles. The symbol that is
+used can be changed using the <em>pch</em> option.</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>x2 <span class="o">&lt;-</span> runif<span class="p">(</span><span class="m">8</span><span class="p">,</span><span class="m">15</span><span class="p">,</span><span class="m">25</span><span class="p">)</span>
+<span class="gp">&gt; </span>y2 <span class="o">&lt;-</span> <span class="m">2.5</span><span class="o">*</span>x2 <span class="o">-</span> <span class="m">1.0</span> <span class="o">+</span> runif<span class="p">(</span><span class="m">8</span><span class="p">,</span><span class="m">-6</span><span class="p">,</span><span class="m">6</span><span class="p">)</span>
+<span class="gp">&gt; </span>points<span class="p">(</span>x2<span class="p">,</span>y2<span class="p">,</span>col<span class="o">=</span><span class="m">3</span><span class="p">,</span>pch<span class="o">=</span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Again, try different numbers to see the various options. Another
+helpful option is to add a legend. This can be done with the <em>legend</em>
+command. The options for the command, in order, are the <em>x</em> and <em>y</em>
+coordinates on the plot to place the legend followed by a list of
+labels to use. There are a large number of other options so use
+<em>help(legend)</em> to see more options. For example a list of colors can
+be given with the <em>col</em> option, and a list of symbols can be given
+with the <em>pch</em> option.</p>
+<div class="highlight-rconsole" id="index-2"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>plot<span class="p">(</span>x<span class="p">,</span>y<span class="p">,</span>xlab<span class="o">=</span><span class="s">&quot;Independent&quot;</span><span class="p">,</span>ylab<span class="o">=</span><span class="s">&quot;Dependent&quot;</span><span class="p">,</span>main<span class="o">=</span><span class="s">&quot;Random Stuff&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>points<span class="p">(</span>x1<span class="p">,</span>y1<span class="p">,</span>col<span class="o">=</span><span class="m">2</span><span class="p">,</span>pch<span class="o">=</span><span class="m">3</span><span class="p">)</span>
+<span class="gp">&gt; </span>points<span class="p">(</span>x2<span class="p">,</span>y2<span class="p">,</span>col<span class="o">=</span><span class="m">4</span><span class="p">,</span>pch<span class="o">=</span><span class="m">5</span><span class="p">)</span>
+<span class="gp">&gt; </span>legend<span class="p">(</span><span class="m">14</span><span class="p">,</span><span class="m">70</span><span class="p">,</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;Original&quot;</span><span class="p">,</span><span class="s">&quot;one&quot;</span><span class="p">,</span><span class="s">&quot;two&quot;</span><span class="p">),</span>col<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">4</span><span class="p">),</span>pch<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">5</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="align-center figure" id="id4">
+<span id="figure1-intermediateplotting"></span><img alt="Three data sets displayed together." src="_images/multipleData.png" />
+<p class="caption"><span class="caption-text">Figure 1.</span></p>
+<div class="legend">
+The three data sets displayed on the same graph.</div>
+</div>
+<p>Another common task is to change the limits of the axes to change the
+size of the plotting area. This is achieved using the <em>xlim</em> and
+<em>ylim</em> options in the <em>plot</em> command. Both options take a vector of
+length two that have the minimum and maximum values.</p>
+<span class="target" id="index-3"></span><span class="target" id="index-4"></span><div class="highlight-rconsole" id="index-5"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>plot<span class="p">(</span>x<span class="p">,</span>y<span class="p">,</span>xlab<span class="o">=</span><span class="s">&quot;Independent&quot;</span><span class="p">,</span>ylab<span class="o">=</span><span class="s">&quot;Dependent&quot;</span><span class="p">,</span>main<span class="o">=</span><span class="s">&quot;Random Stuff&quot;</span><span class="p">,</span>xlim<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">30</span><span class="p">),</span>ylim<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">100</span><span class="p">))</span>
+<span class="gp">&gt; </span>points<span class="p">(</span>x1<span class="p">,</span>y1<span class="p">,</span>col<span class="o">=</span><span class="m">2</span><span class="p">,</span>pch<span class="o">=</span><span class="m">3</span><span class="p">)</span>
+<span class="gp">&gt; </span>points<span class="p">(</span>x2<span class="p">,</span>y2<span class="p">,</span>col<span class="o">=</span><span class="m">4</span><span class="p">,</span>pch<span class="o">=</span><span class="m">5</span><span class="p">)</span>
+<span class="gp">&gt; </span>legend<span class="p">(</span><span class="m">14</span><span class="p">,</span><span class="m">70</span><span class="p">,</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;Original&quot;</span><span class="p">,</span><span class="s">&quot;one&quot;</span><span class="p">,</span><span class="s">&quot;two&quot;</span><span class="p">),</span>col<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">4</span><span class="p">),</span>pch<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="error-bars">
+<h3><a class="toc-backref" href="#id16">6.1.2. Error Bars</a><a class="headerlink" href="#error-bars" title="Permalink to this headline">¶</a></h3>
+<p>Another common task is to add error bars to a set of data points. This
+can be accomplished using the <em>arrows</em> command. The <em>arrows</em> command
+takes two pairs of coordinates, that is two pairs of <em>x</em> and <em>y</em>
+values. The command then draws a line between each pair and adds an
+&#8220;arrow head&#8221; with a given length and angle.</p>
+<span class="target" id="index-6"></span><div class="highlight-rconsole" id="index-7"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>plot<span class="p">(</span>x<span class="p">,</span>y<span class="p">,</span>xlab<span class="o">=</span><span class="s">&quot;Independent&quot;</span><span class="p">,</span>ylab<span class="o">=</span><span class="s">&quot;Dependent&quot;</span><span class="p">,</span>main<span class="o">=</span><span class="s">&quot;Random Stuff&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>xHigh <span class="o">&lt;-</span> x
+<span class="gp">&gt; </span>yHigh <span class="o">&lt;-</span> y <span class="o">+</span> <span class="kp">abs</span><span class="p">(</span>rnorm<span class="p">(</span><span class="m">10</span><span class="p">,</span>sd<span class="o">=</span><span class="m">3.5</span><span class="p">))</span>
+<span class="gp">&gt; </span>xLow <span class="o">&lt;-</span> x
+<span class="gp">&gt; </span>yLow <span class="o">&lt;-</span> y <span class="o">-</span> <span class="kp">abs</span><span class="p">(</span>rnorm<span class="p">(</span><span class="m">10</span><span class="p">,</span>sd<span class="o">=</span><span class="m">3.1</span><span class="p">))</span>
+<span class="gp">&gt; </span>arrows<span class="p">(</span>xHigh<span class="p">,</span>yHigh<span class="p">,</span>xLow<span class="p">,</span>yLow<span class="p">,</span>col<span class="o">=</span><span class="m">2</span><span class="p">,</span>angle<span class="o">=</span><span class="m">90</span><span class="p">,</span>length<span class="o">=</span><span class="m">0.1</span><span class="p">,</span>code<span class="o">=</span><span class="m">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="align-center figure" id="id5">
+<span id="figure2-intermediateplotting"></span><img alt="Figure with error bars added" src="_images/errorBars.png" />
+<p class="caption"><span class="caption-text">Figure 2.</span></p>
+<div class="legend">
+A data set with error bars added.</div>
+</div>
+<p>Note that the option <em>code</em> is used to specify where the bars are
+drawn. Its value can be 1, 2, or 3. If <em>code</em> is 1 the bars are drawn
+at pairs given in the first argument. If <em>code</em> is 2 the bars are
+drawn at the pairs given in the second argument. If <em>code</em> is 3 the
+bars are drawn at both.</p>
+</div>
+<div class="section" id="adding-noise-jitter">
+<h3><a class="toc-backref" href="#id17">6.1.3. Adding Noise (jitter)</a><a class="headerlink" href="#adding-noise-jitter" title="Permalink to this headline">¶</a></h3>
+<p>In the previous example a little bit of &#8220;noise&#8221; was added to the pairs
+to produce an artificial offset. This is a common thing to do for
+making plots. A simpler way to accomplish this is to use the <em>jitter</em>
+command.</p>
+<span class="target" id="index-8"></span><span class="target" id="index-9"></span><span class="target" id="index-10"></span><div class="highlight-rconsole" id="index-11"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>numberWhite <span class="o">&lt;-</span> rhyper<span class="p">(</span><span class="m">400</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>
+<span class="gp">&gt; </span>numberChipped <span class="o">&lt;-</span> rhyper<span class="p">(</span><span class="m">400</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">7</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>
+<span class="gp">&gt; </span>par<span class="p">(</span>mfrow<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">))</span>
+<span class="gp">&gt; </span>plot<span class="p">(</span>numberWhite<span class="p">,</span>numberChipped<span class="p">,</span>xlab<span class="o">=</span><span class="s">&quot;Number White Marbles Drawn&quot;</span><span class="p">,</span>
+<span class="go">       ylab=&quot;Number Chipped Marbles Drawn&quot;,main=&quot;Pulling Marbles&quot;)</span>
+<span class="gp">&gt; </span>plot<span class="p">(</span><span class="kp">jitter</span><span class="p">(</span>numberWhite<span class="p">),</span><span class="kp">jitter</span><span class="p">(</span>numberChipped<span class="p">),</span>xlab<span class="o">=</span><span class="s">&quot;Number White Marbles Drawn&quot;</span><span class="p">,</span>
+<span class="go">       ylab=&quot;Number Chipped Marbles Drawn&quot;,main=&quot;Pulling Marbles With Jitter&quot;)</span>
+</pre></div>
+</div>
+<div class="align-center figure" id="id6">
+<span id="figure3-intermediateplotting"></span><img alt="Points with noise added using the jitter command." src="_images/jitterArray.png" />
+<p class="caption"><span class="caption-text">Figure 3.</span></p>
+<div class="legend">
+Points with noise added using the <em>jitter</em> command.</div>
+</div>
+</div>
+<div class="section" id="multiple-graphs-on-one-image">
+<h3><a class="toc-backref" href="#id18">6.1.4. Multiple Graphs on One Image</a><a class="headerlink" href="#multiple-graphs-on-one-image" title="Permalink to this headline">¶</a></h3>
+<p>Note that a new command was used in the previous example. The <em>par</em>
+command can be used to set different parameters. In the example above
+the <em>mfrow</em> was set. The plots are arranged in an array where the
+default number of rows and columns is one.  The <em>mfrow</em> parameter is a
+vector with two entries. The first entry is the number of rows of
+images. The second entry is the number of columns. In the example
+above the plots were arranged in one row with two plots across.</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>par<span class="p">(</span>mfrow<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">))</span>
+<span class="gp">&gt; </span>boxplot<span class="p">(</span>numberWhite<span class="p">,</span>main<span class="o">=</span><span class="s">&quot;first plot&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>boxplot<span class="p">(</span>numberChipped<span class="p">,</span>main<span class="o">=</span><span class="s">&quot;second plot&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>plot<span class="p">(</span><span class="kp">jitter</span><span class="p">(</span>numberWhite<span class="p">),</span><span class="kp">jitter</span><span class="p">(</span>numberChipped<span class="p">),</span>xlab<span class="o">=</span><span class="s">&quot;Number White Marbles Drawn&quot;</span><span class="p">,</span>
+<span class="go">       ylab=&quot;Number Chipped Marbles Drawn&quot;,main=&quot;Pulling Marbles With Jitter&quot;)</span>
+<span class="gp">&gt; </span>hist<span class="p">(</span>numberWhite<span class="p">,</span>main<span class="o">=</span><span class="s">&quot;fourth plot&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>hist<span class="p">(</span>numberChipped<span class="p">,</span>main<span class="o">=</span><span class="s">&quot;fifth plot&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>mosaicplot<span class="p">(</span><span class="kp">table</span><span class="p">(</span>numberWhite<span class="p">,</span>numberChipped<span class="p">),</span>main<span class="o">=</span><span class="s">&quot;sixth plot&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="align-center figure" id="id7">
+<span id="figure4-intermediateplotting"></span><img alt="An array of plots using the par command." src="_images/twoByThree.png" />
+<p class="caption"><span class="caption-text">Figure 4.</span></p>
+<div class="legend">
+An array of plots using the par command.</div>
+</div>
+</div>
+<div class="section" id="density-plots">
+<h3><a class="toc-backref" href="#id19">6.1.5. Density Plots</a><a class="headerlink" href="#density-plots" title="Permalink to this headline">¶</a></h3>
+<p>There are times when you do not want to plot specific points but wish
+to plot a density. This can be done using the <em>smoothScatter</em> command.</p>
+<div class="highlight-rconsole" id="index-12"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>numberWhite <span class="o">&lt;-</span> rhyper<span class="p">(</span><span class="m">30</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>
+<span class="gp">&gt; </span>numberChipped <span class="o">&lt;-</span> rhyper<span class="p">(</span><span class="m">30</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">7</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>
+<span class="gp">&gt; </span>smoothScatter<span class="p">(</span>numberWhite<span class="p">,</span>numberChipped<span class="p">,</span>
+<span class="go">             xlab=&quot;White Marbles&quot;,ylab=&quot;Chipped Marbles&quot;,main=&quot;Drawing Marbles&quot;)</span>
+</pre></div>
+</div>
+<div class="align-center figure" id="id8">
+<img alt="Using smoothScatter to plot densities." src="_images/smoothScatter.png" />
+<p class="caption"><span class="caption-text">Figure 5.</span></p>
+<div class="legend">
+The <em>SmoothScatter</em> can be used to plot densities.</div>
+</div>
+<p>Note that the previous example may benefit by superimposing a grid to
+help delimit the points of interest. This can be done using the <em>grid</em>
+command.</p>
+<div class="highlight-rconsole" id="index-13"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>numberWhite <span class="o">&lt;-</span> rhyper<span class="p">(</span><span class="m">30</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>
+<span class="gp">&gt; </span>numberChipped <span class="o">&lt;-</span> rhyper<span class="p">(</span><span class="m">30</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">7</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>
+<span class="gp">&gt; </span>smoothScatter<span class="p">(</span>numberWhite<span class="p">,</span>numberChipped<span class="p">,</span>
+<span class="go">             xlab=&quot;White Marbles&quot;,ylab=&quot;Chipped Marbles&quot;,main=&quot;Drawing Marbles&quot;)</span>
+<span class="gp">&gt; </span>grid<span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pairwise-relationships">
+<h3><a class="toc-backref" href="#id20">6.1.6. Pairwise Relationships</a><a class="headerlink" href="#pairwise-relationships" title="Permalink to this headline">¶</a></h3>
+<p>There are times that you want to explore a large number of
+relationships. A number of relationships can be plotted at one time
+using the <em>pairs</em> command. The idea is that you give it a matrix or a
+data frame, and the command will create a scatter plot of all
+combinations of the data.</p>
+<span class="target" id="index-14"></span><div class="highlight-rconsole" id="index-15"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>uData <span class="o">&lt;-</span> rnorm<span class="p">(</span><span class="m">20</span><span class="p">)</span>
+<span class="gp">&gt; </span>vData <span class="o">&lt;-</span> rnorm<span class="p">(</span><span class="m">20</span><span class="p">,</span>mean<span class="o">=</span><span class="m">5</span><span class="p">)</span>
+<span class="gp">&gt; </span>wData <span class="o">&lt;-</span> uData <span class="o">+</span> <span class="m">2</span><span class="o">*</span>vData <span class="o">+</span> rnorm<span class="p">(</span><span class="m">20</span><span class="p">,</span>sd<span class="o">=</span><span class="m">0.5</span><span class="p">)</span>
+<span class="gp">&gt; </span>xData <span class="o">&lt;-</span> <span class="m">-2</span><span class="o">*</span>uData<span class="o">+</span>rnorm<span class="p">(</span><span class="m">20</span><span class="p">,</span>sd<span class="o">=</span><span class="m">0.1</span><span class="p">)</span>
+<span class="gp">&gt; </span>yData <span class="o">&lt;-</span> <span class="m">3</span><span class="o">*</span>vData<span class="o">+</span>rnorm<span class="p">(</span><span class="m">20</span><span class="p">,</span>sd<span class="o">=</span><span class="m">2.5</span><span class="p">)</span>
+<span class="gp">&gt; </span>d <span class="o">&lt;-</span> <span class="kt">data.frame</span><span class="p">(</span>u<span class="o">=</span>uData<span class="p">,</span>v<span class="o">=</span>vData<span class="p">,</span>w<span class="o">=</span>wData<span class="p">,</span>x<span class="o">=</span>xData<span class="p">,</span>y<span class="o">=</span>yData<span class="p">)</span>
+<span class="gp">&gt; </span>pairs<span class="p">(</span>d<span class="p">)</span>
+</pre></div>
+</div>
+<div class="align-center figure" id="id9">
+<span id="figure5-intermediateplotting"></span><img alt="An array of plots using the pairs command." src="_images/pairwiseRelationships.png" />
+<p class="caption"><span class="caption-text">Figure 5.</span></p>
+<div class="legend">
+Using <em>pairs</em> to produce all permutations of a set of relationships
+on one graph.</div>
+</div>
+</div>
+<div class="section" id="shaded-regions">
+<h3><a class="toc-backref" href="#id21">6.1.7. Shaded Regions</a><a class="headerlink" href="#shaded-regions" title="Permalink to this headline">¶</a></h3>
+<p>A shaded region can be plotted using the <em>polygon</em> command. The
+<em>polygon</em> command takes a pair of vectors, <em>x</em> and <em>y</em>, and shades the
+region enclosed by the coordinate pairs. In the example below a blue
+square is drawn. The vertices are defined starting from the lower
+left. Five pairs of points are given because the starting point and
+the ending point is the same.</p>
+<span class="target" id="index-16"></span><div class="highlight-rconsole" id="index-17"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>x <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">-1</span><span class="p">,</span><span class="m">-1</span><span class="p">)</span>
+<span class="gp">&gt; </span>y <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">-1</span><span class="p">,</span><span class="m">-1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">-1</span><span class="p">)</span>
+<span class="gp">&gt; </span>plot<span class="p">(</span>x<span class="p">,</span>y<span class="p">)</span>
+<span class="gp">&gt; </span>polygon<span class="p">(</span>x<span class="p">,</span>y<span class="p">,</span>col<span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">)</span>
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+<p>A more complicated example is given below. In this example the
+rejection region for a right sided hypothesis test is plotted, and it
+is shaded in red. A set of custom axes is constructed, and symbols are
+plotted using the <em>expression</em> command.</p>
+<span class="target" id="index-18"></span><span class="target" id="index-19"></span><span class="target" id="index-20"></span><div class="highlight-rconsole" id="index-21"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>stdDev <span class="o">&lt;-</span> <span class="m">0.75</span><span class="p">;</span>
+<span class="gp">&gt; </span>x <span class="o">&lt;-</span> <span class="kp">seq</span><span class="p">(</span><span class="m">-5</span><span class="p">,</span><span class="m">5</span><span class="p">,</span>by<span class="o">=</span><span class="m">0.01</span><span class="p">)</span>
+<span class="gp">&gt; </span>y <span class="o">&lt;-</span> dnorm<span class="p">(</span>x<span class="p">,</span>sd<span class="o">=</span>stdDev<span class="p">)</span>
+<span class="gp">&gt; </span>right <span class="o">&lt;-</span> qnorm<span class="p">(</span><span class="m">0.95</span><span class="p">,</span>sd<span class="o">=</span>stdDev<span class="p">)</span>
+<span class="gp">&gt; </span>plot<span class="p">(</span>x<span class="p">,</span>y<span class="p">,</span>type<span class="o">=</span><span class="s">&quot;l&quot;</span><span class="p">,</span>xaxt<span class="o">=</span><span class="s">&quot;n&quot;</span><span class="p">,</span>ylab<span class="o">=</span><span class="s">&quot;p&quot;</span><span class="p">,</span>
+<span class="go">       xlab=expression(paste(&#39;Assumed Distribution of &#39;,bar(x))),</span>
+<span class="go">       axes=FALSE,ylim=c(0,max(y)*1.05),xlim=c(min(x),max(x)),</span>
+<span class="go">       frame.plot=FALSE)</span>
+<span class="gp">&gt; </span>axis<span class="p">(</span><span class="m">1</span><span class="p">,</span>at<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">-5</span><span class="p">,</span>right<span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">5</span><span class="p">),</span>
+<span class="go">       pos = c(0,0),</span>
+<span class="go">       labels=c(expression(&#39; &#39;),expression(bar(x)[cr]),expression(mu[0]),expression(&#39; &#39;)))</span>
+<span class="gp">&gt; </span>axis<span class="p">(</span><span class="m">2</span><span class="p">)</span>
+<span class="gp">&gt; </span>xReject <span class="o">&lt;-</span> <span class="kp">seq</span><span class="p">(</span>right<span class="p">,</span><span class="m">5</span><span class="p">,</span>by<span class="o">=</span><span class="m">0.01</span><span class="p">)</span>
+<span class="gp">&gt; </span>yReject <span class="o">&lt;-</span> dnorm<span class="p">(</span>xReject<span class="p">,</span>sd<span class="o">=</span>stdDev<span class="p">)</span>
+<span class="gp">&gt; </span>polygon<span class="p">(</span><span class="kt">c</span><span class="p">(</span>xReject<span class="p">,</span>xReject<span class="p">[</span><span class="kp">length</span><span class="p">(</span>xReject<span class="p">)],</span>xReject<span class="p">[</span><span class="m">1</span><span class="p">]),</span>
+<span class="go">          c(yReject,0, 0), col=&#39;red&#39;)</span>
+</pre></div>
+</div>
+<div class="align-center figure" id="id10">
+<span id="figure6-intermediateplotting"></span><img alt="Example of a shaded region" src="_images/rejectionRegion.png" />
+<p class="caption"><span class="caption-text">Figure 6.</span></p>
+<div class="legend">
+Using <em>polygon</em> to produce a shaded region.</div>
+</div>
+<p>The axes are drawn separately. This is done by first suppressing the
+plotting of the axes in the <em>plot</em> command, and the horizontal axis is
+drawn separately. Also note that the <em>expression</em> command is used to
+plot a Greek character and also produce subscripts.</p>
+</div>
+<div class="section" id="plotting-a-surface">
+<h3><a class="toc-backref" href="#id22">6.1.8. Plotting a Surface</a><a class="headerlink" href="#plotting-a-surface" title="Permalink to this headline">¶</a></h3>
+<p>Finally, a brief example of how to plot a surface is given. The
+<em>persp</em> command will plot a surface with a specified perspective. In
+the example, a grid is defined by multiplying a row and column vector
+to give the <em>x</em> and then the <em>y</em> values for a grid. Once that is done
+a sine function is specified on the grid, and the <em>persp</em> command is
+used to plot it.</p>
+<span class="target" id="index-22"></span><div class="highlight-rconsole" id="index-23"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>x <span class="o">&lt;-</span> <span class="kp">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">2</span><span class="o">*</span><span class="kc">pi</span><span class="p">,</span>by<span class="o">=</span><span class="kc">pi</span><span class="o">/</span><span class="m">100</span><span class="p">)</span>
+<span class="gp">&gt; </span>y <span class="o">&lt;-</span> x
+<span class="gp">&gt; </span>xg <span class="o">&lt;-</span> <span class="p">(</span>x<span class="o">*</span><span class="m">0+1</span><span class="p">)</span> <span class="o">%*%</span> <span class="kp">t</span><span class="p">(</span>y<span class="p">)</span>
+<span class="gp">&gt; </span>yg <span class="o">&lt;-</span> <span class="p">(</span>x<span class="p">)</span> <span class="o">%*%</span> <span class="kp">t</span><span class="p">(</span>y<span class="o">*</span><span class="m">0+1</span><span class="p">)</span>
+<span class="gp">&gt; </span>f <span class="o">&lt;-</span> <span class="kp">sin</span><span class="p">(</span>xg<span class="o">+</span>yg<span class="p">)</span>
+<span class="gp">&gt; </span>persp<span class="p">(</span>x<span class="p">,</span>y<span class="p">,</span>f<span class="p">,</span>theta<span class="o">=</span><span class="m">-10</span><span class="p">,</span>phi<span class="o">=</span><span class="m">40</span><span class="p">)</span>
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+<p>The %*% notation is used to perform matrix multiplication.</p>
+</div>
+</div>
+<div class="section" id="discrete-data">
+<h2><a class="toc-backref" href="#id13">6.2. Discrete Data</a><a class="headerlink" href="#discrete-data" title="Permalink to this headline">¶</a></h2>
+<div class="contents local topic" id="id2">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#barplot" id="id23">Barplot</a></li>
+<li><a class="reference internal" href="#mosaic-plot" id="id24">Mosaic Plot</a></li>
+</ul>
+</div>
+<p>In the examples below a data set is defined using R&#8217;s hypergeometric
+random number generator.</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>numberWhite <span class="o">&lt;-</span> rhyper<span class="p">(</span><span class="m">30</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>
+<span class="gp">&gt; </span>numberChipped <span class="o">&lt;-</span> rhyper<span class="p">(</span><span class="m">30</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">7</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="barplot">
+<h3><a class="toc-backref" href="#id23">6.2.1. Barplot</a><a class="headerlink" href="#barplot" title="Permalink to this headline">¶</a></h3>
+<p>The plot command will try to produce the appropriate plots based on
+the data type. The data that is defined above, though, is numeric
+data. You need to convert the data to factors to make sure that the
+plot command treats it in an appropriate way. The <em>as.factor</em> command
+is used to cast the data as factors and ensures that R treats it as
+discrete data.</p>
+<span class="target" id="index-24"></span><span class="target" id="index-25"></span><span class="target" id="index-26"></span><div class="highlight-rconsole" id="index-27"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>numberWhite <span class="o">&lt;-</span> rhyper<span class="p">(</span><span class="m">30</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>
+<span class="gp">&gt; </span>numberWhite <span class="o">&lt;-</span> <span class="kp">as.factor</span><span class="p">(</span>numberWhite<span class="p">)</span>
+<span class="gp">&gt; </span>plot<span class="p">(</span>numberWhite<span class="p">)</span>
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+<p>In this case R will produce a barplot. The <em>barplot</em> command can also
+be used to create a barplot. The <em>barplot</em> command requires a vector of
+heights, though, and you cannot simply give it the raw data. The
+frequencies for the <em>barplot</em> command can be easily calculated using
+the <em>table</em> command.</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>numberWhite <span class="o">&lt;-</span> rhyper<span class="p">(</span><span class="m">30</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>
+<span class="gp">&gt; </span>totals <span class="o">&lt;-</span> <span class="kp">table</span><span class="p">(</span>numberWhite<span class="p">)</span>
+<span class="gp">&gt; </span>totals
+<span class="go">numberWhite</span>
+<span class="go">0  1  2  3</span>
+<span class="go">4 13 11  2</span>
+<span class="gp">&gt; </span>barplot<span class="p">(</span>totals<span class="p">,</span>main<span class="o">=</span><span class="s">&quot;Number Draws&quot;</span><span class="p">,</span>ylab<span class="o">=</span><span class="s">&quot;Frequency&quot;</span><span class="p">,</span>xlab<span class="o">=</span><span class="s">&quot;Draws&quot;</span><span class="p">)</span>
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+<p>In the previous example the <em>barplot</em> command is used to set the title
+for the plot and the labels for the axes. The labels on the ticks for
+the horizontal axis are automatically generated using the labels on
+the table. You can change the labels by setting the row names of the
+table.</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>totals <span class="o">&lt;-</span> <span class="kp">table</span><span class="p">(</span>numberWhite<span class="p">)</span>
+<span class="gp">&gt; </span><span class="kp">rownames</span><span class="p">(</span>totals<span class="p">)</span> <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;none&quot;</span><span class="p">,</span><span class="s">&quot;one&quot;</span><span class="p">,</span><span class="s">&quot;two&quot;</span><span class="p">,</span><span class="s">&quot;three&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>totals
+<span class="go">numberWhite</span>
+<span class="go">none   one   two three</span>
+<span class="go">4      13    11     2</span>
+<span class="gp">&gt; </span>barplot<span class="p">(</span>totals<span class="p">,</span>main<span class="o">=</span><span class="s">&quot;Number Draws&quot;</span><span class="p">,</span>ylab<span class="o">=</span><span class="s">&quot;Frequency&quot;</span><span class="p">,</span>xlab<span class="o">=</span><span class="s">&quot;Draws&quot;</span><span class="p">)</span>
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+<p>The order of the frequencies is the same as the order in the table. If
+you change the order in the table it will change the way it appears in
+the barplot. For example, if you wish to arrange the frequencies in
+descending order you can use the <em>sort</em> command with the <em>decreasing</em>
+option set to <em>TRUE</em>.</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>barplot<span class="p">(</span><span class="kp">sort</span><span class="p">(</span>totals<span class="p">,</span>decreasing<span class="o">=</span><span class="kc">TRUE</span><span class="p">),</span>main<span class="o">=</span><span class="s">&quot;Number Draws&quot;</span><span class="p">,</span>ylab<span class="o">=</span><span class="s">&quot;Frequency&quot;</span><span class="p">,</span>xlab<span class="o">=</span><span class="s">&quot;Draws&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The indexing features of R can be used to change the order of the
+frequencies manually.</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>totals
+<span class="go">numberWhite</span>
+<span class="go"> none   one   two three</span>
+<span class="go">   4    13    11     2</span>
+<span class="gp">&gt; </span><span class="kp">sort</span><span class="p">(</span>totals<span class="p">,</span>decreasing<span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="go">numberWhite</span>
+<span class="go"> one   two  none three</span>
+<span class="go">  13    11     4     2</span>
+<span class="gp">&gt; </span>totals<span class="p">[</span><span class="kt">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">2</span><span class="p">)]</span>
+<span class="go">numberWhite</span>
+<span class="go"> two  none three   one</span>
+<span class="go">  11     4     2    13</span>
+<span class="gp">&gt; </span>barplot<span class="p">(</span>totals<span class="p">[</span><span class="kt">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">2</span><span class="p">)])</span>
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+<p>The <em>barplot</em> command returns the horizontal locations of the
+bars. Using the locations and putting together the previous ideas a
+Pareto Chart can be constructed.</p>
+<div class="highlight-rconsole" id="index-28"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>xLoc <span class="o">=</span> barplot<span class="p">(</span><span class="kp">sort</span><span class="p">(</span>totals<span class="p">,</span>decreasing<span class="o">=</span><span class="kc">TRUE</span><span class="p">),</span>main<span class="o">=</span><span class="s">&quot;Number Draws&quot;</span><span class="p">,</span>
+<span class="go">           ylab=&quot;Frequency&quot;,xlab=&quot;Draws&quot;,ylim=c(0,sum(totals)+2))</span>
+<span class="gp">&gt; </span>points<span class="p">(</span>xLoc<span class="p">,</span><span class="kp">cumsum</span><span class="p">(</span><span class="kp">sort</span><span class="p">(</span>totals<span class="p">,</span>decreasing<span class="o">=</span><span class="kc">TRUE</span><span class="p">)),</span>type<span class="o">=</span><span class="s">&#39;p&#39;</span><span class="p">,</span>col<span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<span class="gp">&gt; </span>points<span class="p">(</span>xLoc<span class="p">,</span><span class="kp">cumsum</span><span class="p">(</span><span class="kp">sort</span><span class="p">(</span>totals<span class="p">,</span>decreasing<span class="o">=</span><span class="kc">TRUE</span><span class="p">)),</span>type<span class="o">=</span><span class="s">&#39;l&#39;</span><span class="p">)</span>
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="mosaic-plot">
+<h3><a class="toc-backref" href="#id24">6.2.2. Mosaic Plot</a><a class="headerlink" href="#mosaic-plot" title="Permalink to this headline">¶</a></h3>
+<p>Mosaic plots are used to display proportions for tables that are
+divided into two or more conditional distributions. Here we focus on
+two way tables to keep things simpler. It is assumed that you are
+familiar with using tables in R (see the section on two way tables for
+more information: <a class="reference internal" href="tables.html#twowaytables"><span>Two Way Tables</span></a>).</p>
+<p>Here we will use a made up data set primarily to make it easier to
+figure out what R is doing. The fictitious data set is defined
+below. The idea is that sixteen children of age eight are
+interviewed. They are asked two questions. The first question is, &#8220;do
+you believe in Santa Claus.&#8221; If they say that they do then the term
+&#8220;belief&#8221; is recorded, otherwise the term &#8220;no belief&#8221; is recorded. The
+second question is whether or not they have an older brother, older
+sister, or no older sibling. (We are keeping it simple here!) The
+answers that are recorded are &#8220;older brother,&#8221; &#8220;older sister,&#8221; or &#8220;no
+older sibling.&#8221;</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>santa <span class="o">&lt;-</span> <span class="kt">data.frame</span><span class="p">(</span>belief<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="s">&#39;no belief&#39;</span><span class="p">,</span><span class="s">&#39;no belief&#39;</span><span class="p">,</span><span class="s">&#39;no belief&#39;</span><span class="p">,</span><span class="s">&#39;no belief&#39;</span><span class="p">,</span>
+<span class="go">                               &#39;belief&#39;,&#39;belief&#39;,&#39;belief&#39;,&#39;belief&#39;,</span>
+<span class="go">                               &#39;belief&#39;,&#39;belief&#39;,&#39;no belief&#39;,&#39;no belief&#39;,</span>
+<span class="go">                               &#39;belief&#39;,&#39;belief&#39;,&#39;no belief&#39;,&#39;no belief&#39;),</span>
+<span class="go">                      sibling=c(&#39;older brother&#39;,&#39;older brother&#39;,&#39;older brother&#39;,&#39;older sister&#39;,</span>
+<span class="go">                                &#39;no older sibling&#39;,&#39;no older sibling&#39;,&#39;no older sibling&#39;,&#39;older sister&#39;,</span>
+<span class="go">                                &#39;older brother&#39;,&#39;older sister&#39;,&#39;older brother&#39;,&#39;older sister&#39;,</span>
+<span class="go">                                &#39;no older sibling&#39;,&#39;older sister&#39;,&#39;older brother&#39;,&#39;no older sibling&#39;)</span>
+<span class="go">                      )</span>
+<span class="go"> &gt; santa</span>
+<span class="go">       belief          sibling</span>
+<span class="go"> 1  no belief    older brother</span>
+<span class="go"> 2  no belief    older brother</span>
+<span class="go"> 3  no belief    older brother</span>
+<span class="go"> 4  no belief     older sister</span>
+<span class="go"> 5     belief no older sibling</span>
+<span class="go"> 6     belief no older sibling</span>
+<span class="go"> 7     belief no older sibling</span>
+<span class="go"> 8     belief     older sister</span>
+<span class="go"> 9     belief    older brother</span>
+<span class="go"> 10    belief     older sister</span>
+<span class="go"> 11 no belief    older brother</span>
+<span class="go"> 12 no belief     older sister</span>
+<span class="go"> 13    belief no older sibling</span>
+<span class="go"> 14    belief     older sister</span>
+<span class="go"> 15 no belief    older brother</span>
+<span class="go"> 16 no belief no older sibling</span>
+<span class="go"> &gt;  summary(santa)</span>
+<span class="go">   belief              sibling</span>
+<span class="go"> belief   :8   no older sibling:5</span>
+<span class="go"> no belief:8   older brother   :6</span>
+<span class="go">               older sister    :5</span>
+</pre></div>
+</div>
+<p>The data is given as strings, so R will automatically treat them as
+categorical data, and the data types are <em>factors</em>. If you plot the
+individual data sets, the plot command will default to producing
+barplots.</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>plot<span class="p">(</span>santa<span class="o">$</span>belief<span class="p">)</span>
+<span class="gp">&gt; </span>plot<span class="p">(</span>santa<span class="o">$</span>sibling<span class="p">)</span>
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+<p>If you provide both data sets it will automatically produce a mosaic
+plot which demonstrates the relative frequencies in terms of the
+resulting areas.</p>
+<div class="highlight-rconsole" id="index-29"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>plot<span class="p">(</span>santa<span class="o">$</span>sibling<span class="p">,</span>santa<span class="o">$</span>belief<span class="p">)</span>
+<span class="gp">&gt; </span>plot<span class="p">(</span>santa<span class="o">$</span>belief<span class="p">,</span>santa<span class="o">$</span>sibling<span class="p">)</span>
+</pre></div>
+</div>
+<p>The <em>mosaicplot</em> command can be called directly</p>
+<div class="highlight-rconsole" id="index-30"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>totals <span class="o">=</span> <span class="kp">table</span><span class="p">(</span>santa<span class="o">$</span>belief<span class="p">,</span>santa<span class="o">$</span>sibling<span class="p">)</span>
+<span class="gp">&gt; </span>totals
+
+<span class="go">            no older sibling older brother older sister</span>
+<span class="go">  belief                   4             1            3</span>
+<span class="go">  no belief                1             5            2</span>
+<span class="gp">&gt; </span>mosaicplot<span class="p">(</span>totals<span class="p">,</span>main<span class="o">=</span><span class="s">&quot;Older Brothers are Jerks&quot;</span><span class="p">,</span>
+<span class="go">              xlab=&quot;Belief in Santa Claus&quot;,ylab=&quot;Older Sibling&quot;)</span>
+</pre></div>
+</div>
+<p>The colours of the plot can be specified by setting the <em>col</em>
+argument.  The argument is a vector of colours used for the rows. See
+Fgure :ref`figure7_intermediatePlotting` for an example.</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>mosaicplot<span class="p">(</span>totals<span class="p">,</span>main<span class="o">=</span><span class="s">&quot;Older Brothers are Jerks&quot;</span><span class="p">,</span>
+<span class="go">              xlab=&quot;Belief in Santa Claus&quot;,ylab=&quot;Older Sibling&quot;,</span>
+<span class="go">              col=c(2,3,4))</span>
+</pre></div>
+</div>
+<div class="align-center figure" id="id11">
+<span id="figure7-intermediateplotting"></span><img alt="Example of a mosaic plot" src="_images/santaClaus.png" />
+<p class="caption"><span class="caption-text">Figure 7.</span></p>
+<div class="legend">
+Example of a mosaic plot with colours.</div>
+</div>
+<p>The labels and the order that they appear in the plot can be changed
+in exactly the same way as given in the examples for barplot above.</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kp">rownames</span><span class="p">(</span>totals<span class="p">)</span>
+<span class="go">[1] &quot;belief&quot;    &quot;no belief&quot;</span>
+<span class="gp">&gt; </span><span class="kp">colnames</span><span class="p">(</span>totals<span class="p">)</span>
+<span class="go">[1] &quot;no older sibling&quot; &quot;older brother&quot;    &quot;older sister&quot;</span>
+<span class="gp">&gt; </span><span class="kp">rownames</span><span class="p">(</span>totals<span class="p">)</span> <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;Believes&quot;</span><span class="p">,</span><span class="s">&quot;Does not Believe&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span><span class="kp">colnames</span><span class="p">(</span>totals<span class="p">)</span> <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;No Older&quot;</span><span class="p">,</span><span class="s">&quot;Older Brother&quot;</span><span class="p">,</span><span class="s">&quot;Older Sister&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>totals
+
+<span class="go">                   No Older Older Brother Older Sister</span>
+<span class="go">  Believes                4             1            3</span>
+<span class="go">  Does not Believe        1             5            2</span>
+<span class="gp">&gt; </span>mosaicplot<span class="p">(</span>totals<span class="p">,</span>main<span class="o">=</span><span class="s">&quot;Older Brothers are Jerks&quot;</span><span class="p">,</span>
+<span class="go">              xlab=&quot;Belief in Santa Claus&quot;,ylab=&quot;Older Sibling&quot;)</span>
+</pre></div>
+</div>
+<p>When changing the order keep in mind that the table is a two
+dimensional array. The indices must include both rows and columns, and
+the transpose command (<em>t</em>) can be used to switch how it is plotted
+with respect to the vertical and horizontal axes.</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>totals
+
+<span class="go">                   No Older Older Brother Older Sister</span>
+<span class="go">  Believes                4             1            3</span>
+<span class="go">  Does not Believe        1             5            2</span>
+<span class="gp">&gt; </span>totals<span class="p">[</span><span class="kt">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">),</span><span class="kt">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="p">)]</span>
+
+<span class="go">                   Older Brother Older Sister No Older</span>
+<span class="go">  Does not Believe             5            2        1</span>
+<span class="go">  Believes                     1            3        4</span>
+<span class="gp">&gt; </span>mosaicplot<span class="p">(</span>totals<span class="p">[</span><span class="kt">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">),</span><span class="kt">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="p">)],</span>main<span class="o">=</span><span class="s">&quot;Older Brothers are Jerks&quot;</span><span class="p">,</span>
+<span class="go">       xlab=&quot;Belief in Santa Claus&quot;,ylab=&quot;Older Sibling&quot;,col=c(2,3,4))</span>
+<span class="gp">&gt; </span>mosaicplot<span class="p">(</span><span class="kp">t</span><span class="p">(</span>totals<span class="p">),</span>main<span class="o">=</span><span class="s">&quot;Older Brothers are Jerks&quot;</span><span class="p">,</span>
+<span class="go">       ylab=&quot;Belief in Santa Claus&quot;,xlab=&quot;Older Sibling&quot;,col=c(2,3))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="miscellaneous-options">
+<h2><a class="toc-backref" href="#id14">6.3. Miscellaneous Options</a><a class="headerlink" href="#miscellaneous-options" title="Permalink to this headline">¶</a></h2>
+<div class="contents local topic" id="id3">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#multiple-representations-on-one-plot" id="id25">Multiple Representations On One Plot</a></li>
+<li><a class="reference internal" href="#multiple-windows" id="id26">Multiple Windows</a></li>
+<li><a class="reference internal" href="#print-to-a-file" id="id27">Print To A File</a></li>
+<li><a class="reference internal" href="#annotation-and-formatting" id="id28">Annotation and Formatting</a></li>
+</ul>
+</div>
+<p>The previous examples only provide a slight hint at what is
+possible. Here we give some examples that provide a demonstration of
+the way the different commands can be combined and the options that
+allow them to be used together.</p>
+<div class="section" id="multiple-representations-on-one-plot">
+<h3><a class="toc-backref" href="#id25">6.3.1. Multiple Representations On One Plot</a><a class="headerlink" href="#multiple-representations-on-one-plot" title="Permalink to this headline">¶</a></h3>
+<p>First, an example of a histogram with an approximation of the density
+function is given. In addition to the density function a horizontal
+boxplot is added to the plot with a rug representation of the data on
+the horizontal axis. The horizontal bounds on the histogram will be
+specified. The boxplot must be <em>added</em> to the histogram, and it will
+be raised above the histogram.</p>
+<span class="target" id="index-31"></span><span class="target" id="index-32"></span><div class="highlight-rconsole" id="index-33"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>x <span class="o">=</span> rexp<span class="p">(</span><span class="m">20</span><span class="p">,</span>rate<span class="o">=</span><span class="m">4</span><span class="p">)</span>
+<span class="gp">&gt; </span>hist<span class="p">(</span>x<span class="p">,</span>ylim<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">18</span><span class="p">),</span>main<span class="o">=</span><span class="s">&quot;This Are An Histogram&quot;</span><span class="p">,</span>xlab<span class="o">=</span><span class="s">&quot;X&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>boxplot<span class="p">(</span>x<span class="p">,</span>at<span class="o">=</span><span class="m">16</span><span class="p">,</span>horizontal<span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span>add<span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="gp">&gt; </span>rug<span class="p">(</span>x<span class="p">,</span>side<span class="o">=</span><span class="m">1</span><span class="p">)</span>
+<span class="gp">&gt; </span>d <span class="o">=</span> density<span class="p">(</span>x<span class="p">)</span>
+<span class="gp">&gt; </span>points<span class="p">(</span>d<span class="p">,</span>type<span class="o">=</span><span class="s">&#39;l&#39;</span><span class="p">,</span>col<span class="o">=</span><span class="m">3</span><span class="p">)</span>
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="multiple-windows">
+<span id="multiplewindows"></span><h3><a class="toc-backref" href="#id26">6.3.2. Multiple Windows</a><a class="headerlink" href="#multiple-windows" title="Permalink to this headline">¶</a></h3>
+<p>The <em>dev</em> commands allow you to create and manipulate multiple
+graphics windows. You can create new windows using the <em>dev.new()</em>
+command, and you can choose which one to make active using the
+<em>dev.set()</em> command. The <em>dev.list()</em>, <em>dev.next()</em>, and <em>dev.prev()</em>
+command can be used to list the graphical devices that are available.</p>
+<p>In the following example three devices are created. They are listed,
+and different plots are created on the different devices.</p>
+<span class="target" id="index-34"></span><span class="target" id="index-35"></span><span class="target" id="index-36"></span><span class="target" id="index-37"></span><div class="highlight-rconsole" id="index-38"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>dev.new<span class="p">()</span>
+<span class="gp">&gt; </span>dev.new<span class="p">()</span>
+<span class="gp">&gt; </span>dev.new<span class="p">()</span>
+<span class="gp">&gt; </span>dev.list<span class="p">()</span>
+<span class="go">X11cairo X11cairo X11cairo</span>
+<span class="go">       2        3        4</span>
+<span class="gp">&gt; </span>dev.set<span class="p">(</span><span class="m">3</span><span class="p">)</span>
+<span class="go">X11cairo</span>
+<span class="go">       3</span>
+<span class="gp">&gt; </span>x <span class="o">=</span> rnorm<span class="p">(</span><span class="m">20</span><span class="p">)</span>
+<span class="gp">&gt; </span>hist<span class="p">(</span>x<span class="p">)</span>
+<span class="gp">&gt; </span>dev.set<span class="p">(</span><span class="m">2</span><span class="p">)</span>
+<span class="go">X11cairo</span>
+<span class="go">       2</span>
+<span class="gp">&gt; </span>boxplot<span class="p">(</span>x<span class="p">)</span>
+<span class="gp">&gt; </span>dev.set<span class="p">(</span><span class="m">4</span><span class="p">)</span>
+<span class="go">X11cairo</span>
+<span class="go">       4</span>
+<span class="gp">&gt; </span>qqnorm<span class="p">(</span>x<span class="p">)</span>
+<span class="gp">&gt; </span>qqline<span class="p">(</span>x<span class="p">)</span>
+<span class="gp">&gt; </span>dev.next<span class="p">()</span>
+<span class="go">X11cairo</span>
+<span class="go">       2</span>
+<span class="gp">&gt; </span>dev.set<span class="p">(</span>dev.next<span class="p">())</span>
+<span class="go">X11cairo</span>
+<span class="go">       2</span>
+<span class="gp">&gt; </span>plot<span class="p">(</span>density<span class="p">(</span>x<span class="p">))</span>
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="print-to-a-file">
+<h3><a class="toc-backref" href="#id27">6.3.3. Print To A File</a><a class="headerlink" href="#print-to-a-file" title="Permalink to this headline">¶</a></h3>
+<p>There are a couple ways to print a plot to a file. It is important to
+be able to work with graphics devices as shown in the previous
+subsection (<a class="reference internal" href="#multiplewindows"><span>Multiple Windows</span></a>). The first way explored is to use
+the <em>dev.print</em> command. This command will print a copy of the
+currently active device, and the format is defined by the <em>device</em>
+argument.</p>
+<p>In the example below, the current window is printed to a png file
+called &#8220;hist.png&#8221; that is 200 pixels wide.</p>
+<div class="highlight-rconsole" id="index-39"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>x <span class="o">=</span> rnorm<span class="p">(</span><span class="m">100</span><span class="p">)</span>
+<span class="gp">&gt; </span>hist<span class="p">(</span>x<span class="p">)</span>
+<span class="gp">&gt; </span>dev.print<span class="p">(</span>device<span class="o">=</span>png<span class="p">,</span>width<span class="o">=</span><span class="m">200</span><span class="p">,</span><span class="s">&quot;hist.png&quot;</span><span class="p">)</span>
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+<p>To find out what devices are available on your system use the <em>help</em>
+command.</p>
+<div class="highlight-rconsole" id="index-40"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>help<span class="p">(</span>device<span class="p">)</span>
+</pre></div>
+</div>
+<p>Another way to print to a file is to create a device in the same way
+as the graphical devices were created in the previous section. Once
+the device is created, the various plot commands are given, and then
+the device is turned off to write the results to a file.</p>
+<div class="highlight-rconsole" id="index-41"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>png<span class="p">(</span>file<span class="o">=</span><span class="s">&quot;hist.png&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>hist<span class="p">(</span>x<span class="p">)</span>
+<span class="gp">&gt; </span>rug<span class="p">(</span>x<span class="p">,</span>side<span class="o">=</span><span class="m">1</span><span class="p">)</span>
+<span class="gp">&gt; </span>dev.off<span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="annotation-and-formatting">
+<h3><a class="toc-backref" href="#id28">6.3.4. Annotation and Formatting</a><a class="headerlink" href="#annotation-and-formatting" title="Permalink to this headline">¶</a></h3>
+<p>Basic annotation can be performed in the regular plotting
+commmands. For example, there are options to specify labels on axes as
+well as titles. More options are available using the <em>axis</em> command.</p>
+<p>Most of the primary plotting commands have an option to turn off the
+generation of the axes using the <em>axes=FALSE</em> option. The axes can be
+then added using the <em>axis</em> command which allows for a greater number
+of options.</p>
+<p>In the example below a bivariate set of random numbers are generated
+and plotted as a scatter plot. The axes are added, but the horizontal
+axis is located in the center of the data rather than at the bottom of
+the figure. Note that the horizontal and vertical axes are added
+separately, and are specified using the first argument to the
+command. (Use <em>help(axis)</em> for a full list of options.)</p>
+<span class="target" id="index-42"></span><div class="highlight-rconsole" id="index-43"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>x <span class="o">&lt;-</span> rnorm<span class="p">(</span><span class="m">10</span><span class="p">,</span>mean<span class="o">=</span><span class="m">0</span><span class="p">,</span>sd<span class="o">=</span><span class="m">4</span><span class="p">)</span>
+<span class="gp">&gt; </span>y <span class="o">&lt;-</span> <span class="m">3</span><span class="o">*</span>x<span class="m">-1</span><span class="o">+</span>rnorm<span class="p">(</span><span class="m">10</span><span class="p">,</span>mean<span class="o">=</span><span class="m">0</span><span class="p">,</span>sd<span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<span class="go">   summary(x)</span>
+<span class="go">    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.</span>
+<span class="go"> -6.1550 -1.9280  1.2000 -0.1425  2.4780  3.1630</span>
+<span class="gp">&gt; </span><span class="kp">summary</span><span class="p">(</span>y<span class="p">)</span>
+<span class="go">    Min.  1st Qu.   Median     Mean  3rd Qu.     Max.</span>
+<span class="go">-17.9800  -9.0060   0.7057  -1.2060   8.2600  10.9200</span>
+<span class="gp">&gt; </span>plot<span class="p">(</span>x<span class="p">,</span>y<span class="p">,</span>axes<span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span>col<span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<span class="gp">&gt; </span>axis<span class="p">(</span><span class="m">1</span><span class="p">,</span>pos<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">),</span>at<span class="o">=</span><span class="kp">seq</span><span class="p">(</span><span class="m">-7</span><span class="p">,</span><span class="m">5</span><span class="p">,</span>by<span class="o">=</span><span class="m">1</span><span class="p">))</span>
+<span class="gp">&gt; </span>axis<span class="p">(</span><span class="m">2</span><span class="p">,</span>pos<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">),</span>at<span class="o">=</span><span class="kp">seq</span><span class="p">(</span><span class="m">-18</span><span class="p">,</span><span class="m">11</span><span class="p">,</span>by<span class="o">=</span><span class="m">2</span><span class="p">))</span>
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+<p>In the previous example the <em>at</em> option is used to specify the tick marks.</p>
+<p>When using the <em>plot</em> command the default behavior is to draw an
+axis as well as draw a box around the plotting area. The drawing of
+the box can be suppressed using the <em>bty</em> option. The value can be
+&#8220;o,&#8221; &#8220;l,&#8221; &#8220;7,&#8221; &#8220;c,&#8221; &#8220;u&#8221;, &#8220;],&#8221; or &#8220;n.&#8221; (The lines drawn roughly look
+like the letter given except for &#8220;n&#8221; which draws no lines.)
+The box can be drawn later using the <em>box</em> command as well.</p>
+<span class="target" id="index-44"></span><div class="highlight-rconsole" id="index-45"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>x <span class="o">&lt;-</span> rnorm<span class="p">(</span><span class="m">10</span><span class="p">,</span>mean<span class="o">=</span><span class="m">0</span><span class="p">,</span>sd<span class="o">=</span><span class="m">4</span><span class="p">)</span>
+<span class="gp">&gt; </span>y <span class="o">&lt;-</span> <span class="m">3</span><span class="o">*</span>x<span class="m">-1</span><span class="o">+</span>rnorm<span class="p">(</span><span class="m">10</span><span class="p">,</span>mean<span class="o">=</span><span class="m">0</span><span class="p">,</span>sd<span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<span class="gp">&gt; </span>plot<span class="p">(</span>x<span class="p">,</span>y<span class="p">,</span>bty<span class="o">=</span><span class="s">&quot;7&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>plot<span class="p">(</span>x<span class="p">,</span>y<span class="p">,</span>bty<span class="o">=</span><span class="s">&quot;n&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>box<span class="p">(</span>lty<span class="o">=</span><span class="m">3</span><span class="p">)</span>
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+<p>The <em>par</em> command can be used to set the default values for various
+parameters. A couple are given below. In the example below the default
+background is set to grey, no box will be drawn around the window, and
+the margins for the axes will be twice the normal size.</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>par<span class="p">(</span>bty<span class="o">=</span><span class="s">&quot;l&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>par<span class="p">(</span>bg<span class="o">=</span><span class="s">&quot;gray&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>par<span class="p">(</span>mex<span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<span class="gp">&gt; </span>x <span class="o">&lt;-</span> rnorm<span class="p">(</span><span class="m">10</span><span class="p">,</span>mean<span class="o">=</span><span class="m">0</span><span class="p">,</span>sd<span class="o">=</span><span class="m">4</span><span class="p">)</span>
+<span class="gp">&gt; </span>y <span class="o">&lt;-</span> <span class="m">3</span><span class="o">*</span>x<span class="m">-1</span><span class="o">+</span>rnorm<span class="p">(</span><span class="m">10</span><span class="p">,</span>mean<span class="o">=</span><span class="m">0</span><span class="p">,</span>sd<span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<span class="gp">&gt; </span>plot<span class="p">(</span>x<span class="p">,</span>y<span class="p">)</span>
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+<p>Another common task is to place a text string on the plot. The <em>text</em>
+command takes a coordinate and a label, and it places the label at the
+given coordinate. The <em>text</em> command has options for setting the
+offset, size, font, and other options. In the example below the label
+&#8220;numbers!&#8221; is placed on the plot. Use <em>help(text)</em> to see more
+options.</p>
+<div class="highlight-rconsole" id="index-46"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>x <span class="o">&lt;-</span> rnorm<span class="p">(</span><span class="m">10</span><span class="p">,</span>mean<span class="o">=</span><span class="m">0</span><span class="p">,</span>sd<span class="o">=</span><span class="m">4</span><span class="p">)</span>
+<span class="gp">&gt; </span>y <span class="o">&lt;-</span> <span class="m">3</span><span class="o">*</span>x<span class="m">-1</span><span class="o">+</span>rnorm<span class="p">(</span><span class="m">10</span><span class="p">,</span>mean<span class="o">=</span><span class="m">0</span><span class="p">,</span>sd<span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<span class="gp">&gt; </span>plot<span class="p">(</span>x<span class="p">,</span>y<span class="p">)</span>
+<span class="gp">&gt; </span>text<span class="p">(</span><span class="m">-1</span><span class="p">,</span><span class="m">-2</span><span class="p">,</span><span class="s">&quot;numbers!&quot;</span><span class="p">)</span>
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+<p>The default text command will cut off any characters outside of the
+plot area.  This behavior can be overridden using the <em>xpd</em> option.</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>x <span class="o">&lt;-</span> rnorm<span class="p">(</span><span class="m">10</span><span class="p">,</span>mean<span class="o">=</span><span class="m">0</span><span class="p">,</span>sd<span class="o">=</span><span class="m">4</span><span class="p">)</span>
+<span class="gp">&gt; </span>y <span class="o">&lt;-</span> <span class="m">3</span><span class="o">*</span>x<span class="m">-1</span><span class="o">+</span>rnorm<span class="p">(</span><span class="m">10</span><span class="p">,</span>mean<span class="o">=</span><span class="m">0</span><span class="p">,</span>sd<span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<span class="gp">&gt; </span>plot<span class="p">(</span>x<span class="p">,</span>y<span class="p">)</span>
+<span class="gp">&gt; </span>text<span class="p">(</span><span class="m">-7</span><span class="p">,</span><span class="m">-2</span><span class="p">,</span><span class="s">&quot;outside the area&quot;</span><span class="p">,</span>xpd<span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+
+
+
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="vectorIndexing.html" class="btn btn-neutral float-right" title="7. Indexing Into Vectors" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="plotting.html" class="btn btn-neutral" title="5. Basic Plots" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+		
+
+		<br><br>
+
+		<div class="admonition note">
+			<p class="first admonition-title">Sponsorship</p>
+			<p class="last">
+				This site generously supported
+				by <a href="https://www.datacamp.com/"
+							target="_blank">Datacamp</a>. Datacamp offers a
+				free <a href="https://www.datacamp.com/courses/free-introduction-to-r"
+								target="_blank"> interactive introduction to R coding tutorial</a>
+				as an additional resource. Already over 100,000 people took this
+				free tutorial to sharpen their R coding skills.
+			</p>
+		</div>
+		
+
+<footer>
+		<hr/>
+
+		<div role="contentinfo">
+
+			<p>
+			<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">R Tutorial</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="mailto:kjblack@gmail.com" property="cc:attributionName" rel="cc:attributionURL">Kelly Black</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a> (2015).<br />Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="http://www.cyclismo.org/tutorial/R/" rel="dct:source">http://www.cyclismo.org/tutorial/R/</a>.
+</p>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'3.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

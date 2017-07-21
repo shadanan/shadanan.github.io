@@ -1,0 +1,505 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>13. Data Management &mdash; R Tutorial</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/siteColours.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="R Tutorial" href="index.html"/>
+        <link rel="next" title="14. Time Data Types" href="time.html"/>
+        <link rel="prev" title="12. Two Way Tables" href="tables.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> R Tutorial
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+
+   
+
+        <div id="sidebar">
+					<!-- localtoc.html --><ul>
+<li><a class="reference internal" href="#">13. Data Management</a><ul>
+<li><a class="reference internal" href="#appending-data">13.1. Appending Data</a></li>
+<li><a class="reference internal" href="#applying-functions-across-data-elements">13.2. Applying Functions Across Data Elements</a><ul>
+<li><a class="reference internal" href="#operations-on-lists-and-vectors">13.2.1. Operations on Lists and Vectors</a></li>
+<li><a class="reference internal" href="#operations-by-factors">13.2.2. Operations By Factors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+					<!-- datacamp.html --><div class="datacampAd">
+	<iframe src="https://tracking-ads.datacamp.com" frameborder="0" width="160" height="600" scrolling="no" allowtransparancy="true" style="margin-bottom: 10px; margin-left: 5px; border: 0;"></iframe>
+</div>
+					<!-- globaltoc.html --><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="input.html">1. Input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">2. Basic Data Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basicOps.html">3. Basic Operations and Numerical Descriptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="probability.html">4. Basic Probability Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting.html">5. Basic Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intermediatePlotting.html">6. Intermediate Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vectorIndexing.html">7. Indexing Into Vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linearLeastSquares.html">8. Linear Least Squares Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="confidence.html">9. Calculating Confidence Intervals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pValues.html">10. Calculating <em>p</em> Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="power.html">11. Calculating The Power Of A Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tables.html">12. Two Way Tables</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">13. Data Management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#appending-data">13.1. Appending Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#applying-functions-across-data-elements">13.2. Applying Functions Across Data Elements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#operations-on-lists-and-vectors">13.2.1. Operations on Lists and Vectors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#operations-by-factors">13.2.2. Operations By Factors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="time.html">14. Time Data Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripting.html">15. Introduction to Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="objectOriented.html">Object Oriented Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hwI.html">16. Case Study: Working Through a HW Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cholesterol.html">17. Case Study II: A JAMA Paper on Cholesterol</a></li>
+</ul>
+
+        </div>
+
+			
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">R Tutorial</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>13. Data Management</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="data-management">
+<h1>13. Data Management<a class="headerlink" href="#data-management" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#appending-data" id="id1">Appending Data</a></li>
+<li><a class="reference internal" href="#applying-functions-across-data-elements" id="id2">Applying Functions Across Data Elements</a></li>
+</ul>
+</div>
+<p>Here we look at some common tasks that come up when dealing with
+data. These tasks range from assembling different data sets into more
+convenient forms and ways to apply functions to different parts of the
+data sets. The topics in this section demonstrate some of the power of
+R, but it may not be clear at first. The functions are commonly used
+in a wide variety of circumstances for a number of different
+reasons. These tools have saved me a great deal of time and effort in
+circumstances that I would not have predicted in advance.</p>
+<p>The important thing to note, though, is that this section is called
+&#8220;<em>Data Management.</em>&#8221; It is not called &#8220;<em>Data Manipulation.</em>&#8221;
+Politicians &#8220;manipulate&#8221; data, we &#8220;manage&#8221; them.</p>
+<div class="section" id="appending-data">
+<h2><a class="toc-backref" href="#id1">13.1. Appending Data</a><a class="headerlink" href="#appending-data" title="Permalink to this headline">¶</a></h2>
+<p>When you have more than one set of data you may want to bring them
+together. You can bring different data sets together by appending as
+rows (<em>rbind</em>) or by appending as columns (<em>cbind</em>). The first example
+shows how this done with two data frames. The arguments to the
+functions can take any number of objects. We only use two here to keep
+the demonstration simpler, but additional data frames can be appended
+in the same call. It is important to note that when you bring things
+together as rows the names of the objects within the data frame must
+be the same.</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>a <span class="o">&lt;-</span> <span class="kt">data.frame</span><span class="p">(</span>one<span class="o">=</span><span class="kt">c</span><span class="p">(</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">),</span>two<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">,</span><span class="s">&quot;a&quot;</span><span class="p">,</span><span class="s">&quot;b&quot;</span><span class="p">))</span>
+<span class="gp">&gt; </span>b <span class="o">&lt;-</span> <span class="kt">data.frame</span><span class="p">(</span>one<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="m">11</span><span class="p">,</span><span class="m">12</span><span class="p">),</span>two<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;c&quot;</span><span class="p">,</span><span class="s">&quot;c&quot;</span><span class="p">,</span><span class="s">&quot;d&quot;</span><span class="p">))</span>
+<span class="gp">&gt; </span>a
+<span class="go">  one two</span>
+<span class="go">1   0   a</span>
+<span class="go">2   1   a</span>
+<span class="go">3   2   b</span>
+<span class="gp">&gt; </span>b
+<span class="go">  one two</span>
+<span class="go">1  10   c</span>
+<span class="go">2  11   c</span>
+<span class="go">3  12   d</span>
+<span class="gp">&gt; </span>v <span class="o">&lt;-</span> <span class="kp">rbind</span><span class="p">(</span>a<span class="p">,</span>b<span class="p">)</span>
+<span class="gp">&gt; </span><span class="kp">typeof</span><span class="p">(</span>v<span class="p">)</span>
+<span class="go">[1] &quot;list&quot;</span>
+<span class="gp">&gt; </span>v
+<span class="go">  one two</span>
+<span class="go">1   0   a</span>
+<span class="go">2   1   a</span>
+<span class="go">3   2   b</span>
+<span class="go">4  10   c</span>
+<span class="go">5  11   c</span>
+<span class="go">6  12   d</span>
+<span class="gp">&gt; </span>w <span class="o">&lt;-</span> <span class="kp">cbind</span><span class="p">(</span>a<span class="p">,</span>b<span class="p">)</span>
+<span class="gp">&gt; </span><span class="kp">typeof</span><span class="p">(</span>w<span class="p">)</span>
+<span class="go">[1] &quot;list&quot;</span>
+<span class="gp">&gt; </span>w
+<span class="go">  one two one two</span>
+<span class="go">1   0   a  10   c</span>
+<span class="go">2   1   a  11   c</span>
+<span class="go">3   2   b  12   d</span>
+<span class="gp">&gt; </span><span class="kp">names</span><span class="p">(</span>w<span class="p">)</span> <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;one&quot;</span><span class="p">,</span><span class="s">&quot;two&quot;</span><span class="p">,</span><span class="s">&quot;three&quot;</span><span class="p">,</span><span class="s">&quot;four&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>w
+<span class="go">  one two three four</span>
+<span class="go">1   0   a    10    c</span>
+<span class="go">2   1   a    11    c</span>
+<span class="go">3   2   b    12    d</span>
+</pre></div>
+</div>
+<p>The same commands also work with vectors and matrices and behave in a similar manner.</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>A <span class="o">=</span> <span class="kt">matrix</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">6</span><span class="p">),</span>ncol<span class="o">=</span><span class="m">3</span><span class="p">,</span>byrow<span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="gp">&gt; </span>A
+<span class="go">     [,1] [,2] [,3]</span>
+<span class="go">[1,]    1    2    3</span>
+<span class="go">[2,]    4    5    6</span>
+<span class="gp">&gt; </span>B <span class="o">=</span> <span class="kt">matrix</span><span class="p">(</span><span class="kt">c</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="m">20</span><span class="p">,</span><span class="m">30</span><span class="p">,</span><span class="m">40</span><span class="p">,</span><span class="m">50</span><span class="p">,</span><span class="m">60</span><span class="p">),</span>ncol<span class="o">=</span><span class="m">3</span><span class="p">,</span>byrow<span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="gp">&gt; </span>B
+<span class="go">     [,1] [,2] [,3]</span>
+<span class="go">[1,]   10   20   30</span>
+<span class="go">[2,]   40   50   60</span>
+<span class="gp">&gt; </span>V <span class="o">&lt;-</span> <span class="kp">rbind</span><span class="p">(</span>A<span class="p">,</span>B<span class="p">)</span>
+<span class="gp">&gt; </span><span class="kp">typeof</span><span class="p">(</span>V<span class="p">)</span>
+<span class="go">[1] &quot;double&quot;</span>
+<span class="gp">&gt; </span>V
+<span class="go">     [,1] [,2] [,3]</span>
+<span class="go">[1,]    1    2    3</span>
+<span class="go">[2,]    4    5    6</span>
+<span class="go">[3,]   10   20   30</span>
+<span class="go">[4,]   40   50   60</span>
+<span class="gp">&gt; </span>W <span class="o">&lt;-</span> <span class="kp">cbind</span><span class="p">(</span>A<span class="p">,</span>B<span class="p">)</span>
+<span class="gp">&gt; </span><span class="kp">typeof</span><span class="p">(</span>W<span class="p">)</span>
+<span class="go">[1] &quot;double&quot;</span>
+<span class="gp">&gt; </span>W
+<span class="go">     [,1] [,2] [,3] [,4] [,5] [,6]</span>
+<span class="go">[1,]    1    2    3   10   20   30</span>
+<span class="go">[2,]    4    5    6   40   50   60</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="applying-functions-across-data-elements">
+<h2><a class="toc-backref" href="#id2">13.2. Applying Functions Across Data Elements</a><a class="headerlink" href="#applying-functions-across-data-elements" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="index-0"></span><span class="target" id="index-1"></span><p id="index-2">The various <em>apply</em> functions can be an invaluable tool when trying to
+work with subsets within a data set. The different versions of the
+<em>apply</em> commands are used to take a function and have the function
+perform an operation on each part of the data. There are a wide
+variety of these commands, but we only look at two sets of them. The
+first set, <em>lapply</em> and <em>sapply</em>, is used to apply a function to every
+element in a list. The second one, <em>tapply</em>, is used to apply a
+function on each set broken up by a given set of factors.</p>
+<div class="section" id="operations-on-lists-and-vectors">
+<h3>13.2.1. Operations on Lists and Vectors<a class="headerlink" href="#operations-on-lists-and-vectors" title="Permalink to this headline">¶</a></h3>
+<span class="target" id="index-3"></span><p id="index-4">First, the <em>lapply</em> command is used to take a list of items and
+perform some function on each member of the list. That is, the list
+includes a number of different objects. You want to perform some
+operation on <strong>every</strong> object within the list. You can use <em>lapply</em> to
+tell R to go through each item in the list and perform the desired
+action on each item.</p>
+<p>In the following example a list is created with three elements. The
+first is a randomly generated set of numbers with a normal
+distribution. The second is a randomly generated set of numbers with
+an exponential distribution. The last is a set of factors. A summary
+is then performed on each element in the list.</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>x <span class="o">&lt;-</span> <span class="kt">list</span><span class="p">(</span>a<span class="o">=</span>rnorm<span class="p">(</span><span class="m">200</span><span class="p">,</span>mean<span class="o">=</span><span class="m">1</span><span class="p">,</span>sd<span class="o">=</span><span class="m">10</span><span class="p">),</span>
+<span class="go">            b=rexp(300,10.0),</span>
+<span class="go">            c=as.factor(c(&quot;a&quot;,&quot;b&quot;,&quot;b&quot;,&quot;b&quot;,&quot;c&quot;,&quot;c&quot;)))</span>
+<span class="gp">&gt; </span><span class="kp">lapply</span><span class="p">(</span>x<span class="p">,</span><span class="kp">summary</span><span class="p">)</span>
+<span class="go">$a</span>
+<span class="go">     Min.   1st Qu.    Median      Mean   3rd Qu.      Max.</span>
+<span class="go">-26.65000  -6.91200  -0.39250   0.09478   6.86700  32.00000</span>
+
+<span class="go">$b</span>
+<span class="go">     Min.   1st Qu.    Median      Mean   3rd Qu.      Max.</span>
+<span class="go">0.0001497 0.0242300 0.0633300 0.0895400 0.1266000 0.7160000</span>
+
+<span class="go">$c</span>
+<span class="go">a b c</span>
+<span class="go">1 3 2</span>
+</pre></div>
+</div>
+<p>The <em>lapply</em> command returns a list. The entries in the list have the
+same names as the entries in the list that is passed to it. The values
+of each entry are the results from applying the function. The <em>sapply</em>
+function is similar, but the difference is that it <strong>tries</strong> to turn
+the result into a vector or matrix if possible. If it does not make
+sense then it returns a list just like the <em>lapply</em> command.</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>x <span class="o">&lt;-</span> <span class="kt">list</span><span class="p">(</span>a<span class="o">=</span>rnorm<span class="p">(</span><span class="m">8</span><span class="p">,</span>mean<span class="o">=</span><span class="m">1</span><span class="p">,</span>sd<span class="o">=</span><span class="m">10</span><span class="p">),</span>b<span class="o">=</span>rexp<span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="m">10.0</span><span class="p">))</span>
+<span class="gp">&gt; </span>x
+<span class="go">$a</span>
+<span class="go">[1]  -0.3881426   6.2910959  13.0265859  -1.5296377   6.9285984 -28.3050569</span>
+<span class="go">[7]  11.9119731  -7.6036997</span>
+
+<span class="go">$b</span>
+<span class="go">[1] 0.212689007 0.081818395 0.222462531 0.181424705 0.168476454 0.002924134</span>
+<span class="go">[7] 0.007010114 0.016301837 0.081291728 0.055426055</span>
+
+<span class="gp">&gt; </span>val <span class="o">&lt;-</span> <span class="kp">lapply</span><span class="p">(</span>x<span class="p">,</span><span class="kp">mean</span><span class="p">)</span>
+<span class="gp">&gt; </span><span class="kp">typeof</span><span class="p">(</span>val<span class="p">)</span>
+<span class="go">[1] &quot;list&quot;</span>
+<span class="gp">&gt; </span>val
+<span class="go">$a</span>
+<span class="go">[1] 0.04146456</span>
+
+<span class="go">$b</span>
+<span class="go">[1] 0.1029825</span>
+
+<span class="gp">&gt; </span>val<span class="o">$</span>a
+<span class="go">[1] 0.04146456</span>
+<span class="gp">&gt; </span>val<span class="o">$</span>b
+<span class="go">[1] 0.1029825</span>
+<span class="gp">&gt;</span>
+<span class="gp">&gt;</span>
+<span class="gp">&gt; </span>other <span class="o">&lt;-</span> <span class="kp">sapply</span><span class="p">(</span>x<span class="p">,</span><span class="kp">mean</span><span class="p">)</span>
+<span class="gp">&gt; </span><span class="kp">typeof</span><span class="p">(</span>other<span class="p">)</span>
+<span class="go">[1] &quot;double&quot;</span>
+<span class="gp">&gt; </span>other
+<span class="go">         a          b</span>
+<span class="go">0.04146456 0.10298250</span>
+<span class="gp">&gt; </span>other<span class="p">[</span><span class="m">1</span><span class="p">]</span>
+<span class="go">         a</span>
+<span class="go">0.04146456</span>
+<span class="gp">&gt; </span>other<span class="p">[</span><span class="m">2</span><span class="p">]</span>
+<span class="go">         b</span>
+<span class="go">0.1029825</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="operations-by-factors">
+<h3>13.2.2. Operations By Factors<a class="headerlink" href="#operations-by-factors" title="Permalink to this headline">¶</a></h3>
+<p id="index-5">Another widely used variant of the <em>apply</em> functions is the <em>tapply</em>
+function. The <em>tapply</em> function will take a list of data, usually a
+vector, a list of factors of the same list, and a function. It will
+then apply the function to each subset of the data that matches each
+of the factors.</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>val <span class="o">&lt;-</span> <span class="kt">data.frame</span><span class="p">(</span>a<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">10</span><span class="p">,</span><span class="m">20</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">50</span><span class="p">),</span>
+<span class="go">                    b=as.factor(c(&quot;a&quot;,&quot;a&quot;,&quot;b&quot;,&quot;b&quot;,&quot;a&quot;,&quot;b&quot;)))</span>
+<span class="gp">&gt; </span>val
+<span class="go">   a b</span>
+<span class="go">1  1 a</span>
+<span class="go">2  2 a</span>
+<span class="go">3 10 b</span>
+<span class="go">4 20 b</span>
+<span class="go">5  5 a</span>
+<span class="go">6 50 b</span>
+<span class="gp">&gt; </span>result <span class="o">&lt;-</span> <span class="kp">tapply</span><span class="p">(</span>val<span class="o">$</span>a<span class="p">,</span>val<span class="o">$</span>b<span class="p">,</span><span class="kp">mean</span><span class="p">)</span>
+<span class="gp">&gt; </span><span class="kp">typeof</span><span class="p">(</span>result<span class="p">)</span>
+<span class="go">[1] &quot;double&quot;</span>
+<span class="gp">&gt; </span>result
+<span class="go">       a         b</span>
+<span class="go">2.666667 26.666667</span>
+<span class="gp">&gt; </span>result<span class="p">[</span><span class="m">1</span><span class="p">]</span>
+<span class="go">       a</span>
+<span class="go">2.666667</span>
+<span class="gp">&gt; </span>result<span class="p">[</span><span class="m">2</span><span class="p">]</span>
+<span class="go">       b</span>
+<span class="go">26.66667</span>
+<span class="gp">&gt; </span>result <span class="o">&lt;-</span> <span class="kp">tapply</span><span class="p">(</span>val<span class="o">$</span>a<span class="p">,</span>val<span class="o">$</span>b<span class="p">,</span><span class="kp">summary</span><span class="p">)</span>
+<span class="gp">&gt; </span><span class="kp">typeof</span><span class="p">(</span>result<span class="p">)</span>
+<span class="go">[1] &quot;list&quot;</span>
+<span class="gp">&gt; </span>result
+<span class="go">$a</span>
+<span class="go"> Min. 1st Qu.  Median    Mean 3rd Qu.    Max.</span>
+<span class="go">1.000   1.500   2.000   2.667   3.500   5.000</span>
+
+<span class="go">$b</span>
+<span class="go"> Min. 1st Qu.  Median    Mean 3rd Qu.    Max.</span>
+<span class="go">10.00   15.00   20.00   26.67   35.00   50.00</span>
+
+<span class="gp">&gt; </span>result<span class="o">$</span>a
+<span class="go"> Min. 1st Qu.  Median    Mean 3rd Qu.    Max.</span>
+<span class="go">1.000   1.500   2.000   2.667   3.500   5.000</span>
+<span class="gp">&gt; </span>result<span class="o">$</span>b
+<span class="go"> Min. 1st Qu.  Median    Mean 3rd Qu.    Max.</span>
+<span class="go">10.00   15.00   20.00   26.67   35.00   50.00</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+
+
+
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="time.html" class="btn btn-neutral float-right" title="14. Time Data Types" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tables.html" class="btn btn-neutral" title="12. Two Way Tables" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+		
+
+		<br><br>
+
+		<div class="admonition note">
+			<p class="first admonition-title">Sponsorship</p>
+			<p class="last">
+				This site generously supported
+				by <a href="https://www.datacamp.com/"
+							target="_blank">Datacamp</a>. Datacamp offers a
+				free <a href="https://www.datacamp.com/courses/free-introduction-to-r"
+								target="_blank"> interactive introduction to R coding tutorial</a>
+				as an additional resource. Already over 100,000 people took this
+				free tutorial to sharpen their R coding skills.
+			</p>
+		</div>
+		
+
+<footer>
+		<hr/>
+
+		<div role="contentinfo">
+
+			<p>
+			<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">R Tutorial</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="mailto:kjblack@gmail.com" property="cc:attributionName" rel="cc:attributionURL">Kelly Black</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a> (2015).<br />Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="http://www.cyclismo.org/tutorial/R/" rel="dct:source">http://www.cyclismo.org/tutorial/R/</a>.
+</p>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'3.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

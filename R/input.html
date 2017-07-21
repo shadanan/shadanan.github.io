@@ -1,0 +1,563 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>1. Input &mdash; R Tutorial</title>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+
+
+    <link rel="stylesheet" href="_static/siteColours.css" type="text/css" />
+
+
+
+    <link rel="top" title="R Tutorial" href="index.html"/>
+        <link rel="next" title="2. Basic Data Types" href="types.html"/>
+        <link rel="prev" title="R Tutorial" href="index.html"/>
+
+
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+
+
+
+            <a href="index.html" class="icon icon-home"> R Tutorial
+
+
+
+          </a>
+
+
+
+
+              <div class="version">
+                3
+              </div>
+
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+
+
+
+
+        <div id="sidebar">
+					<!-- localtoc.html --><ul>
+<li><a class="reference internal" href="#">1. Input</a><ul>
+<li><a class="reference internal" href="#assignment">1.1. Assignment</a></li>
+<li><a class="reference internal" href="#reading-a-csv-file">1.2. Reading a CSV file</a></li>
+<li><a class="reference internal" href="#brief-note-on-fixed-width-files">1.3. Brief Note on Fixed Width Files</a></li>
+</ul>
+</li>
+</ul>
+
+					<!-- globaltoc.html --><ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">1. Input</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#assignment">1.1. Assignment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reading-a-csv-file">1.2. Reading a CSV file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#brief-note-on-fixed-width-files">1.3. Brief Note on Fixed Width Files</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="types.html">2. Basic Data Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basicOps.html">3. Basic Operations and Numerical Descriptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="probability.html">4. Basic Probability Distributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting.html">5. Basic Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intermediatePlotting.html">6. Intermediate Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vectorIndexing.html">7. Indexing Into Vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="linearLeastSquares.html">8. Linear Least Squares Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="confidence.html">9. Calculating Confidence Intervals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pValues.html">10. Calculating <em>p</em> Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="power.html">11. Calculating The Power Of A Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tables.html">12. Two Way Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataManagement.html">13. Data Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="time.html">14. Time Data Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripting.html">15. Introduction to Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="objectOriented.html">Object Oriented Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hwI.html">16. Case Study: Working Through a HW Problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cholesterol.html">17. Case Study II: A JAMA Paper on Cholesterol</a></li>
+</ul>
+
+        </div>
+
+
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">R Tutorial</a>
+      </nav>
+
+
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+
+    <li>1. Input</li>
+      <li class="wy-breadcrumbs-aside">
+
+
+
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+
+  <div class="section" id="input">
+<h1>1. Input<a class="headerlink" href="#input" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#assignment" id="id2">Assignment</a></li>
+<li><a class="reference internal" href="#reading-a-csv-file" id="id3">Reading a CSV file</a></li>
+<li><a class="reference internal" href="#brief-note-on-fixed-width-files" id="id4">Brief Note on Fixed Width Files</a></li>
+</ul>
+</div>
+<p>Here we explore how to define a data set in an R session. Only two
+commands are explored. The first is for simple assignment of data, and
+the second is for reading in a data file. There are many ways to read
+data into an R session, but we focus on just two to keep it simple.</p>
+<div class="section" id="assignment">
+<span id="basicassignment"></span><h2><a class="toc-backref" href="#id2">1.1. Assignment</a><a class="headerlink" href="#assignment" title="Permalink to this headline">¶</a></h2>
+<p>The most straight forward way to store a list of numbers is through an
+assignment using the c command. (c stands for &#8220;combine.&#8221;) The idea is
+that a list of numbers is stored under a given name, and the name is
+used to refer to the data. A list is specified with the c command, and
+assignment is specified with the &#8220;&lt;-&#8221; symbols. Another term used to
+describe the list of numbers is to call it a &#8220;vector.&#8221;</p>
+<p>The numbers within the c command are separated by commas. As an
+example, we can create a new variable, called &#8220;bubba&#8221; which will
+contain the numbers 3, 5, 7, and 9:</p>
+<div class="highlight-rconsole" id="listing-simpleassignment"><span id="index-0"></span><div class="highlight"><pre><span></span><span class="gp">&gt; </span>bubba <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">7</span><span class="p">,</span><span class="m">9</span><span class="p">)</span>
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+<p>When you enter this command you should not see any output except a new
+command line. The command creates a list of numbers called &#8220;bubba.&#8221; To
+see what numbers is included in bubba type &#8220;bubba&#8221; and press the enter
+key:</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>bubba
+<span class="go">[1] 3 5 7 9</span>
+</pre></div>
+</div>
+<p>If you wish to work with one of the numbers you can get access to it
+using the variable and then square brackets indicating which number:</p>
+<div class="highlight-rconsole" id="index-1"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>bubba<span class="p">[</span><span class="m">2</span><span class="p">]</span>
+<span class="go">[1] 5</span>
+<span class="gp">&gt; </span>bubba<span class="p">[</span><span class="m">1</span><span class="p">]</span>
+<span class="go">[1] 3</span>
+<span class="gp">&gt; </span>bubba<span class="p">[</span><span class="m">0</span><span class="p">]</span>
+<span class="go">numeric(0)</span>
+<span class="gp">&gt; </span>bubba<span class="p">[</span><span class="m">3</span><span class="p">]</span>
+<span class="go">[1] 7</span>
+<span class="gp">&gt; </span>bubba<span class="p">[</span><span class="m">4</span><span class="p">]</span>
+<span class="go">[1] 9</span>
+</pre></div>
+</div>
+<p>Notice that the first entry is referred to as the number 1 entry, and
+the zero entry can be used to indicate how the computer will treat the
+data. You can store strings using both single and double quotes, and
+you can store real numbers.</p>
+<p>You now have a list of numbers and are ready to explore. In the
+chapters that follow we will examine the basic operations in R that
+will allow you to do some of the analyses required in class.</p>
+</div>
+<div class="section" id="reading-a-csv-file">
+<h2><a class="toc-backref" href="#id3">1.2. Reading a CSV file</a><a class="headerlink" href="#reading-a-csv-file" title="Permalink to this headline">¶</a></h2>
+<p>Unfortunately, it is rare to have just a few data points that you do
+not mind typing in at the prompt. It is much more common to have a lot
+of data points with complicated relationships. Here we will examine
+how to read a data set from a file using the read.csv function but
+first discuss the format of a data file.</p>
+<p>We assume that the data file is in the format called &#8220;comma separated
+values&#8221; (csv). That is, each line contains a row of values which can
+be numbers or letters, and each value is separated by a comma. We also
+assume that the very first row contains a list of labels. The idea is
+that the labels in the top row are used to refer to the different
+columns of values.</p>
+<p>First we read a very short, somewhat silly, data file. The data file
+is called <a class="reference external" href="_static/simple.csv">simple.csv</a> and has three columns of
+data and six rows. The three columns are labeled &#8220;trial,&#8221; &#8220;mass,&#8221; and
+&#8220;velocity.&#8221; We can pretend that each row comes from an observation
+during one of two trials labeled &#8220;A&#8221; and &#8220;B.&#8221; A copy of the data file
+is shown below and is created in defiance of Werner Heisenberg:</p>
+<table border="1" class="docutils" id="id1">
+<span id="index-2"></span><caption><span class="caption-text">silly.csv</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">trial</th>
+<th class="head">mass</th>
+<th class="head">velocity</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>A</td>
+<td>10</td>
+<td>12</td>
+</tr>
+<tr class="row-odd"><td>A</td>
+<td>11</td>
+<td>14</td>
+</tr>
+<tr class="row-even"><td>B</td>
+<td>5</td>
+<td>8</td>
+</tr>
+<tr class="row-odd"><td>B</td>
+<td>6</td>
+<td>10</td>
+</tr>
+<tr class="row-even"><td>A</td>
+<td>10.5</td>
+<td>13</td>
+</tr>
+<tr class="row-odd"><td>B</td>
+<td>7</td>
+<td>11</td>
+</tr>
+</tbody>
+</table>
+<p>The command to read the data file is <em>read.csv</em>. We have to give the
+command at least one arguments, but we will give three different
+arguments to indicate how the command can be used in different
+situations. The first argument is the name of file. The second
+argument indicates whether or not the first row is a set of
+labels. The third argument indicates that there is a comma between
+each number of each line. The following command will read in the data
+and assign it to a variable called &#8220;heisenberg:&#8221;</p>
+<span class="target" id="index-3"></span><div class="highlight-rconsole" id="index-4"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>heisenberg <span class="o">&lt;-</span> read.csv<span class="p">(</span>file<span class="o">=</span><span class="s">&quot;simple.csv&quot;</span><span class="p">,</span>head<span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span>sep<span class="o">=</span><span class="s">&quot;,&quot;</span><span class="p">)</span>
+<span class="gp">&gt; </span>heisenberg
+<span class="go">trial mass velocity</span>
+<span class="go">1     A 10.0       12</span>
+<span class="go">2     A 11.0       14</span>
+<span class="go">3     B  5.0        8</span>
+<span class="go">4     B  6.0       10</span>
+<span class="go">5     A 10.5       13</span>
+<span class="go">6     B  7.0       11</span>
+<span class="gp">&gt; </span><span class="kp">summary</span><span class="p">(</span>heisenberg<span class="p">)</span>
+<span class="go">trial      mass          velocity</span>
+<span class="go">A:3   Min.   : 5.00   Min.   : 8.00</span>
+<span class="go">B:3   1st Bu.: 6.25   1st Qu.:10.25</span>
+<span class="go">      Median : 8.50   Median :11.50</span>
+<span class="go">      Mean   : 8.25   Mean   :11.33</span>
+<span class="go">      3rd Qu.:10.38   3rd Qu.:12.75</span>
+<span class="go">      Max.   :11.00   Max.   :14.00</span>
+</pre></div>
+</div>
+<p>(Note that if you are using a Microsoft system the file naming
+convention is different from what we use here. If you want to use a
+backslash it needs to be escaped, i.e. use two backslashes together
+&#8220;\.&#8221; Also you can specify what folder to use by clicking on the
+&#8220;File&#8221; option in the main menu and choose the option to specify your
+working directory.)</p>
+<p>To get more information on the different options available you can use
+the help command:</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>help<span class="p">(</span>read.csv<span class="p">)</span>
+</pre></div>
+</div>
+<p>If R is not finding the file you are trying to read then it may
+be looking in the wrong folder/directory. If you are using the
+graphical interface you can change the working directory from
+the file menu. If you are not sure what files are in the current
+working directory you can use the <em>dir()</em> command to list the files
+and the <em>getwd()</em> command to determine the current working directory:</p>
+<div class="highlight-rconsole" id="index-5"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kp">dir</span><span class="p">()</span>
+<span class="go">[1] &quot;fixedWidth.dat&quot; &quot;simple.csv&quot;     &quot;trees91.csv&quot;    &quot;trees91.wk1&quot;</span>
+<span class="go">[5] &quot;w1.dat&quot;</span>
+<span class="gp">&gt; </span><span class="kp">getwd</span><span class="p">()</span>
+<span class="go">[1] &quot;/home/black/write/class/stat/stat383-13F/dat&quot;</span>
+</pre></div>
+</div>
+<p>The variable &#8220;heisenberg&#8221; contains the three columns of data. Each
+column is assigned a name based on the header (the first line in the
+file). You can now access each individual column using a &#8220;$&#8221; to
+separate the two names:</p>
+<div class="highlight-rconsole" id="index-6"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>heisenberg<span class="o">$</span>trial
+<span class="go">[1] A A B B A B</span>
+<span class="go">Levels: A B</span>
+<span class="gp">&gt; </span>heisenberg<span class="o">$</span>mass
+<span class="go">[1] 10.0 11.0  5.0  6.0 10.5  7.0</span>
+<span class="gp">&gt; </span>heisenberg<span class="o">$</span>velocity
+<span class="go">[1] 12 14  8 10 13 11</span>
+</pre></div>
+</div>
+<p>If you are not sure what columns are contained in the variable you can
+use the names command:</p>
+<div class="highlight-rconsole" id="index-7"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kp">names</span><span class="p">(</span>heisenberg<span class="p">)</span>
+<span class="go">[1] &quot;trial&quot;    &quot;mass&quot;     &quot;velocity&quot;</span>
+</pre></div>
+</div>
+<p>We will look at another example which is used throughout this
+tutorial. The data file was created by a group at Oak Ridge National Laboratory,
+and I converted it to a CSV file to make it easier to work with.
+The original data is given in an excel spreadsheet, and the CSV file,
+<a class="reference external" href="_static/trees91.csv">trees91.csv</a> , was created
+by deleting the top set of
+rows and saving it as a &#8220;csv&#8221; file. This is an option to save within
+excel. (You should save the file on your computer.) It is a good idea
+to open this file in a spreadsheet and look at it. This will help you
+make sense of how R stores the data.</p>
+<p>The original spreadsheet is located at
+<a class="reference external" href="http://cdiac.ornl.gov/ftp/ndp061a/trees91.wk1">http://cdiac.ornl.gov/ftp/ndp061a/trees91.wk1</a> .
+A description of the data file is located at
+<a class="reference external" href="http://cdiac.ornl.gov/ftp/ndp061a/ndp061a.txt">http://cdiac.ornl.gov/ftp/ndp061a/ndp061a.txt</a> .</p>
+<p>The data is used to indicate an estimate of biomass of ponderosa pine
+in a study performed by Dale W. Johnson, J. Timothy Ball, and
+Roger F. Walker who are associated with the Biological Sciences
+Center, Desert Research Institute, P.O. Box 60220, Reno, NV 89506 and
+the Environmental and Resource Sciences College of Agriculture,
+University of Nevada, Reno, NV 89512. The data is consists of 54
+lines, and each line represents an observation. Each observation
+includes measurements and markers for 28 different measurements of a
+given tree. For example, the first number in each row is a number,
+either 1, 2, 3, or 4, which signifies a different level of exposure to
+carbon dioxide. The sixth number in every row is an estimate of the
+biomass of the stems of a tree. Note that the very first line in the
+file is a list of labels used for the different columns of data.</p>
+<p>The data can be read into a variable called &#8220;tree&#8221; in using the
+read.csv command:</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>tree <span class="o">&lt;-</span> read.csv<span class="p">(</span>file<span class="o">=</span><span class="s">&quot;trees91.csv&quot;</span><span class="p">,</span>header<span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span>sep<span class="o">=</span><span class="s">&quot;,&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This will create a new variable called &#8220;tree.&#8221; If you type in &#8220;tree&#8221;
+at the prompt and hit enter, all of the numbers stored in the variable
+will be printed out. Try this, and you should see that it is difficult
+to make any sense out of the numbers.</p>
+<p>There are many different ways to keep track of data in R. When you use
+the <em>read.csv</em> command R uses a specific kind of variable called a
+&#8220;data frame.&#8221; All of the data are stored within the data frame as
+separate columns. If you are not sure what kind of variable you have
+then you can use the attributes command. This will list all of the
+things that R uses to describe the variable:</p>
+<div class="highlight-rconsole" id="index-8"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kp">attributes</span><span class="p">(</span>tree<span class="p">)</span>
+<span class="go">$names</span>
+<span class="go">[1] &quot;C&quot;      &quot;N&quot;      &quot;CHBR&quot;   &quot;REP&quot;    &quot;LFBM&quot;   &quot;STBM&quot;   &quot;RTBM&quot;   &quot;LFNCC&quot;</span>
+<span class="go">[9] &quot;STNCC&quot;  &quot;RTNCC&quot;  &quot;LFBCC&quot;  &quot;STBCC&quot;  &quot;RTBCC&quot;  &quot;LFCACC&quot; &quot;STCACC&quot; &quot;RTCACC&quot;</span>
+<span class="go">[17] &quot;LFKCC&quot;  &quot;STKCC&quot;  &quot;RTKCC&quot;  &quot;LFMGCC&quot; &quot;STMGCC&quot; &quot;RTMGCC&quot; &quot;LFPCC&quot;  &quot;STPCC&quot;</span>
+<span class="go">[25] &quot;RTPCC&quot;  &quot;LFSCC&quot;  &quot;STSCC&quot;  &quot;RTSCC&quot;</span>
+
+<span class="go">$class</span>
+<span class="go">[1] &quot;data.frame&quot;</span>
+
+<span class="go">$row.names</span>
+<span class="go">[1] &quot;1&quot;  &quot;2&quot;  &quot;3&quot;  &quot;4&quot;  &quot;5&quot;  &quot;6&quot;  &quot;7&quot;  &quot;8&quot;  &quot;9&quot;  &quot;10&quot; &quot;11&quot; &quot;12&quot; &quot;13&quot; &quot;14&quot; &quot;15&quot;</span>
+<span class="go">[16] &quot;16&quot; &quot;17&quot; &quot;18&quot; &quot;19&quot; &quot;20&quot; &quot;21&quot; &quot;22&quot; &quot;23&quot; &quot;24&quot; &quot;25&quot; &quot;26&quot; &quot;27&quot; &quot;28&quot; &quot;29&quot; &quot;30&quot;</span>
+<span class="go">[31] &quot;31&quot; &quot;32&quot; &quot;33&quot; &quot;34&quot; &quot;35&quot; &quot;36&quot; &quot;37&quot; &quot;38&quot; &quot;39&quot; &quot;40&quot; &quot;41&quot; &quot;42&quot; &quot;43&quot; &quot;44&quot; &quot;45&quot;</span>
+<span class="go">[46] &quot;46&quot; &quot;47&quot; &quot;48&quot; &quot;49&quot; &quot;50&quot; &quot;51&quot; &quot;52&quot; &quot;53&quot; &quot;54&quot;</span>
+</pre></div>
+</div>
+<p>The first thing that R stores is a list of names which refer to each
+column of the data. For example, the first column is called &#8220;C&#8221;, the
+second column is called &#8220;N.&#8221; Tree is of type data.frame. Finally, the
+rows are numbered consecutively from 1 to 54. Each column has 54
+numbers in it.</p>
+<p>If you know that a variable is a data frame but are not sure what
+labels are used to refer to the different columns you can use the
+names command:</p>
+<div class="highlight-rconsole" id="index-9"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kp">names</span><span class="p">(</span>tree<span class="p">)</span>
+<span class="go">[1]  &quot;C&quot;      &quot;N&quot;      &quot;CHBR&quot;   &quot;REP&quot;    &quot;LFBM&quot;   &quot;STBM&quot;   &quot;RTBM&quot;   &quot;LFNCC&quot;</span>
+<span class="go">[9]  &quot;STNCC&quot;  &quot;RTNCC&quot;  &quot;LFBCC&quot;  &quot;STBCC&quot;  &quot;RTBCC&quot;  &quot;LFCACC&quot; &quot;STCACC&quot; &quot;RTCACC&quot;</span>
+<span class="go">[17] &quot;LFKCC&quot;  &quot;STKCC&quot;  &quot;RTKCC&quot;  &quot;LFMGCC&quot; &quot;STMGCC&quot; &quot;RTMGCC&quot; &quot;LFPCC&quot;  &quot;STPCC&quot;</span>
+<span class="go">[25] &quot;RTPCC&quot;  &quot;LFSCC&quot;  &quot;STSCC&quot;  &quot;RTSCC&quot;</span>
+</pre></div>
+</div>
+<p>If you want to work with the data in one of the columns you give the
+name of the data frame, a &#8220;$&#8221; sign, and the label assigned to the
+column. For example, the first column in tree can be called using
+&#8220;tree$C:&#8221;</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>tree<span class="o">$</span>C
+<span class="go">[1]  1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3</span>
+<span class="go">[39] 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="brief-note-on-fixed-width-files">
+<h2><a class="toc-backref" href="#id4">1.3. Brief Note on Fixed Width Files</a><a class="headerlink" href="#brief-note-on-fixed-width-files" title="Permalink to this headline">¶</a></h2>
+<p id="index-10">There are many ways to read data using R. We only give two examples,
+direct assignment and reading csv files. However, another way deserves
+a brief mention. It is common to come across data that is organized in
+flat files and delimited at preset locations on each line. This is
+often called a &#8220;fixed width file.&#8221;</p>
+<p>The command to deal with these kind of files is <em>read.fwf</em>. Examples of
+how to use this command are not explored here, but a brief example is
+given.  If you would like more information on how to use this command
+enter the following command:</p>
+<div class="highlight-rconsole" id="index-11"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>help<span class="p">(</span>read.fwf<span class="p">)</span>
+</pre></div>
+</div>
+<p>The <em>read.fwf</em> command requires at least two options. The first is the
+name of the file and the second is a list of numbers that gives the
+length of each column in the data file. A negative number in the list
+indicates that the column should be skipped. Here we give the command
+to read the data file <a class="reference external" href="_static/fixedWidth.dat">fixedWidth.dat</a> . In
+this data file there are three columns. The first colum is 17
+characters wide, the second column is 15 characters wide, and the last
+column is 7 characters wide. In the example below we use the optional
+<em>col.names</em> option to specify the names of the columns:</p>
+<div class="highlight-rconsole"><div class="highlight"><pre><span></span><span class="go"> &gt; a = read.fwf(&#39;fixedWidth.dat&#39;,widths=c(-17,15,7),col.names=c(&#39;temp&#39;,&#39;offices&#39;))</span>
+<span class="go"> &gt; a</span>
+<span class="go">  temp offices</span>
+<span class="go">1 17.0      35</span>
+<span class="go">2 18.0     117</span>
+<span class="go">3 17.5      19</span>
+<span class="go">4 17.5      28</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+
+
+
+
+
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+
+        <a href="types.html" class="btn btn-neutral float-right" title="2. Basic Data Types" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+
+
+        <a href="index.html" class="btn btn-neutral" title="R Tutorial" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+
+    </div>
+
+
+		<br><br>
+
+		<div class="admonition note">
+			<p class="first admonition-title">Sponsorship</p>
+			<p class="last">
+				This site generously supported
+				by <a href="https://www.datacamp.com/"
+							target="_blank">Datacamp</a>. Datacamp offers a
+				free <a href="https://www.datacamp.com/courses/free-introduction-to-r"
+								target="_blank"> interactive introduction to R coding tutorial</a>
+				as an additional resource. Already over 100,000 people took this
+				free tutorial to sharpen their R coding skills.
+			</p>
+		</div>
+
+
+<footer>
+		<hr/>
+
+		<div role="contentinfo">
+
+			<p>
+			<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">R Tutorial</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="mailto:kjblack@gmail.com" property="cc:attributionName" rel="cc:attributionURL">Kelly Black</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a> (2015).<br />Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="http://www.cyclismo.org/tutorial/R/" rel="dct:source">http://www.cyclismo.org/tutorial/R/</a>.
+</p>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+
+
+
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'3.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+
+
+</body>
+</html>
