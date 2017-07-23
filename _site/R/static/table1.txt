@@ -1,0 +1,51 @@
+Table 1. Sample Sizes for Lipoproteins for Adults 20 Years Examined
+During the National Health and Nutrition Examination Survey 1999-2002
+by Race/Ethnicity, Sex, and Age Group
+
+              Total Sample*               Morning Fasting    Sample
+                Total         HDL           LDL         Serum
+            Cholesterol   Cholesterol    Cholesterol   Triglyceride
+  20 y
+    All§        8809          8808          3867        3982
+    Men§        4165          4164          1815        1893
+    Women§      4644          4644          2052        2089
+Mexican American
+    All         2122          2122           950         994
+    Men          998           998           439         467
+    Women       1124          1124           511         527
+Non-Hispanic white
+    All         4338          4337          1938        1997
+    Men         2091          2090           924         965
+    Women       2247          2247          1014        1032
+Non-Hispanic black
+    All         1602          1602           670         674
+    Men          749           749           309         312
+    Women        853           853           361         362
+Men, age, y§
+    20-29        674           674           304         311
+    30-39        673           673           316         323
+    40-49        760           760           318         342
+    50-59        571           571           245         262
+    60-69        671           670           287         301
+      70         816           816           345         354
+Women, age, y§
+    20-29        961           961           415         419
+    30-39        861           861           374         377
+    40-49        754           755           347         352
+    50-59        569           569           256         263
+    60-69        672           671           315         324
+      70         827           827           345         354
+
+
+Abbreviations: HDL, high-density lipoprotein; LDL, 
+low-density; lipoprotein.
+
+*Based on all examined adults.
+
+Based on adults examined in the morning who fasted 8.5 to 23 hours
+before venipuncture.
+
+Based on adults with serum triglyceride level of 400 mg/dL or less (
+4.52 mmol/L).
+
+§Includes data for racial/ethnic groups not shown separately.
