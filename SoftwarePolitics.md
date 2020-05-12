@@ -8,9 +8,9 @@ I've spent the past eight years (starting back in June 2004) writing elaborate r
 
 I was doing all that ranting because I've been genuinely perplexed by a set of "bizarre" world-views held dear by -- as far as I can tell -- about half of all programmers I encounter, whether online or in person.
 
-Last week, after nearly a decade of hurling myself against this problem, I've finally figured it out. I know exactly what's been bothering me.
+Last week, after nearly a decade of hurling myself against this problem, I've finally figured it out. I know *exactly* what's been bothering me.
 
-In today's essay I'm going to present you with a new conceptual framework for thinking about software engineering. This set of ideas I present will be completely obvious to you. You will probably slap yourself for not having thought of it yourself. Or you might slap the person next to you.  In fact you probably have thought of it yourself, because it is so blindingly obvious.
+In today's essay I'm going to present you with a new conceptual framework for thinking about software engineering. This set of ideas I present will be *completely* obvious to you. You will probably slap yourself for not having thought of it yourself. Or you might slap the person next to you.  In fact you probably *have* thought of it yourself, because it is so blindingly obvious.
 
 But in my thirty-odd years as a programmer I'm pretty sure this way of thinking about things, if it already existed, has never been mainstream. That assertion is backed by what has to be at least ten Google searches that turned up nothing. So I'm pretty confident.
 
@@ -20,25 +20,23 @@ And I suspect this conceptual framework I'm giving you will immediately become, 
 
 ## The punch line, a.k.a. TL;DR
 
-I won't keep you in suspense. Here is the thesis of this looooong essay. It is the root cause that motivated over half of my ranting all these years, starting at Amazon and continuing here at Google.
+I won't keep you in suspense. Here is the thesis of this *looooong* essay. It is the root cause that motivated over half of my ranting all these years, starting at Amazon and continuing here at Google.
 
 (Note: I Do Not Speak For My Employer. This should be patently obvious. When employers want someone to speak for them, they hire a person like the Mouth of Sauron, to make absolutely sure everyone knows they are speaking for the Employer.)
 
 My thesis:
 
- 1) Software engineering has its own political axis, ranging from conservative to liberal.
-
-(Note: Technically, you could stop reading right here and be at pretty much 90% comprehension. In case you care.)
+ 1) **Software engineering has its own political axis, ranging from conservative to liberal.** Note: Technically, you could stop reading right here and be at pretty much 90% comprehension. In case you care.
 
  2) The notions of "conservative" and "liberal" on this political axis are specialized to software engineering. But they exhibit some strong similarities to their counterparts in real-world politics.
 
- 3) Everyone in the software industry who does stuff related to programming computers falls somewhere fairly precise on this political spectrum, whether they realize it or not.
+ 3) *Everyone* in the software industry who does stuff related to programming computers falls somewhere fairly precise on this political spectrum, whether they realize it or not.
 
-Put another way, YOU are either a liberal or a conservative software engineer. You may be more of a centrist, or maybe an extremist, but you fall somewhere on that left/right spectrum.
+Put another way, *you* are either a liberal or a conservative software engineer. You may be more of a centrist, or maybe an extremist, but you fall *somewhere on* that left/right spectrum.
 
 Just as in real-world politics, software conservatism and liberalism are radically different world views. Make no mistake: they are at odds. They have opposing value systems, priorities, core beliefs and motivations. These value systems clash at design time, at implementation time, at diagnostic time, at recovery time. They get along like green eggs and ham.
 
-I think it is important for us to recognize and understand the conservative/liberal distinction in our industry. It probably won't help us agree on anything, pretty much by definition. Any particular issue only makes it onto the political axis if there is a fundamental, irreconcilable difference of opinion about it. Programmers probably won't -- or maybe even can't -- change their core value systems.
+I think it is important for us to recognize and understand the conservative/liberal distinction in our industry. It probably won't help us *agree* on anything, pretty much by definition. Any particular issue only makes it onto the political axis if there is a fundamental, irreconcilable difference of opinion about it. Programmers probably won't -- or maybe even can't -- change their core value systems.
 
 But the political-axis framework gives us a familiar set of ideas and terms for identifying areas of fundamental disagreement. This can lead to faster problem resolution. Being able to identify something quickly as a well-defined political issue means we can stop wasting time trying to convince the other side to change their minds, and instead move directly into the resolution phase, which (just as in politics) generally boils down to negotiation and compromise. Or, you know, Watergate.
 
@@ -76,7 +74,7 @@ It's easiest to talk first about conservatives, and then define liberals in term
 
 So we'll start with an operational definition of conservatism, from Jost et al.:
 
- "We regard political conservatism as an ideological belief system that is significantly (but not completely) related to motivational concerns having to do with the psychological management of uncertainty and fear."
+"We regard political conservatism as an ideological belief system that is significantly (but not completely) related to motivational concerns having to do with the psychological management of uncertainty and fear."
 
 This theory is explored, re-tested and affirmed in a 2008 study from Garney et. al, "The Secret Lives of Liberals and Conservatives: Personality Profiles, Interaction Styles, and the Things They Leave Behind".
 
@@ -86,31 +84,31 @@ Conservatism, at its heart, is really about risk management.
 
 Similarly, liberal views are often associated with youth, with idealism, with naivete. In the corporate world, we think of startups as being prototypically liberal -- in part because they're setting out to change the world in some way (and liberalism is traditionally associated with change), and in part because they have to go all-out in order to hit their scheduled funding milestones, which can justify cutting corners on software safety.
 
-Liberalism doesn't lend itself quite as conveniently to a primary root motivation. But for our purposes we can think of it as a belief system that is motivated by the desire above all else to effect change. In corporate terms, as we observed, it's about changing the world. In software terms, liberalism aims to maximize the speed of feature development, while simultaneously maximizing the flexibility of the systems being built, so that feature development never needs to slow down or be compromised.
+Liberalism doesn't lend itself quite as conveniently to a primary root motivation. But for our purposes we can think of it as a belief system that is motivated by the desire above all else to effect change. In corporate terms, as we observed, it's about changing the world. In software terms, liberalism aims to maximize the speed of feature development, while simultaneously maximizing the *flexibility* of the systems being built, so that feature development never needs to slow down or be compromised.
 
-To be sure, conservatives think that's what they're maximizing too. But their approach is... well, conservative. Flexibility and productivity are still motivators, but they are not the primary motivators. Safety always trumps other considerations, and performance also tends to rank very highly in the software-conservative's value system.
+To be sure, conservatives think that's what they're maximizing too. But their approach is... well, conservative. Flexibility and productivity are still motivators, but they are not the *primary* motivators. *Safety* always trumps other considerations, and *performance* also tends to rank very highly in the software-conservative's value system.
 
 The crux of the disagreement between liberals and conservatives in the software world is this: how much focus should you put on safety? Not just compile-time type-safety, but also broader kinds of "idiot-proofing" for systems spanning more than one machine.
 
 Let's characterize this core disagreement with some example statements that would be rated with much higher importance by conservatives than by liberals:
 
-1. Software should aim to be bug free before it launches. (Banner claim: "Debugging Sucks!") Make sure your types and interfaces are all modeled, your tests are all written, and your system is fully specified before you launch. Or else be prepared for the worst!
+1. *Software should aim to be bug free before it launches.* (Banner claim: "Debugging Sucks!") Make sure your types and interfaces are all modeled, your tests are all written, and your system is fully specified before you launch. Or else be prepared for the worst!
 
-2. Programmers should be protected from errors. Many language features are inherently error-prone and dangerous, and should be disallowed for all the code we write. We can get by without these features, and our code will be that much safer.
+2. *Programmers should be protected from errors.* Many language features are inherently error-prone and dangerous, and should be disallowed for all the code we write. We can get by without these features, and our code will be that much safer.
 
-3. Programmers have difficulty learning new syntax. We should limit the number of languages used at our company, so that nobody has to learn a new syntax when a system goes down in the middle of the night on Christmas Eve. And we should never permit features that allow defining new syntax, nor changing the semantics of existing syntax. (Common examples: no operator overloading, and NO metaprogramming!)
+3. *Programmers have difficulty learning new syntax.* We should limit the number of languages used at our company, so that nobody has to learn a new syntax when a system goes down in the middle of the night on Christmas Eve. And we should never permit features that allow defining new syntax, nor changing the semantics of existing syntax. (Common examples: no operator overloading, and *no* metaprogramming!)
 
-4. Production code must be safety-checked by a compiler. Any code that cannot be statically checked should in general be avoided. In specific cases where it is strictly necessary, uses of it must be approved by a central committee. (Examples: eval, dynamic invocation, RTTI).
+4. *Production code must be safety-checked by a compiler.* Any code that cannot be statically checked should in general be avoided. In specific cases where it is strictly necessary, uses of it must be approved by a central committee. (Examples: eval, dynamic invocation, RTTI).
 
-5. Data stores must adhere to a well-defined, published schema. Relational databases must be in third-normal form and adhere to a UML or equivalent schema definition. XML should have a DTD. NoSQL databases and name/value stores -- both of which should be avoided in general -- must have a separate physical schema that defines all permissible keys and their corresponding value types.
+5. *Data stores must adhere to a well-defined, published schema.* Relational databases must be in third-normal form and adhere to a UML or equivalent schema definition. XML should have a DTD. NoSQL databases and name/value stores -- both of which should be avoided in general -- must have a separate physical schema that defines all permissible keys and their corresponding value types.
  
-6. Public interfaces should be rigorously modeled. Data should never be stored in strings or untyped collections. All input and output entities should be thorougly and explicitly specified via statically-checkable, ideally object-oriented models.
+6. *Public interfaces should be rigorously modeled.* Data should never be stored in strings or untyped collections. All input and output entities should be thorougly and explicitly specified via statically-checkable, ideally object-oriented models.
 
-7. Production systems should never have dangerous or risky back-doors. It should never be possible to connect to a live production system via a debugger, telnet shell, nor any other interface that allows the developer to manipulate the runtime operation of the code or data. The only ports into a production system should be read-only monitoring channels.
+7. *Production systems should never have dangerous or risky back-doors.* It should never be possible to connect to a live production system via a debugger, telnet shell, nor any other interface that allows the developer to manipulate the runtime operation of the code or data. The only ports into a production system should be read-only monitoring channels.
 
-8. If there is ANY doubt as to the safety of a component, it cannot be allowed in production -- no matter how teams may cry and wail that they need it to make forward progress. (I'm talkin' to you, FUSE).
+8. *If there is ANY doubt as to the safety of a component, it cannot be allowed in production* -- no matter how teams may cry and wail that they need it to make forward progress. (I'm talkin' to you, FUSE).
 
-9. Fast is better than slow. Everyone hates slow code. Code should perform well. You should engineer all your code for optimum speed up front, right out of the box. Otherwise it might not be fast enough. Avoid using languages or DSLs or libraries that have a reputation for being slow.  Even if they're fast enough for your current purposes, the requirements (or callers) could change, and suddenly the software would be too slow!
+9. *Fast is better than slow.* Everyone hates slow code. Code should perform well. You should engineer all your code for optimum speed up front, right out of the box. Otherwise it might not be fast enough. Avoid using languages or DSLs or libraries that have a reputation for being slow.  Even if they're fast enough for your current purposes, the requirements (or callers) could change, and suddenly the software would be too slow!
 
 Of course these examples are meant to be illustrative rather than comprehensive. And obviously not all of them may necessarily be espoused by everyone who self-identifies as a conservative. But barring minor exceptions, they are all very common Conservative viewpoints.
 
@@ -118,23 +116,23 @@ To decide whether a system or a technology is liberal or conservative, just thin
 
 By way of comparison, here are the Liberal versions of the nine examples above. It might help to think of Scooby-Doo characters. The examples above are all from Fred, and the examples below are from Shaggy.
 
-1. Bugs are not a big deal. They happen anyway, no matter how hard you try to prevent them, and somehow life goes on. Good debuggers are awesome pieces of technology, and stepping through your code gives you insights you can't get any other way. Debugging and diagnosing are difficult arts, and every programmer should be competent with them. The Christmas Eve Outage scenario never, ever happens in practice -- that's what code freeze is for. Bugs are not a big deal! (This belief really may be the key dividing philosophy between Conservative and Liberal philosophies.)
+1. *Bugs are not a big deal.* They happen anyway, no matter how hard you try to prevent them, and somehow life goes on. Good debuggers are awesome pieces of technology, and stepping through your code gives you insights you can't get any other way. Debugging and diagnosing are difficult arts, and every programmer should be competent with them. The Christmas Eve Outage scenario never, *ever* happens in practice -- that's what code freeze is for. **Bugs are not a big deal!** (This belief really may be the key dividing philosophy between Conservative and Liberal philosophies.)
 
-2. Programmers are only newbies for a little while. The steady state for a programmer's career is being smart, knowledgeable, creative, resourceful and experienced. Putting a bunch of rules in place to protect newbies from doing harm (or being harmed) is incorrectly optimizing for the transient case instead of the steady state.
+2. *Programmers are only newbies for a little while.* The steady state for a programmer's career is being smart, knowledgeable, creative, resourceful and experienced. Putting a bunch of rules in place to protect newbies from doing harm (or being harmed) is incorrectly optimizing for the transient case instead of the steady state.
 
-3. Programmers figure stuff out amazingly fast when their jobs depend on it. People learn to read sheet music, braille, sign language, and all sorts of other semiotic frameworks. Hell, even gorillas can apparently do all that. Programmers don't need protection from syntax. They just need documentation and a little slack time to read up on it.
+3. *Programmers figure stuff out amazingly fast when their jobs depend on it.* People learn to read sheet music, braille, sign language, and all sorts of other semiotic frameworks. Hell, even gorillas can apparently do all that. Programmers don't need protection from syntax. They just need documentation and a little slack time to read up on it.
 
-4. Succinctness is power. Code should be kept small. Period. If your static checking tools can't reason about the code, then the checking needs to be made smarter (e.g. by incorporating runtime data) rather than making the code dumber.
+4. *Succinctness is power.* Code should be kept small. Period. If your static checking tools can't reason about the code, then the checking needs to be made smarter (e.g. by incorporating runtime data) rather than making the code dumber.
 
-5. Rigid schemas limit flexibility and slow down development. Lightweight/partial/optional schemas are a better tradeoff. Moreover, the schema is often not well-understood until a lot of data is collected and a lot of use cases are thorougly exercised. So the schema should follow the code rather than precede it.
+5. *Rigid schemas limit flexibility and slow down development.* Lightweight/partial/optional schemas are a better tradeoff. Moreover, the schema is often not well-understood until a lot of data is collected and a lot of use cases are thorougly exercised. So the schema should follow the code rather than precede it.
 
-6. Public interfaces should above all else be simple, backward-compatible, and future-compatible. Rigorous modeling is just guessing at how the interface will need to evolve. It makes both forward- and backward-compatibility almost impossible, resulting in interface churn and customer unhappiness. Public interfaces should always do the simplest thing that could possibly work, and grow only as needed.
+6. *Public interfaces should above all else be simple, backward-compatible, and future-compatible.* Rigorous modeling is just guessing at how the interface will need to evolve. It makes both forward- and backward-compatibility almost impossible, resulting in interface churn and customer unhappiness. Public interfaces should always do the simplest thing that could possibly work, and grow only as needed.
 
-7. System flexibility can mean the difference between you getting the customer (or contract) vs. your competitor nabbing it instead. Security and safety risks in runtime production systems can be mitigated and controlled by logging, monitoring and auditing. There are plenty of existence-proofs of large systems with root-access backdoors and shells (e.g. RDBMS, online game servers) whose risk is controlled while still giving them world-class runtime flexibility.
+7. *System flexibility can mean the difference between you getting the customer (or contract) vs. your competitor nabbing it instead.* Security and safety risks in runtime production systems can be mitigated and controlled by logging, monitoring and auditing. There are plenty of existence-proofs of large systems with root-access backdoors and shells (e.g. RDBMS, online game servers) whose risk is controlled while still giving them world-class runtime flexibility.
 
-8. Companies should take risks, embrace progress, and fiercely resist ossification. It doesn't matter how big your business is: it must grow or die. If you want to stay competitive, you have to make a conscious, often painful effort to take risks. Which means you'll need good recovery techniques for the inevitable disasters. But you need those even if you don't take risks.  So take risks!
+8. *Companies should take risks, embrace progress, and fiercely resist ossification.* It doesn't matter how big your business is: it must grow or die. If you want to stay competitive, you have to make a conscious, often painful effort to take risks. Which means you'll need good recovery techniques for the inevitable disasters. *But you need those even if you don't take risks.* So take risks!
 
-9. Premature optimization is the root of all evil. Get the code working first, focusing on correctness over performance, and on iterative prototyping over correctness. Only when your customers list latency as the top priority should you begin performing profiler-driven optimizations.
+9. *Premature optimization is the root of all evil.* Get the code working first, focusing on correctness over performance, and on iterative prototyping over correctness. Only when your customers list latency as the top priority should you begin performing profiler-driven optimizations.
 
 There you have it: Shaggy vs. Fred.
 
@@ -142,7 +140,7 @@ Just as in real-world politics, software liberals are viewed by conservatives as
 
 Once again, although I don't think the two camps will ever agree, I do think that mutual understanding of the underlying value systems may help the camps compromise.
 
-Or at the very least, the conservative/liberal classification should help the two camps steer clear of each other. I think it is probably better to have a harmonious team of all-liberals or all-conservatives than a mixed team of constantly clashing ideologies. It's a lot like how vehicle-driving philosophies can differ regionally -- it's OK if everyone drives in some crazy way, as long as they ALL drive that way.
+Or at the very least, the conservative/liberal classification should help the two camps steer clear of each other. I think it is probably better to have a harmonious team of all-liberals or all-conservatives than a mixed team of constantly clashing ideologies. It's a lot like how vehicle-driving philosophies can differ regionally -- it's OK if everyone drives in some crazy way, as long as they *all* drive that way.
 
 ## So Security Engineers are the most conservative, then, right?
 
@@ -150,7 +148,7 @@ Wrong! The reality here goes against intuition, and I mention it to show how poo
 
 Security engineers are deeply concerned with risk assessment and attack-surface management, so you might well guess that they would naturally tend towards software conservatism.
 
-In practice, however, security engineers tend to be keenly aware of the tradeoffs between caution and progress, since they have to spend big parts of their day meeting with software teams who are often too busy (not to mention woefully underinformed) to spend a lot of time on security. Security engineers learn quickly to make well-informed and practical risk-management decisions, rather than conservatively always trying to be as safe as humanly possible.
+In practice, however, security engineers tend to be keenly aware of the tradeoffs between caution and progress, since they have to spend big parts of their day meeting with software teams who are often too busy (not to mention woefully underinformed) to spend a lot of time on security. Security engineers learn quickly to make well-informed and *practical* risk-management decisions, rather than conservatively always trying to be as safe as humanly possible.
 
 Hence many security engineers are in fact software liberals. Some just swing that way.
 
