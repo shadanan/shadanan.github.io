@@ -1,6 +1,5 @@
-name: Shad's Ruminations
+name: "Shad's Ruminations"
 description: My random thoughts, but version controlled.
-url: "https://shad.io"
+url: https://shad.io
 markdown: GFM
-
 theme: jekyll-theme-midnight
