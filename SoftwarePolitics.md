@@ -1,3 +1,7 @@
+The following post from 2012 by [Steve Yegge](https://en.wikipedia.org/wiki/Steve_Yegge) was posted to Google Plus, which has since gone the way of the dinosaur. I have reposted it here on my personal page for posterity.
+
+---
+
 # Notes from the Mystery Machine Bus
 
 I've spent the past eight years (starting back in June 2004) writing elaborate rants about a bunch of vaguely related software engineering issues.
