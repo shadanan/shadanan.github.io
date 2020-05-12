@@ -180,11 +180,11 @@ Why yes. Yes, they are. Static typing is unquestionably one of the key dividing 
 
 In the conservative view, static typing (whether explicit or inferred) is taken on faith as an absolute necessity for modern software engineering. It is not something that one questions. It is a non-issue: a cornerstone of what constitutes the very definition of Acceptable Engineering Practice.
 
-In the liberal's view, static typing is analogous to Security Theater. It exists solely to make people feel safe. People (and airports) have proven time and again that you can be just as statistically secure without it. But some people need it in order to feel "safe enough".
+In the liberal's view, static typing is analogous to Security Theater. It exists solely to make people *feel* safe. People (and airports) have proven time and again that you can be just as statistically secure without it. But some people need it in order to feel "safe enough".
 
 That's a pretty big difference of opinion -- one I'm sure you can relate to, regardless of how you feel about it.
 
-I'm not going to try to defend my view here, since that's what all those old blog posts were for. If I haven't convinced you by now, then there's not much point in continuing to try. I respect your opinion. Well, now. And I hope you now have a little better understanding of mine.
+I'm not going to try to defend my view here, since that's what all those old blog posts were for. If I haven't convinced you by now, then there's not much point in continuing to try. I respect your opinion. Well, *now*. And I hope you now have a little better understanding of mine.
 
 I should, however, mention that there is an unrelated (i.e. politically-neutral) point on which both camps agree: namely, that static types yield better toolchain support. This is undeniably true today, and I have made it my life's work to ensure that it is not true tomorrow.
 
@@ -194,7 +194,7 @@ I have spent the last four years championing an initiative within Google called 
 
 My project is accomplishing this lofty and almost insanely ambitious goal through the (A) normative, language-neutral, cross-language definitions of, and (B) subsequent standardization of, several distinct parts of the toolchain: (I) compiler and interpreter Intermediate Representations and metadata, (II) editor-client-to-server protocols, (III) source code indexing, analysis and query languages, and (IV) fine-grained dependency specifications at the level of build systems, source files, and code symbols.
 
-OK, that's not the whole picture. But it's well over half of it.
+OK, that's not the *whole* picture. But it's well over half of it.
 
 Grok is not what you would call a "small" project. I will be working on it for quite some time to come. The project has gone through several distinct lifecycle phases in its four years, from "VC funding" to "acceptance" to "cautious enthusiasm" to "OMG all these internal and even external projects now depend critically on us." Our team has recently doubled in size, from six engineers to twelve. Every year -- every quarter -- we gain momentum, and our code index grows richer.
 
@@ -202,7 +202,7 @@ Grok is not a confidential project. But we have not yet talked openly about it, 
 
 For purposes of this essay, I'll assert that at some point in the next decade or so, static types will not be a prerequisite for world-class toolchain support.
 
-I think people will still argue heatedly about type systems, and conservatives may never be able to agree amongst themselves as to which type system approach is best for modeling program behavior. But at least I will have helped that discussion be ONLY about representations. The quality of the corresponding developer tools should no longer be a factor in the discussions.
+I think people will still argue heatedly about type *systems*, and conservatives may never be able to agree amongst themselves as to which type system approach is best for modeling program behavior. But at least I will have helped that discussion be *only* about representations. The quality of the corresponding developer tools should no longer be a factor in the discussions.
 
 ## Dividing up the Space
 
@@ -224,13 +224,10 @@ Woah, that exercise was surprisingly fun! It's far from complete, but hopefully 
 
 Some natural themes arise here:
 
- -- implicit is generally liberal; explicit is generally conservative.
-
- -- performance-oriented is generally conservative; late-optimized is generally liberal.
-
- -- compile-time binding is generally conservative; runtime/late binding is generally liberal.
-
- -- concurrency and parallelism in general seem to be politically charged topics, but the disagreement is orthogonal to the liberal/conservative camps.
+  - *Implicit* is generally liberal; *explicit* is generally conservative.
+  - *Performance-oriented* is generally conservative; *late-optimized* is generally liberal.
+  - *Compile-time binding* is generally conservative; *runtime/late binding* is generally liberal.
+  - Concurrency and parallelism in general seem to be politically charged topics, but the disagreement is orthogonal to the liberal/conservative camps.
 
 I'd love to keep going with the classification. But I'll stop here, since we've got higher-level stuff to discuss.
 
@@ -244,23 +241,23 @@ Here are some very rough categorizations. Note that within each language camp th
 
 This list is just a few representative examples to give you the flavor. I'm only listing general-purpose languages here, since DSLs and query languages are typically feature-restricted enough to be hard to categorize.
 
-Assembly language: Batshit liberal.
+**Batshit liberal**: Assembly language
 
-Perl, Ruby, PHP, shell-script: Extremist liberal.
+**Extremist liberal**: Perl, Ruby, PHP, shell-script
 
-JavaScript, Visual Basic, Lua: Hardcore liberal.
+**Hardcore liberal**: JavaScript, Visual Basic, Lua
 
-Python, Common Lisp, Smalltalk/Squeak: Liberal.
+**Liberal**: Python, Common Lisp, Smalltalk/Squeak
 
-C, Objective-C, Scheme: Moderate-liberal.
+**Moderate-liberal**: C, Objective-C, Scheme
 
-C++, Java, C#, D, Go: Moderate-conservative.
+**Moderate-conservative**: C++, Java, C#, D, Go
 
-Clojure, Erlang, Pascal: Conservative.
+**Conservative**: Clojure, Erlang, Pascal
 
-Scala, Ada, OCaml, Eiffel: Hardcore conservative.
+**Hardcore conservative**: Scala, Ada, OCaml, Eiffel
 
-Haskell, SML: Extremist conservative.
+**Extremist conservative**: Haskell, SML
 
 These are my own categorizations based on my own personal experiences with these languages and their respective communities. Your mileage may vary. However, I'd be quite surprised if you chose to move any of these languages more than a step or two away from where I've positioned it.
 
@@ -278,15 +275,15 @@ What's more, if you write your liberal-language code in a conservative way, peop
 
 Whereas if you write your conservative-language code in a liberal way, you run the risk of being ostracized by your local language community, because... why are you doing all that dangerous dynamic stuff in the first place? I'll explore this cultural phenomenon further when I talk about Clojure below.
 
-The last big, interesting observation from the list is that a lot of the most popular languages out there are only moderately conservative -- even if they think of themselves as quite conservative compared to their ultra-dynamic cousins.
+The last big, interesting observation from the list is that a lot of the most popular languages out there are only moderately conservative -- even if they think of themselves as *quite* conservative compared to their ultra-dynamic cousins.
 
-I've said it before, and it bears repeating here: the reason C++, C# and Java have been particularly successful in the marketplace is that -- just like effective politicians -- they know how to play both sides.
+I've said it before, and it bears repeating here: the reason C++, C# and Java have been *particularly* successful in the marketplace is that -- just like effective politicians -- they know how to play both sides.
 
 C++ allows liberal-biased programmers to program in straight C, and it allows conservative-biased programmers to layer in arbitrary amounts of static type modeling, depending on how much work they want to expend in order to feel secure. Java?  Pretty much the same story.
 
 Playing to both the fast-and-loose and lock-your-doors mindsets has proven to be a key ingredient to market success.  Also marketing, but it helps a LOT to be viewed as philosophically friendly by both the liberal and conservative camps.
 
-There is a new crop of languages on the horizon (for instance, Google's Dart language, but also new specs for EcmaScript) that are deliberately courting the centrist crowd -- and also delicately playing to grab both the liberals and conservatives -- by offering optional static types. In principle this is a sound idea. In practice I think it will come down to whether the marketing is any good.  Which it probably won't be.
+There is a new crop of languages on the horizon (for instance, Google's Dart language, but also new specs for EcmaScript) that are deliberately courting the centrist crowd -- and also delicately playing to grab both the liberals and conservatives -- by offering *optional* static types. In principle this is a sound idea. In practice I think it will come down to whether the marketing is any good.  Which it probably won't be.
 
 Language designers always seem to underestimate the importance of marketing!
 
@@ -294,17 +291,17 @@ Language designers always seem to underestimate the importance of marketing!
 
 Just for fun, let's contrast four similar-ish tech companies in their software-political outlook.
 
-1) Facebook -- Diagnosis: Extremist Liberal. Despite their scale, they are still acting like a startup, and so far they've been getting away with it. They use primarily C++ and PHP, and they're prone to bragging about how their code calls back and forth from PHP to C++ and back into PHP, presumably bottoming out somewhere. Their datastore is memcached: just name-value pairs.  No schema. They dump the data and logs into a backend Hive store and run Hadoop mapreduces for offline data analysis.  They still hold all-night hackathons every other week or so, which will remain feasible for them as long as the majority of their programmers are very young males (as was the case last time I toured there) and their stock continues to promise great riches (as was not so much the case last I checked.)  As a company they are tightly knit and strongly biased for action, placing a high value on the ability of individual programmers to launch features to their website with little to no bureaucracy or overhead.  This is pretty remarkable for a company as big as they are, with as many users as they have.  Conservatives no doubt regard them with something between horror and contempt.  But Facebook is proving that programmers of any world-view can get a hell of a lot accomplished when they gang up on a problem.
+1) **Facebook** -- *Diagnosis: Extremist Liberal.* Despite their scale, they are still acting like a startup, and so far they've been getting away with it. They use primarily C++ and PHP, and they're prone to bragging about how their code calls back and forth from PHP to C++ and back into PHP, presumably bottoming out somewhere. Their datastore is memcached: just name-value pairs.  No schema. They dump the data and logs into a backend Hive store and run Hadoop mapreduces for offline data analysis.  They still hold all-night hackathons every other week or so, which will remain feasible for them as long as the majority of their programmers are very young males (as was the case last time I toured there) and their stock continues to promise great riches (as was not so much the case last I checked.)  As a company they are tightly knit and strongly biased for action, placing a high value on the ability of individual programmers to launch features to their website with little to no bureaucracy or overhead.  This is pretty remarkable for a company as big as they are, with as many users as they have.  Conservatives no doubt regard them with something between horror and contempt.  But Facebook is proving that programmers of any world-view can get a hell of a lot accomplished when they gang up on a problem.
 
-2) Amazon.com -- Diagnosis: Liberal. Which is surprising, given how long they've been in business, how much money is at stake, how mature their Operations division is, and how financially conservative they are. But "Liberal" is actually quite a retreat compared to their early days. Back in 1998-1999 they were almost exactly like Facebook is today, with the sole exception that they put everything in relational databases and did a ton of up-front relational data modeling.  Well, except in Customer Service Apps, where we used a name/value store just to be flexible enough to keep up with the mad chaotic scramble of the business launches.  All part of my multi-decade indoctrination as a Liberal.  In any case, despite many corporate improvements with respect to work-life balance (which happened after several stock plunges and years of significant double-digit turnover in engineering), Amazon has retained its liberal, startup-like engineering core values.  Every team owns their own data and makes their own decisions, more or less like independent business units.  Amazon still launches and executes faster than just about anyone else out there, because they're still willing to take real risks (incurring occasional huge outages), and to make hard decisions in favor of launching early and often.  Above all else, Amazon has proven conclusively that after fifteen years, they can still innovate like nobody else.  They've still got it.
+2) **Amazon.com** -- *Diagnosis: Liberal.* Which is surprising, given how long they've been in business, how much money is at stake, how mature their Operations division is, and how financially conservative they are. But "Liberal" is actually quite a retreat compared to their early days. Back in 1998-1999 they were almost exactly like Facebook is today, with the sole exception that they put everything in relational databases and did a ton of up-front relational data modeling.  Well, except in Customer Service Apps, where we used a name/value store just to be flexible enough to keep up with the mad chaotic scramble of the business launches.  All part of my multi-decade indoctrination as a Liberal.  In any case, despite many corporate improvements with respect to work-life balance (which happened after several stock plunges and years of significant double-digit turnover in engineering), Amazon has retained its liberal, startup-like engineering core values.  Every team owns their own data and makes their own decisions, more or less like independent business units.  Amazon still launches and executes faster than just about anyone else out there, because they're still willing to take real risks (incurring occasional huge outages), and to make hard decisions in favor of launching early and often.  Above all else, Amazon has proven conclusively that after fifteen years, they can still innovate like nobody else.  They've still got it.
 
-3) Google -- Diagnosis: Conservative. They began life as slightly liberal and have grown more conservative ever since. Google was only software-liberal in the very very early days, back when the search engine itself was written in Python. As they grew, they quickly acquired a software conservatism driven entirely by the engineers themselves.  Manifestos were written about the dangers of using multiple languages, and strict style guides were put in place to severely limit "risky" or "hard to read" language features of the few languages they did allow.  Google's JavaScript code is written in an extremely conservative style with extensive static type annotations, and eval is forbidden.  The Python style guide forbids metaprogramming and other dynamic features, which makes their Python look a lot like untyped Java.  And they have severely limited the use of many C++ language features, with C++11 support rolling out literally one feature every few weeks.  (There are over five hundred new features in C++11.)  In internal surveys, Google engineers commonly cite bureaucracy, churn and complexity as core obstacles to feature advancement and rapid launches.  Google has made serious attempts on several occasions to reduce this bureacracy, but they always get pushback from -- surprise -- the engineers themselves, who have grown so staunchly conservative that they actively (and even more often, passively) resist the introduction of more flexible stacks and technologies.  Most of the major technological shifts within Google over the past half-decade have been overtly conservative.  For a liberal like me, it has been a very sad process to observe.  But at least I've found myself a niche that's widely regarded (by both camps) as valuable, and within my own org we can still be pretty liberal and get away with it.
+3) **Google** -- *Diagnosis: Conservative.* They began life as slightly liberal and have grown more conservative ever since. Google was only software-liberal in the very very early days, back when the search engine itself was written in Python. As they grew, they quickly acquired a software conservatism driven entirely by the engineers themselves.  Manifestos were written about the dangers of using multiple languages, and strict style guides were put in place to severely limit "risky" or "hard to read" language features of the few languages they did allow.  Google's JavaScript code is written in an extremely conservative style with extensive static type annotations, and eval is forbidden.  The Python style guide forbids metaprogramming and other dynamic features, which makes their Python look a lot like untyped Java.  And they have severely limited the use of many C++ language features, with C++11 support rolling out literally one feature every few weeks.  (There are over five hundred new features in C++11.)  In internal surveys, Google engineers commonly cite bureaucracy, churn and complexity as core obstacles to feature advancement and rapid launches.  Google has made serious attempts on several occasions to reduce this bureacracy, but they always get pushback from -- surprise -- the engineers themselves, who have grown so staunchly conservative that they actively (and even more often, passively) resist the introduction of more flexible stacks and technologies.  Most of the major technological shifts within Google over the past half-decade have been overtly conservative.  For a liberal like me, it has been a very sad process to observe.  But at least I've found myself a niche that's widely regarded (by both camps) as valuable, and within my own org we can still be pretty liberal and get away with it.
 
-4) Microsoft -- Diagnosis: Batshit Conservative. Microsoft has two geese that lay golden eggs: Office and Windows. Microsoft has been reduced to a commercial farmer protecting the geese from all incursions.  The golden eggs still have value, because customers are locked into the platform by the cost-ineffectiveness of retraining their fleets.  But Microsoft can no longer innovate in Office or Windows precisely because of those corporate fleet retraining costs.  Their OEMs are stretched as thin as they can go.  Apple is dominating the handheld markets, and Microsoft is actively stifling their own innovation in Windows Phone because they're afraid it will cannibalize their core Windows business.  Microsoft has not had a successful product-level innovation in fifteen, maybe twenty years.  All of their successful products have been copies of competitors' products:  IE, XBox, C#, .NET, Bing, Windows Phone, and so on ad infinitum. All great implementations of someone else's ideas. Microsoft's playbook is to embrace, extend, and leverage their brand to crush the competition -- or at least it was, until the goverment put an end to that circa 2002.  Now the company genuinely doesn't know what the fuck to do with themselves, and what's more, instead of Bill Gates they now have a lunatic in charge.  Employees are leaving in droves, all citing the same internal "existential crisis" and unbearable corporate politics caused by competing business units actively sabotaging one another.  Microsoft has turned into a caricature of right-wing corporatism: sitting on their front porch with a shotgun cursing at passers-by, waiting for their government bribes to give them another few years of subsidies and shelters while they wait to die.  I've personally chatted with close to four hundred current and ex-Microsoft employees over the past seven years.  Oh, the stories I could tell you... someday, maybe.
+4) **Microsoft** -- *Diagnosis: Batshit Conservative.* Microsoft has two geese that lay golden eggs: Office and Windows. Microsoft has been reduced to a commercial farmer protecting the geese from all incursions.  The golden eggs still have value, because customers are locked into the platform by the cost-ineffectiveness of retraining their fleets.  But Microsoft can no longer innovate in Office or Windows precisely because of those corporate fleet retraining costs.  Their OEMs are stretched as thin as they can go.  Apple is dominating the handheld markets, and Microsoft is actively stifling their own innovation in Windows Phone because they're afraid it will cannibalize their core Windows business.  Microsoft has not had a successful product-level *innovation* in 15, maybe 20 years.  All of their successful products have been copies of competitors' products:  IE, XBox, C#, .NET, Bing, Windows Phone, and so on ad infinitum. All great implementations of someone else's ideas. Microsoft's playbook is to embrace, extend, and leverage their brand to crush the competition -- or at least it was, until the goverment put an end to that circa 2002.  Now the company genuinely doesn't know what the fuck to do with themselves, and what's more, instead of Bill Gates they now have a lunatic in charge.  Employees are leaving in droves, all citing the same internal "existential crisis" and unbearable corporate politics caused by competing business units actively sabotaging one another.  Microsoft has turned into a caricature of right-wing corporatism: sitting on their front porch with a shotgun cursing at passers-by, waiting for their government bribes to give them another few years of subsidies and shelters while they wait to die.  I've personally chatted with close to four hundred current and ex-Microsoft employees over the past seven years.  Oh, the stories I could tell you... someday, maybe.
 
-5) Bonus company: Apple. Diagnosis: no idea, but they're so good at marketing that it's almost irrelevant. Would love to have more insight into their internal software culture, though.  Any takers?  Throwaway accounts?  AMA?
+5) Bonus company: **Apple**. *Diagnosis: no idea,* but they're so good at marketing that it's almost irrelevant. Would love to have more insight into their internal software culture, though.  Any takers?  Throwaway accounts?  AMA?
 
-OK, that was a fun exercise too. But we need to move on! Almost done now.
+OK, *that* was a fun exercise too. But we need to move on! Almost done now.
 
 ## Specific Case Study: The Clojure Language
 
@@ -312,11 +309,11 @@ I've been meaning to follow up on Clojure for a while now. Over a year, at least
 
 Now I do!
 
-Clojure is a new-ish Lisp dialect that runs on the JVM and .NET, and I was honored to write the Foreward to "The Joy of Clojure" a while back. For a few years I had been really excited to start learning Clojure, and my initial experiences with it were quite positive.
+Clojure is a new-ish Lisp dialect that runs on the JVM and .NET, and I was honored to write the Foreward to *The Joy of Clojure* a while back. For a few years I had been really excited to start learning Clojure, and my initial experiences with it were quite positive.
 
-However, I eventually learned that the Clojure community is extremely conservative. That is is pretty unusual for a Lisp dialect. Lisp is widely regarded as one of the most liberal language families in existence. And Clojure has the superficial appearance of being a laissez-faire kind of language. It is quite expressive, including a -- ahem -- liberal dose of new syntax. And it eschews static type annotations and strong type modeling in favor of a small set of highly regular, composable data types and operations -- not unlike, say, Scheme or Python.
+However, I eventually learned that the Clojure community is extremely conservative. That is is pretty unusual for a Lisp dialect. Lisp is widely regarded as one of the most liberal language families in existence. And Clojure has the superficial appearance of being a laissez-faire kind of language. It is quite expressive, including -- ahem -- a *liberal* dose of new syntax. And it eschews static type annotations and strong type modeling in favor of a small set of highly regular, composable data types and operations -- not unlike, say, Scheme or Python.
 
-But the resemblance to a liberal language ends there. Clojure's community came pre-populated with highly conservative programmers from the pure-functional world: basically Haskell/ML types (lots of puns today!) who happen to recognize the benefits of Lisp's tree syntax. So under its expressive covers, everything about Clojure is strongly conservative, with a core overriding bias towards protecting programmers from mistakes.
+But the resemblance to a liberal language ends there. Clojure's community came pre-populated with highly conservative programmers from the pure-functional world: basically Haskell/ML types (lots of puns today!) who happen to recognize the benefits of Lisp's tree syntax. So under its expressive covers, everything about Clojure is *strongly* conservative, with a core overriding bias towards protecting programmers from mistakes.
 
 And the community follows suit. At a Clojure conference last year (or was it two years ago? time flies so fast these days...), there was a key presenter doing a talk on how Macros were basically harmful and should be avoided in modern Clojure code.
 
@@ -330,15 +327,15 @@ So while I liked a lot of what I saw in Clojure, as a hardcore software liberal 
 
 I think that my conceptual framework gives us an "out" -- a way to avoid being emotional about these subjects. Casting the problem as a clash between Liberalism and Conservsatism gives us the ultimate ticket for "agreeing to disagree".
 
-Hopefully it will also help language designers and communities do a better job of targeted marketing. Right now just about every language out there makes a claim along the lines of "This language is the best choice for everybody!" But now we know that is very unlikely to be true -- or if it is, we can at least be assured that they're centrists, and they run the risk of being equally distasteful to everybody.
+Hopefully it will also help language designers and communities do a better job of targeted marketing. Right now just about every language out there makes a claim along the lines of "This language is the best choice for *everybody*!" But now we know that is very unlikely to be true -- or if it is, we can at least be assured that they're centrists, and they run the risk of being equally distasteful to everybody.
 
-In the conservative/liberal framework, language designers can make more accurate, less bait-and-switchy claims; for instance: "Haskell is the best choice for every radical extremist conservative programmer!"
+In the conservative/liberal framework, language designers can make more accurate, less bait-and-switchy claims; for instance: "Haskell is the best choice for *every* radical extremist conservative programmer!"
 
 Well, we can work on the wording. But you get the idea.
 
 ## Wrap-Up
 
-I was thinking of going through a bunch more examples and stuff, but I see that I'm on my third (Editor's Note:  fourth) glass of wine, which means my typing is about to give out any minute.
+I was thinking of going through a bunch more examples and stuff, but I see that I'm on my third *(Editor's Note: fourth)* glass of wine, which means my typing is about to give out any minute.
 
 So let's wrap it up!
 
@@ -346,16 +343,16 @@ There's one kinda key point I wanted to get across, but didn't see a good place 
 
 I worry that politically left-leaning programmers will hear the term "conservative" and will immediately associate it with all of the... uh, politically-charged connotations associated with far right-wing conservatism in the United States political arena today. You know, racism, sexism, religious fundamentalism, homophobia, warmongering, bear-shooting, that kind of thing.
 
-I'm not saying they're bad, at least not in this essay. I'm just saying nobody in their right mind wants to be associated even remotely with those embarrassing wingnuts. See what fine-grained, nuanced distinctions three (Editor's Note: four) glasses of wine can produce? But I'm not saying their views are bad. No. Not here.  I'm just observing that they're heavily politically charged viewpoints which have, for better or worse, recently come to be associated with the term "conservatism" in US politics.
+I'm not saying they're bad, at least not in this essay. I'm just saying nobody in their right mind wants to be associated even remotely with those embarrassing wingnuts. See what fine-grained, nuanced distinctions three *(Editor's Note: four)* glasses of wine can produce? But I'm not saying their views are bad. No. Not here.  I'm just observing that they're heavily politically charged viewpoints which have, for better or worse, recently come to be associated with the term "conservatism" in US politics.
 
-So please do me a favor and try to dissociate those specific agendas and real-world political viewpoints from the generic term "Conservative", which here really just means "risk averse".
+So please do me a favor and try to dissociate those specific agendas and real-world political viewpoints from the generic term "Conservative", which here really just means *risk averse*.
 
-It's perfectly OK, and normal, to be a programming conservative. You don't have to shoot any bears. I would actually like to see the terms "liberal" and "conservative" to become badges of honor in the programming world. People should stand behind their beliefs. I mean, we do already, I think, so it shouldn't be much of a stretch to allow our beliefs to be given convenient labels.
+It's perfectly OK, and normal, to be a programming conservative. You don't have to shoot any bears. I would actually like to see the terms *liberal* and *conservative* to become badges of honor in the programming world. People should stand behind their beliefs. I mean, we do already, I think, so it shouldn't be much of a stretch to allow our beliefs to be given convenient labels.
 
 Ah, me. I can see the Euphemism Treadmill rearing its ugly head already. We'll see.
 
 Anyway, tell me what you think! I welcome any and all viewpoints and comments. Even from bears!
 
-Special thanks to Writer's Block Syrah for reviewing this post for career suicide.
+*Special thanks to Writer's Block Syrah for reviewing this post for career suicide.*
 
-(Special Note to my fellow Googlers:  Yes, I meant to post this externally.  BOTH times.  No, I am not the Mouth of Sauron.)
+*(Special Note to my fellow Googlers: Yes, I meant to post this externally. BOTH times. No, I am not the Mouth of Sauron.)*
