@@ -13396,6 +13396,23 @@ git push
 
 </div>
 </div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Configure-git-dag">Configure <code>git dag</code><a class="anchor-link" href="#Configure-git-dag">&#182;</a></h1><p>Run:</p>
+<div class="highlight"><pre><span></span>git log --graph --oneline --all
+</pre></div>
+<p><em>Or, for something really special, put the following in to your ~/.gitconfig file:</em></p>
+
+<pre><code>[alias]
+    dag = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) -%C(auto)%d%C(reset) %C(bold white)%s%C(reset)%n          %C(dim white)%an%C(reset) &lt;%ae&gt; -%C(reset) %C(cyan)%aD%C(reset) %C(green)(%ar)%C(reset)' --all</code></pre>
+<p>Now you can run:</p>
+<div class="highlight"><pre><span></span>git dag
+</pre></div>
+
+</div>
+</div>
 </div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -13411,23 +13428,6 @@ git push
 <h2 id="Follow-up">Follow-up<a class="anchor-link" href="#Follow-up">&#182;</a></h2><ol>
 <li>View changes at previous commits.</li>
 </ol>
-
-</div>
-</div>
-</div></section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Configure-git-dag">Configure <code>git dag</code><a class="anchor-link" href="#Configure-git-dag">&#182;</a></h1><p>Run:</p>
-<div class="highlight"><pre><span></span>git log --graph --oneline --all
-</pre></div>
-<p><em>Or, for something really special, put the following in to your ~/.gitconfig file:</em></p>
-
-<pre><code>[alias]
-    dag = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) -%C(auto)%d%C(reset) %C(bold white)%s%C(reset)%n          %C(dim white)%an%C(reset) &lt;%ae&gt; -%C(reset) %C(cyan)%aD%C(reset) %C(green)(%ar)%C(reset)' --all</code></pre>
-<p>Now you can run:</p>
-<div class="highlight"><pre><span></span>git dag
-</pre></div>
 
 </div>
 </div>
@@ -13610,6 +13610,32 @@ nbdime extensions --enable
 </pre></div>
 </li>
 </ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Git-Cheat-Sheet">Git Cheat Sheet<a class="anchor-link" href="#Git-Cheat-Sheet">&#182;</a></h1><ul>
+<li>Git Config<ul>
+<li>Global: <code>~/.gitconfig</code></li>
+<li>Repo: <code>.git/config</code></li>
+</ul>
+</li>
+<li>Status<div class="highlight"><pre><span></span>git status
+</pre></div>
+</li>
+<li>Log / Dag<div class="highlight"><pre><span></span>git log --graph --oneline --all
+git dag
+</pre></div>
+</li>
+<li>Committing:<div class="highlight"><pre><span></span>git add <span class="o">[</span>file<span class="o">]</span>
+git commit
+</pre></div>
+</li>
+<li><a href="https://github.github.com/training-kit/downloads/github-git-cheat-sheet.pdf">GitHub's Cheet Sheet</a></li>
+</ul>
 
 </div>
 </div>
