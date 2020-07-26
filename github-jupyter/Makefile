@@ -21,3 +21,6 @@ svgs: $(SVG_FILES)
 variables:
 	@echo DRAWIO_FILES: $(DRAWIO_FILES)
 	@echo SVG_FILES: $(SVG_FILES)
+
+watch:
+	@fswatch -o . | xargs -n1 -I{} make

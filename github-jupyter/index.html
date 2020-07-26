@@ -13202,6 +13202,19 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Pre-requisites">Pre-requisites<a class="anchor-link" href="#Pre-requisites">&#182;</a></h1><p>To follow along, please do the following before we start:</p>
+<ul>
+<li><a href="https://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html">Install JupyterLab</a></li>
+<li><a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Install git for your platform</a></li>
+<li><a href="https://github.com/">Create a GitHub account</a></li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Git-&amp;-GitHub-for-Data-Scientists">Git &amp; GitHub for Data Scientists<a class="anchor-link" href="#Git-&amp;-GitHub-for-Data-Scientists">&#182;</a></h1><h2 id="Topics">Topics<a class="anchor-link" href="#Topics">&#182;</a></h2><h3 id="Basics">Basics<a class="anchor-link" href="#Basics">&#182;</a></h3><ul>
 <li><a href="https://git-scm.com/book/en/v2">Git</a></li>
 <li><a href="https://docs.github.com/en">GitHub</a></li>
@@ -13218,11 +13231,36 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Pre-requisites">Pre-requisites<a class="anchor-link" href="#Pre-requisites">&#182;</a></h1><p>To follow along, please do the following before we start:</p>
+<h1 id="Questions-to-be-Answered">Questions to be Answered<a class="anchor-link" href="#Questions-to-be-Answered">&#182;</a></h1><h2 id="Conceptual">Conceptual<a class="anchor-link" href="#Conceptual">&#182;</a></h2><ul>
+<li>What is Git?</li>
+<li>What is GitHub?</li>
+<li>What is version control?</li>
+<li>What's a repository?</li>
+<li>What's a commit?</li>
+<li>What's a fork?</li>
+<li>What's a branch?</li>
+<li>What's a diff?</li>
+<li>What's a conflict?</li>
+<li>What's a pull request?</li>
+</ul>
+<h2 id="Practical">Practical<a class="anchor-link" href="#Practical">&#182;</a></h2><ul>
+<li>How do I push changes for others to see?</li>
+<li>How do I merge the changes others have made?</li>
+<li>How do I notify others that I have made changes?</li>
+<li>How can I get an overview of the repository?</li>
+<li>What's the difference between branches and forks and which one should I use?</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="What-is-GitHub?">What is GitHub?<a class="anchor-link" href="#What-is-GitHub?">&#182;</a></h1><p>GitHub is a Git repository hosting platform.</p>
 <ul>
-<li><a href="https://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html">Install JupyterLab</a></li>
-<li><a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Install git for your platform</a></li>
-<li><a href="https://github.com/">Create a GitHub account</a></li>
+<li>Provides a central place to store your source code.</li>
+<li>Enables collaboration with others through <em>pull requests</em>.</li>
 </ul>
 
 </div>
@@ -13250,14 +13288,7 @@ a.anchor-link {
 
 </div>
 </div>
-</div></div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Why-GitHub?">Why GitHub?<a class="anchor-link" href="#Why-GitHub?">&#182;</a></h1>
-</div>
-</div>
-</div>
+</div></div></section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13279,13 +13310,21 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Demo">Demo<a class="anchor-link" href="#Demo">&#182;</a></h1><ol>
-<li>Create a new repo – <a href="https://github.com/new">https://github.com/new</a></li>
-<li>Clone the repo locally<div class="highlight"><pre><span></span>git clone &lt;repo&gt;
+<h1 id="Demo---Commit-&amp;-Push">Demo - Commit &amp; Push<a class="anchor-link" href="#Demo---Commit-&amp;-Push">&#182;</a></h1><ol>
+<li>Create a new repo. – <a href="https://github.com/new">https://github.com/new</a></li>
+<li>Clone the repo locally.<div class="highlight"><pre><span></span>git clone &lt;repo&gt; github-jupyter-covid
 </pre></div>
 </li>
-<li>Create a new notebook file</li>
-<li>Stage, commit, and push the file back to GitHub</li>
+<li>Create a new notebook file.<ul>
+<li>Make a plot using data from <a href="https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_daily_reports_us">here</a>.</li>
+</ul>
+</li>
+<li>Stage, commit, and push the file back to GitHub.<div class="highlight"><pre><span></span>git add .
+git commit -am <span class="s2">&quot;&lt;commit message&gt;&quot;</span>
+git push
+</pre></div>
+</li>
+<li>Take a look at the Notebook on GitHub.</li>
 </ol>
 
 </div>
@@ -13294,7 +13333,9 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="What-is-Git?">What is Git?<a class="anchor-link" href="#What-is-Git?">&#182;</a></h1><p>Git is a distributed version control system.</p>
+<h1 id="What-is-Git?">What is Git?<a class="anchor-link" href="#What-is-Git?">&#182;</a></h1><ul>
+<li>A distributed version control system.</li>
+</ul>
 
 </div>
 </div>
@@ -13302,7 +13343,9 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="What's-a-version-control-system?">What's a version control system?<a class="anchor-link" href="#What's-a-version-control-system?">&#182;</a></h1><p>Software that keeps track of the history of files in a repository.</p>
+<h1 id="What's-a-version-control-system?">What's a version control system?<a class="anchor-link" href="#What's-a-version-control-system?">&#182;</a></h1><ul>
+<li>Software that keeps track of the history of files in a repository.</li>
+</ul>
 
 </div>
 </div>
@@ -13327,6 +13370,7 @@ a.anchor-link {
 <ul>
 <li>The repository isn't just stored on a central server like GitHub.</li>
 <li>Your locally cloned repo is a <strong>full copy</strong> of the one on GitHub along with the full history of every file.</li>
+<li>Forks are also fully copies of a repository.</li>
 </ul>
 
 </div>
@@ -13344,18 +13388,180 @@ a.anchor-link {
 </div>
 </div>
 </div></section></section><section><section>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Demo---Fork-&amp;-Pull-Request">Demo - Fork &amp; Pull Request<a class="anchor-link" href="#Demo---Fork-&amp;-Pull-Request">&#182;</a></h1><ol>
+<li>Fork the github-jupyter/covid</li>
+<li>Clone the repo locally<div class="highlight"><pre><span></span>git clone &lt;repo&gt; shadanan-covid
+</pre></div>
+</li>
+<li>Update the covid notebook -- add a chart dividing confirmed cases by population.<ul>
+<li>Use state population data from <a href="https://www.kaggle.com/lucasvictor/us-state-populations-2018/data?select=State+Populations.csv">here</a>.</li>
+</ul>
+</li>
+<li>Use GitHub to create a pull request against upstream.</li>
+</ol>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="What-are-Pull-Requests?">What are Pull Requests?<a class="anchor-link" href="#What-are-Pull-Requests?">&#182;</a></h1><ul>
+<li>A request to review changes before merging changes into the main branch.</li>
+</ul>
+<h2 id="What's-a-diff?">What's a diff?<a class="anchor-link" href="#What's-a-diff?">&#182;</a></h2><ul>
+<li>Reveals just the changes that were made, which makes the reviewer's life easier.</li>
+</ul>
+<p><a href="https://github.com/music-markdown/music-markdown/pull/87/files"><img src="diff.png" alt=""></a></p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Demo---ReviewNB">Demo - ReviewNB<a class="anchor-link" href="#Demo---ReviewNB">&#182;</a></h1><ul>
+<li>Notebooks are <a href="https://en.wikipedia.org/wiki/JSON">JSON</a> - they don't diff well.</li>
+</ul>
+<ol>
+<li>Install <a href="https://github.com/marketplace/review-notebook-app">ReviewNB</a>.</li>
+<li>Use ReviewNB to view the diff and make a comment.</li>
+<li>Merge the changes.</li>
+</ol>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Synchronizing-Changes">Synchronizing Changes<a class="anchor-link" href="#Synchronizing-Changes">&#182;</a></h1><p><img src="git-synchronization.svg" alt=""></p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="git-fetch"><code>git fetch</code><a class="anchor-link" href="#git-fetch">&#182;</a></h2><p><img src="git-synchronization-1.svg" alt=""></p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="git-pull-(on-master)"><code>git pull</code> (on master)<a class="anchor-link" href="#git-pull-(on-master)">&#182;</a></h2><p><img src="git-synchronization-2.svg" alt=""></p>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="git-push-(on-branch)"><code>git push</code> (on branch)<a class="anchor-link" href="#git-push-(on-branch)">&#182;</a></h2><p><img src="git-synchronization-3.svg" alt=""></p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="What's-a-conflict?">What's a conflict?<a class="anchor-link" href="#What's-a-conflict?">&#182;</a></h1><p><img src="git-branches-conflict.svg" alt=""></p>
+<ul>
+<li>A change that cannot be automatically reconciliated.</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Dealing-with-Conflicts">Dealing with Conflicts<a class="anchor-link" href="#Dealing-with-Conflicts">&#182;</a></h1><ul>
+<li>Jupyter notebooks aren't easy to merge because they are JSON docs.</li>
+<li><strong><em>The best way to deal with conflicts is to avoid them.</em></strong><ul>
+<li>Don't work on the same notebook at the same time as someone else.</li>
+<li>Have everyone on your team make changes in a notebook with their initials.</li>
+<li>Have a single person be in charge of merging the final changes into the source of truth notebook.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="NO!-Jupyter-Notebooks-and-Data-Science-are-too-easy.-I-insist-on-merging-notebooks-the-hard-way!">NO! Jupyter Notebooks and Data Science are too easy. I insist on merging notebooks the <strong><em>hard way!</em></strong><a class="anchor-link" href="#NO!-Jupyter-Notebooks-and-Data-Science-are-too-easy.-I-insist-on-merging-notebooks-the-hard-way!">&#182;</a></h1><p><em>Or you end up in a situation where you have no other choice...</em></p>
+
+</div>
+</div>
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Demo---Conflict">Demo - Conflict<a class="anchor-link" href="#Demo---Conflict">&#182;</a></h1><ol>
+<li>We need to simulate a conflict.</li>
+<li>Create a branch in upstream that doesn't have our Per Capita change.</li>
+<li>Add Positivity Rate to the notebook.</li>
+<li>Make a Pull Request</li>
+</ol>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Demo---Observing-the-State">Demo - Observing the State<a class="anchor-link" href="#Demo---Observing-the-State">&#182;</a></h1><p>Run:</p>
+<div class="highlight"><pre><span></span>git log --graph --oneline --all
+</pre></div>
+<p><em>Or, for something really special, put the following in to your ~/.gitconfig file:</em></p>
+
+<pre><code>[alias]
+    dag = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) -%C(auto)%d%C(reset) %C(bold white)%s%C(reset)%n          %C(dim white)%an%C(reset) &lt;%ae&gt; -%C(reset) %C(cyan)%aD%C(reset) %C(green)(%ar)%C(reset)' --all</code></pre>
+<p>Now you can run:</p>
+<div class="highlight"><pre><span></span>git dag
 </pre></div>
 
-    </div>
 </div>
 </div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Demo---nbdime-(NoteBook-DIff-&amp;-MErge)">Demo - nbdime (<strong><em>N</em></strong>ote<strong><em>B</em></strong>ook <strong><em>DI</em></strong>ff &amp; <strong><em>ME</em></strong>rge)<a class="anchor-link" href="#Demo---nbdime-(NoteBook-DIff-&amp;-MErge)">&#182;</a></h1><ol>
+<li>Try merging origin/master<div class="highlight"><pre><span></span>git merge origin/master
+</pre></div>
+<ul>
+<li>Observe that the notebook is now broken.</li>
+</ul>
+</li>
+<li>Abort the merge.<div class="highlight"><pre><span></span>git merge --abort
+</pre></div>
+</li>
+<li><a href="https://nbdime.readthedocs.io/en/latest/installing.html">Install nbdime</a>.<div class="highlight"><pre><span></span>pip3 install --upgrade nbdime
+nbdime extensions --enable
+</pre></div>
+</li>
+<li><a href="https://nbdime.readthedocs.io/en/latest/vcs.html">Enable nbdime for the current repo</a><div class="highlight"><pre><span></span>nbdime config-git --enable
+</pre></div>
+</li>
+<li>Run the merge again.<div class="highlight"><pre><span></span>git merge origin/master
+</pre></div>
+</li>
+<li>Use nbdime's merge tool:<div class="highlight"><pre><span></span>git mergetool --tool nbdime -- *.ipynb
+</pre></div>
+</li>
+</ol>
 
+</div>
+</div>
 </div></section></section>
 </div>
 </div>
