@@ -13215,15 +13215,20 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Git-&amp;-GitHub-for-Data-Scientists">Git &amp; GitHub for Data Scientists<a class="anchor-link" href="#Git-&amp;-GitHub-for-Data-Scientists">&#182;</a></h1><h2 id="Topics">Topics<a class="anchor-link" href="#Topics">&#182;</a></h2><h3 id="Basics">Basics<a class="anchor-link" href="#Basics">&#182;</a></h3><ul>
+<h1 id="Git-&amp;-GitHub-for-Data-Scientists">Git &amp; GitHub for Data Scientists<a class="anchor-link" href="#Git-&amp;-GitHub-for-Data-Scientists">&#182;</a></h1><h2 id="Topics">Topics<a class="anchor-link" href="#Topics">&#182;</a></h2><ul>
 <li><a href="https://git-scm.com/book/en/v2">Git</a></li>
 <li><a href="https://docs.github.com/en">GitHub</a></li>
 <li><a href="https://github.com/marketplace/review-notebook-app">ReviewNB</a></li>
-</ul>
-<h3 id="For-the-Pros">For the Pros<a class="anchor-link" href="#For-the-Pros">&#182;</a></h3><ul>
 <li><a href="https://nbdime.readthedocs.io/en/latest/">nbdime</a></li>
-<li><a href="https://jupyterlab-code-formatter.readthedocs.io/en/latest/index.html">black</a></li>
 </ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Goal---Understand-This-Picture">Goal - Understand This Picture<a class="anchor-link" href="#Goal---Understand-This-Picture">&#182;</a></h1><p><img src="git-github-summary.svg" alt=""></p>
 
 </div>
 </div>
@@ -13379,11 +13384,61 @@ git push
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="What's-a-branch?">What's a branch?<a class="anchor-link" href="#What's-a-branch?">&#182;</a></h1><p><img src="git-branches.svg" alt=""></p>
+<h1 id="What's-a-branch?">What's a branch?<a class="anchor-link" href="#What's-a-branch?">&#182;</a></h1><p><img src="git-branches-merge.svg" alt=""></p>
 <ul>
 <li>A separate line of commits off the main branch.</li>
-<li>When done, we <em>merge</em> the branch back to the master.</li>
+<li>When done, we <em>merge</em> the branch:<ul>
+<li>Either, back to the main branch.</li>
+<li>Or, into the child branch.</li>
 </ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Demo---Branching-&amp;-Merging-Locally">Demo - Branching &amp; Merging Locally<a class="anchor-link" href="#Demo---Branching-&amp;-Merging-Locally">&#182;</a></h1><ol>
+<li>Initialize a repo.</li>
+<li>Create a README file and commit it.</li>
+<li>Make a branch and commit something.</li>
+<li>Switch to master and commit something.</li>
+<li>Observe the change with <code>git log</code> or <code>git dag</code></li>
+<li>Merge from master into branch.</li>
+</ol>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Configure-git-dag">Configure <code>git dag</code><a class="anchor-link" href="#Configure-git-dag">&#182;</a></h1><p>Run:</p>
+<div class="highlight"><pre><span></span>git log --graph --oneline --all
+</pre></div>
+<p><em>Or, for something really special, put the following in to your ~/.gitconfig file:</em></p>
+
+<pre><code>[alias]
+    dag = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) -%C(auto)%d%C(reset) %C(bold white)%s%C(reset)%n          %C(dim white)%an%C(reset) &lt;%ae&gt; -%C(reset) %C(cyan)%aD%C(reset) %C(green)(%ar)%C(reset)' --all</code></pre>
+<p>Now you can run:</p>
+<div class="highlight"><pre><span></span>git dag
+</pre></div>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="What-are-Pull-Requests?">What are Pull Requests?<a class="anchor-link" href="#What-are-Pull-Requests?">&#182;</a></h1><ul>
+<li>A request to review changes before merging changes into the main branch.</li>
+</ul>
+<h2 id="What's-a-diff?">What's a diff?<a class="anchor-link" href="#What's-a-diff?">&#182;</a></h2><ul>
+<li>Reveals just the changes that were made, which makes the reviewer's life easier.</li>
+</ul>
+<p><a href="https://github.com/music-markdown/music-markdown/pull/87/files"><img src="diff.png" alt=""></a></p>
 
 </div>
 </div>
@@ -13402,20 +13457,6 @@ git push
 </li>
 <li>Use GitHub to create a pull request against upstream.</li>
 </ol>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="What-are-Pull-Requests?">What are Pull Requests?<a class="anchor-link" href="#What-are-Pull-Requests?">&#182;</a></h1><ul>
-<li>A request to review changes before merging changes into the main branch.</li>
-</ul>
-<h2 id="What's-a-diff?">What's a diff?<a class="anchor-link" href="#What's-a-diff?">&#182;</a></h2><ul>
-<li>Reveals just the changes that were made, which makes the reviewer's life easier.</li>
-</ul>
-<p><a href="https://github.com/music-markdown/music-markdown/pull/87/files"><img src="diff.png" alt=""></a></p>
 
 </div>
 </div>
@@ -13470,6 +13511,16 @@ git push
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Git's-Fundamental-Concept">Git's Fundamental Concept<a class="anchor-link" href="#Git's-Fundamental-Concept">&#182;</a></h1><ul>
+<li>Tools that help you manage commits, and synchronize those commits between repositories.</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="What's-a-conflict?">What's a conflict?<a class="anchor-link" href="#What's-a-conflict?">&#182;</a></h1><p><img src="git-branches-conflict.svg" alt=""></p>
 <ul>
 <li>A change that cannot be automatically reconciliated.</li>
@@ -13505,7 +13556,7 @@ git push
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Demo---Conflict">Demo - Conflict<a class="anchor-link" href="#Demo---Conflict">&#182;</a></h1><ol>
+<h1 id="Demo---Merge-Conflict">Demo - Merge Conflict<a class="anchor-link" href="#Demo---Merge-Conflict">&#182;</a></h1><ol>
 <li>We need to simulate a conflict.</li>
 <li>Create a branch in upstream that doesn't have our Per Capita change.</li>
 <li>Add Positivity Rate to the notebook.</li>
@@ -13514,28 +13565,11 @@ git push
 
 </div>
 </div>
-</div></section></section><section><section>
+</div></section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Demo---Observing-the-State">Demo - Observing the State<a class="anchor-link" href="#Demo---Observing-the-State">&#182;</a></h1><p>Run:</p>
-<div class="highlight"><pre><span></span>git log --graph --oneline --all
-</pre></div>
-<p><em>Or, for something really special, put the following in to your ~/.gitconfig file:</em></p>
-
-<pre><code>[alias]
-    dag = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) -%C(auto)%d%C(reset) %C(bold white)%s%C(reset)%n          %C(dim white)%an%C(reset) &lt;%ae&gt; -%C(reset) %C(cyan)%aD%C(reset) %C(green)(%ar)%C(reset)' --all</code></pre>
-<p>Now you can run:</p>
-<div class="highlight"><pre><span></span>git dag
-</pre></div>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Demo---nbdime-(NoteBook-DIff-&amp;-MErge)">Demo - nbdime (<strong><em>N</em></strong>ote<strong><em>B</em></strong>ook <strong><em>DI</em></strong>ff &amp; <strong><em>ME</em></strong>rge)<a class="anchor-link" href="#Demo---nbdime-(NoteBook-DIff-&amp;-MErge)">&#182;</a></h1><ol>
+<h1 id="Demo-Cont'd---nbdime-(NoteBook-DIff-&amp;-MErge)">Demo Cont'd - nbdime (<strong><em>N</em></strong>ote<strong><em>B</em></strong>ook <strong><em>DI</em></strong>ff &amp; <strong><em>ME</em></strong>rge)<a class="anchor-link" href="#Demo-Cont'd---nbdime-(NoteBook-DIff-&amp;-MErge)">&#182;</a></h1><ol>
 <li>Try merging origin/master<div class="highlight"><pre><span></span>git merge origin/master
 </pre></div>
 <ul>
@@ -13559,6 +13593,14 @@ nbdime extensions --enable
 </pre></div>
 </li>
 </ol>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Summary">Summary<a class="anchor-link" href="#Summary">&#182;</a></h1><p><img src="git-github-summary.svg" alt=""></p>
 
 </div>
 </div>
