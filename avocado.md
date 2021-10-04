@@ -4,7 +4,7 @@ Notes on my Raspberry Pi configuration.
 
 ## Installation
 
-- Download the latest [64 bit Raspberry Pi OS](https://downloads.raspberrypi.org/raspios_lite_arm64/images/raspios_lite_arm64-2020-08-24/2020-08-20-raspios-buster-arm64-lite.zip).
+- Download the latest [64 bit Raspberry Pi OS](https://downloads.raspberrypi.org/raspios_lite_arm64/images/).
 - Use the [Raspberry Pi Imager](https://www.raspberrypi.org/downloads/) to prepare the SSD.
 
 ## Terminal & SSH
@@ -21,11 +21,32 @@ Notes on my Raspberry Pi configuration.
 - Logout and login as root.
 - Change the `pi` user to `shad`.
   ```console
-  $ usermod -l shad pi
-  $ usermod -m -d /home/shad shad
+  # usermod -l shad pi
+  # usermod -m -d /home/shad shad
+  ```
+
+### Hostname
+
+- Launch raspi-config.
+  ```console
+  $ sudo raspi-config
+  ```
+- Select System Options.
+- Select Hostname and hit Enter.
+- Enter a new hostname and hit Enter.
+- Click Finish.
+
+### SSH
+
+- Enable SSH.
+  ```console
+  $ sudo systemctl enable ssh
+  $ sudo systemctl start ssh
   ```
 
 ### Mount the Old Root
+
+#### Option 1: Old Device
 
 - List the available devices.
   ```console
@@ -51,13 +72,24 @@ Notes on my Raspberry Pi configuration.
   $ sudo mount /dev/sdd7 /mnt/oldroot
   ```
 
-### SSH
+#### Option 2: Backup Archive
 
-- Enable SSH.
+- Copy the backup to avocado.
   ```console
-  $ sudo systemctl enable ssh
-  $ sudo systemctl start ssh
+  $ scp rootfs.tar.gz shad@avocado.local:
   ```
+- Install archivemount.
+  ```console
+  $ sudo apt install archivemount
+  ```
+- Mount the archive.
+  ```console
+  $ sudo mkdir /mnt/oldroot
+  $ sudo archivemount -o readonly -o allow_other rootfs.tar.gz /mnt/oldroot
+  ```
+
+### SSH Keys
+
 - Restore SSH keys from backup.
   ```console
   $ cp -a /mnt/oldroot/home/shad/.ssh ~
@@ -83,11 +115,18 @@ Notes on my Raspberry Pi configuration.
   ```
 - Logout and log back in.
 
+### Common Apps
+
+- Install them.
+  ```console
+  $ sudo apt install vim git curl tmux
+  ```
+- Launch `tmux` and install plugins by pressing `ctrl+a, I`
+
 ### Dot Files
 
 - Install `.dotfiles`.
   ```console
-  $ sudo apt install git curl
   $ git clone git@github.com:shadanan/dotfiles.git .dotfiles
   $ .dotfiles/install
   ```
@@ -142,21 +181,6 @@ Notes on my Raspberry Pi configuration.
   $ sudo reboot
   ```
 
-### Vim
-
-- Install `vim`.
-  ```console
-  $ sudo apt install vim
-  ```
-
-### tmux
-
-- Install `tmux`.
-  ```console
-  $ sudo apt install tmux
-  ```
-- Launch `tmux` and install plugins by pressing `ctrl+a, I`
-
 ### Message of the Day (MotD)
 
 - Add the following to the top of `/etc/motd`
@@ -189,9 +213,10 @@ Notes on my Raspberry Pi configuration.
   ```console
   $ sudo apt install ddclient
   ```
+- Press `esc` to skip config screens.
 - Restore the original ddclient config.
   ```console
-  $ cp /mnt/oldroot/etc/ddclient.conf /etc/ddclient.conf
+  $ sudo cp /mnt/oldroot/etc/ddclient.conf /etc/ddclient.conf
   ```
 - Or use this template:
   ```
@@ -208,6 +233,10 @@ Notes on my Raspberry Pi configuration.
 - Restart the `ddclient` service.
   ```console
   $ sudo systemctl restart ddclient
+  ```
+- Verify that it's working by tailing `/var/log/syslog`.
+  ```console
+  $ tail /var/log/syslog
   ```
 
 ## Mount Media Volumes
@@ -241,15 +270,12 @@ Notes on my Raspberry Pi configuration.
   ```
 - Create the mount points.
   ```console
-  $ sudo mkdir /mnt/tanpopo
-  $ sudo mkdir /mnt/ajisai
+  $ sudo mkdir /mnt/tanpopo /mnt/ajisai
   ```
 - Mount the volumes.
   ```console
   $ sudo mount /mnt/tanpopo
-  FUSE exfat 1.3.0
   $ sudo mount /mnt/ajisai
-  FUSE exfat 1.3.0
   ```
 
 ## Share Media Volumes
@@ -259,6 +285,7 @@ Notes on my Raspberry Pi configuration.
   $ sudo apt install samba
   ```
 - Create shares for the mounted volumes in `/etc/samba/smb.conf`:
+
   ```
   [tanpopo]
      comment = Tanpopo 2TB External Drive
@@ -274,6 +301,7 @@ Notes on my Raspberry Pi configuration.
      read only = no
      guest ok = no
   ```
+
 - Set the password for user `shad`.
   ```console
   $ sudo smbpasswd -a shad
@@ -313,11 +341,19 @@ Notes on my Raspberry Pi configuration.
   $ sudo systemctl reload transmission-daemon.service
   ```
 
+## Golang
+
+- Install golang
+  ```console
+  $ sudo apt install golang
+  ```
+
 ## Caddy
 
 - Install Caddy.
   ```console
-  $ echo "deb [trusted=yes] https://apt.fury.io/caddy/ /" | sudo tee -a /etc/apt/sources.list.d/caddy-fury.list
+  $ curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo tee /etc/apt/trusted.gpg.d/caddy-stable.asc
+  $ curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
   $ sudo apt update
   $ sudo apt install caddy
   ```
@@ -340,14 +376,4 @@ Notes on my Raspberry Pi configuration.
 - Restart Caddy.
   ```console
   $ sudo systemctl restart caddy.service
-  ```
-
-## Golang
-
-- [Download the latest Linux ARMv8 version of Go](https://golang.org/dl/) and install.
-  ```console
-  $ mkdir ~/Downloads
-  $ cd ~/Downloads
-  $ curl -LO https://golang.org/dl/go1.15.2.linux-arm64.tar.gz
-  $ sudo tar -C /usr/local -xzf go1.15.2.linux-arm64.tar.gz
   ```
