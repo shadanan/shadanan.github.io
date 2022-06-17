@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Shad Sharma">
+    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
+
+    <title>TheSaurus</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">TheSaurus</a>
+        </div>
+        <div class="navbar-collapse collapse">
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>TheSaurus</h1>
+        <p>TheSaurus - An interactive visual thesaurus.</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <img style="width:100%" src="brontosaurus.png" />
+        </div>
+        <div class="col-md-4">
+          <h2>Overview</h2>
+          <p>When you search for a word, the word and its synonyms are presented as a graph. The word node that was searched becomes the root of the graph and is centered in the middle.</p>
+          <p>Word nodes are connected to meaning nodes. A meaning node can be a noun, verb, adjective, or adverb. Word nodes themselves are defined by the set of meaning nodes with which they are associated. If two word nodes are connected to the same meaning node, then those two word nodes will have that meaning in common.</p>
+        </div>
+        <div class="col-md-4">
+          <h2>Usage</h2>
+          <p>If you tap on a node, you will be presented with the node's definition. Since a word's definition is its set of meanings, all of its meanings will be presented when it is tapped.</p>
+
+          <p>By default, the graph only shows a limited number of nodes at a time. If a node has neighbors that aren't currently displayed, it will have a magenta outline. Tapping on one of these nodes will expand the graph to show that node's neighbours. If there are too many nodes on the screen, you can drag a node to the recycle area at the bottom left and that node and all of its descendents will be pruned from the graph.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Neat Features</h2>
+          <ul>
+            <li>Shake your device for a random word</li>
+            <li>Drag a node to the center of the graph to promote it to the root</li>
+            <li>Pinch the display to adjust the size of the nodes and fonts</li>
+        </div>
+        <div class="col-md-4">
+          <h2>Support</h2>
+          <p>Having trouble? Found a bug? This project is open source! File your issues at github and I'll get to it as soon as possible.</p>
+          <a href="https://github.com/shadanan/visual-dictionary/">TheSaurus on GitHub</a>
+        </div>
+      </div>
+
+      <hr />
+
+      <footer>
+        <p>&copy; 2014 Shad Sharma</p>
+      </footer>
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

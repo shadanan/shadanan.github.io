@@ -15,3 +15,7 @@
 ## [Tokei - A FitBit Watchface](https://gallery.fitbit.com/details/0a094903-9eb3-4311-b362-c47815bdee4e) [[GitHub]](https://github.com/shadanan/fitbit-tokei)
 
 ![Tokei Screenshot](https://github.com/shadanan/fitbit-tokei/raw/master/screenshot.png)
+
+## [TheSaurus](TheSaurus)
+
+![TheSaurus Logo](TheSaurus/brontosaurus.png)
