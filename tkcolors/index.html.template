@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+    <title>Tk Colors</title>
+    <style>
+      :root {
+        font-family: Avenir, Helvetica, Arial, sans-serif;
+        color: rgba(255, 255, 255, 0.87);
+        background-color: #2c2c32;
+        padding: 1em;
+      }
+
+      body {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+      }
+
+      .color {
+        padding: 2px;
+        width: 10em;
+        flex-grow: 1;
+      }
+    </style>
+  </head>
+  <body>
+    {}
+  </body>
+</html>
