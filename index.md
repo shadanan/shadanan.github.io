@@ -1,6 +1,7 @@
 # Links
 
 - [HSV Color Picker](color)
+- [Tk Colors](tkcolors)
 - [Raspberry Pi Configuration](avocado.md)
 - [Git & GitHub for Data Scientists](github-jupyter)
 - [Steve Yegge's Blog Post on Software Politics](notes-from-the-mystery-machine-bus.md)
